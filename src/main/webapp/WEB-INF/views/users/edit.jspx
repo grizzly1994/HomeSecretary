@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core" 
+     xmlns:joda="http://www.joda.org/joda/time/tags" 
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+     
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/> 
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="users.user.title" var="userTitle" />
+    <spring:message code="users.name.label" var="nameLabel" />
+    <spring:message code="users.email.label" var="emailLabel" />
+    <spring:message code="users.birth.label" var="birthLabel" />
+    <spring:message code="users.photo.label" var="photoLabel" />
+    <spring:message code="users.save.label" var="saveLabel" />
+    <spring:message code="users.reset.label" var="resetLabel" />
+    
+    <div id="userEditor">
+        <h1>${userTitle}</h1>
+        
+        <form:form modelAttribute="user" method="post" id="userUpdateForm"
+                   enctype="multipart/form-data">
+        
+            <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+            
+            <form:label path="name">
+                ${nameLabel}
+            </form:label>
+            <form:input path="name"/>
+            <span>
+                <form:errors path="name" cssClass="error"/>
+            </span>
+            <p/>
+            <form:label path="email">
+                ${emailLabel}
+            </form:label>
+            <form:input path="email"/>
+            <span>
+                <form:errors path="email" cssClass="error"/>
+            </span>
+            <p/>
+            <form:label path="birth">
+                ${birthLabel}
+            </form:label>
+            <form:input path="birth"/>
+            <span>
+                <form:errors path="birth" cssClass="error"/>
+            </span>
+            <p/>
+            <label for="photoFile">
+                ${photoLabel}
+            </label>
+            <input name="photoFile" type="file" />
+            <p/>
+
+            <button type="submit"
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">${saveLabel}</span>
+            </button>
+            <button type="reset"
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">${resetLabel}</span>
+            </button>
+            
+        </form:form>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#birth').datepicker({
+                dateFormat: 'dd.mm.yy',
+                changeYear: true
+            });
+        });
+    </script>
+</div>

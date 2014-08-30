@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core" 
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+     
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/> 
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="login.label" var="loginLabel" />
+    <spring:message code="login.caption" var="loginCaption" />
+    <spring:message code="login.user.name.label" var="userNameLabel" />
+    <spring:message code="login.password.label" var="passwordLabel" />
+    <spring:url value="/j_spring_security_check" var="loginUrl" />
+    
+    <div>
+        <sec:authorize access="isAnonymous()">
+            <div id="login">
+                <form name="loginForm" action="${loginUrl}" method="post">
+                    <table>
+                        <caption align="left">${loginCaption}</caption>
+                        <tr>
+                            <td>${userNameLabel}</td>
+                            <td><input type="text" name="j_username"/></td>
+                        </tr>
+                        <tr>
+                            <td>${passwordLabel}</td>
+                            <td><input type="password" name="j_password"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <input type="submit" name="submit" value="${loginLabel}" /> 
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </sec:authorize>
+    </div>
+    
+</div>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core" 
+     xmlns:joda="http://www.joda.org/joda/time/tags" 
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+     
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/> 
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="users.user.title" var="userTitle" />
+    <spring:message code="users.name.label" var="nameLabel" />
+    <spring:message code="users.email.label" var="emailLabel" />
+    <spring:message code="users.birth.label" var="birthLabel" />
+    <spring:message code="users.edit.label" var="editLabel" />
+    <spring:message code="users.photo.label" var="photoLabel" />
+    <spring:message code="users.remove.label" var="removeLabel" />
+    <spring:message code="dateFormatPattern" var="dateFormatPattern" />
+    
+    <spring:url value="/users" var="usersUrl" />
+    <spring:url value="/users/photo" var="userPhotoUrl" />
+    
+    <div id="userViewer">
+        <h1>${userTitle}</h1>
+        
+        <c:if test="${not empty message}">
+            <div id="message" class="${message.type}">${message.message}</div>
+        </c:if>
+        
+        <div class="toolbar">
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        onclick="document.location = '${usersUrl}/${user.id}?form'; return false;">
+                    <span class="ui-button-text">${editLabel}</span>
+                </button>
+                <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+                        onclick="document.getElementById('removeUserForm').submit(); return false;">
+                    <span class="ui-button-text">${removeLabel}</span>
+                </button>
+                
+                <form id="removeUserForm" action="${usersUrl}/${user.id}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                </form>
+            </sec:authorize>
+        </div>
+
+        <table>
+            <tr>
+                <td>${nameLabel}</td>
+                <td>${user.name}</td>
+            </tr>
+            <tr>
+                <td>${emailLabel}</td>
+                <td>${user.email}</td>
+            </tr>
+            <tr>
+                <td>${birthLabel}</td>
+                <td><joda:format value="${user.birth}" pattern="${dateFormatPattern}"/></td>
+            </tr>
+            <tr>
+                <td>${photoLabel}</td>
+                <td><img src="${userPhotoUrl}/${user.id}"></img></td>
+            </tr>
+        </table>
+    </div>
+</div>
