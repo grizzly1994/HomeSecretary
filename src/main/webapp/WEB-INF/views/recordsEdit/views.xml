@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="recordsEdit/actionsEditor">
+        <put-attribute name="body" value="/WEB-INF/views/recordsEdit/actionsEditor.jspx" />
+    </definition>
+    <definition extends="default" name="recordsEdit/creditsEditor">
+        <put-attribute name="body" value="/WEB-INF/views/recordsEdit/creditsEditor.jspx" />
+    </definition>
+    <definition extends="default" name="recordsEdit/debtsEditor">
+        <put-attribute name="body" value="/WEB-INF/views/recordsEdit/debtsEditor.jspx" />
+    </definition>
+    <definition extends="default" name="recordsEdit/incomeEditor">
+        <put-attribute name="body" value="/WEB-INF/views/recordsEdit/incomeEditor.jspx" />
+    </definition>
+    <definition extends="default" name="recordsEdit/accumulationsEditor">
+        <put-attribute name="body" value="/WEB-INF/views/recordsEdit/accumulationsEditor.jspx" />
+    </definition>
+</tiles-definitions>

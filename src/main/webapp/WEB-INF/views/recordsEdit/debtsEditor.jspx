@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core" 
+     xmlns:joda="http://www.joda.org/joda/time/tags" 
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+     
+    <jsp:directive.page contentType="text/html;charset=UTF-8" /> 
+    <jsp:output omit-xml-declaration="yes" />
+
+	<spring:message code="recordsEdit.date.label" var="dateLabel" />
+	<spring:message code="recordsEdit.name.label" var="nameLabel" />
+	<spring:message code="recordsEdit.comment.label" var="commentLabel" />
+	<spring:message code="recordsEdit.sum.label" var="sumLabel" />
+	<spring:message code="recordsEdit.interestRate.label" var="interestRateLabel" />
+    <spring:message code="recordsEdit.save.label" var="saveLabel" />
+    <spring:message code="recordsEdit.cancel.label" var="cancelLabel" />
+
+	<form id="debtsEditor" method="post" enctype="multipart/form-data">
+		<label> ${dateLabel} </label>
+		<input />
+		<errors cssClass="error" />
+		<p />
+
+		<label> ${nameLabel} </label>
+		<input />
+		<errors cssClass="error" />
+		<p />
+
+		<label> ${commentLabel} </label>
+		<input />
+		<errors cssClass="error" />
+		<p />
+
+		<label> ${sumLabel} </label>
+		<input />
+		<errors cssClass="error" />
+		<p />
+
+		<label> ${interestRateLabel} </label>
+		<input />
+		<errors cssClass="error" />
+		<p />
+
+		<button type="submit"
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			<span class="ui-button-text"> ${saveLabel} </span>
+		</button>
+		<button type="reset"
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			<span class="ui-button-text"> ${cancelLabel} </span>
+		</button>
+	</form>
+</div>
