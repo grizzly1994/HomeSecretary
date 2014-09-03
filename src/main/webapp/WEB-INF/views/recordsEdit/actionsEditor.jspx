@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:joda="http://www.joda.org/joda/time/tags"
-	xmlns:form="http://www.springframework.org/tags/form"
-	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"
+	 xmlns:joda="http://www.joda.org/joda/time/tags"
+	 xmlns:form="http://www.springframework.org/tags/form"
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
 
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
@@ -16,26 +16,36 @@
     <spring:message code="recordsEdit.cancel.label" var="cancelLabel" />
 
 	<form id="actionsEditor" method="post" enctype="multipart/form-data">
-		<label> ${dateLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${nameLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${commentLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${sumLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
+		<p>
+			<label> ${dateLabel} </label>
+			<input class="datePicker" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${nameLabel} </label>
+			<input />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${commentLabel} </label>
+			<textarea>
+				<jsp:text />
+			</textarea>
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${sumLabel} </label>
+			<input class="decimalSpinner" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text"> ${saveLabel} </span>

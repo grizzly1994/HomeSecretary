@@ -17,38 +17,63 @@
 	<spring:message code="recordsEdit.period.label" var="periodLabel" />
     <spring:message code="recordsEdit.save.label" var="saveLabel" />
     <spring:message code="recordsEdit.cancel.label" var="cancelLabel" />
-
+	
+    <spring:message code="recordsEdit.day.option" var="day" />
+    <spring:message code="recordsEdit.week.option" var="week" />
+    <spring:message code="recordsEdit.month.option" var="month" />
+    <spring:message code="recordsEdit.year.option" var="year" />
+	
 	<form id="accumulationsEditor" method="post" enctype="multipart/form-data">
-		<label> ${beginDateLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${nameLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${commentLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${requiredSumLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
-		<label> ${singleContribLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-		
-		<label> ${periodLabel} </label>
-		<input />
-		<errors cssClass="error" />
-		<p />
-
+		<p>
+			<label> ${beginDateLabel} </label>
+			<input class="datePicker" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${nameLabel} </label>
+			<input />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${commentLabel} </label>
+			<textarea>
+				<jsp:text />
+			</textarea>
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${requiredSumLabel} </label>
+			<input class="decimalSpinner" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${singleContribLabel} </label>
+			<input class="decimalSpinner" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${periodLabel} </label>
+			<input class="integerSpinner" />
+			<select>
+				<option>${day}</option>
+				<option>${week}</option>
+				<option>${month}</option>
+				<option>${year}</option>
+			</select>
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text"> ${saveLabel} </span>
