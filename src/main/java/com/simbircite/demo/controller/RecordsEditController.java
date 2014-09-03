@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RecordsEditController {
 
     private static final String CONTROLLER_PATH = "recordsEdit/";
-
+    
     @RequestMapping(value = "/actions", method = RequestMethod.GET)
     public String actions() {
         return CONTROLLER_PATH + "actionsEditor";
