@@ -5,7 +5,6 @@
     xmlns:spring="http://www.springframework.org/tags">
 
     <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
-
     <jsp:directive.page contentType="text/html;charset=UTF-8" />
     <jsp:directive.page pageEncoding="UTF-8" />
     
@@ -13,109 +12,64 @@
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=8" />
         
-        <!-- Theme -->
-        <spring:theme code="styleSheet" var="appCss" />
-        <spring:url value="/${appCss}" var="appCssUrl" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${appCssUrl}" />
-        
-        <!-- jQuery и jQuery UI -->
         <spring:url value="/resources/scripts/jquery-1.10.2.js" var="jQueryUrl" />
         <spring:url value="/resources/scripts/jquery-ui-1.10.3.custom.js" var="jQueryUiUrl" />
-        <spring:url value="/resources/styles/jquery-ui-1.10.3.custom.css" var="jQueryUiThemeUrl" />
-        <script src="${jQueryUrl}" type="text/javascript"><jsp:text /></script>
-        <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text /></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
-        
-        <!-- jqGrid -->
-        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqGridCssUrl" />
+        <spring:url value="/resources/scripts/globalize.js" var="globalizeUrl" />
+        <spring:url value="/resources/scripts/jquery.mousewheel.js" var="mousewheelUrl" />
         <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
         <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqGridUrl" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
-        <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text/></script>
-        <script src="${jqGridUrl}" type="text/javascript"><jsp:text/></script>
+        <spring:url value="/resources/scripts/reports.js" var="reportsUrl" />
         
-        <!-- Заголовок страницы -->
+        <spring:theme code="styleSheet" var="appCss" />
+        <spring:url value="/${appCss}" var="appCssUrl" />
+        <spring:url value="/resources/styles/jquery-ui-1.10.3.custom.css" var="jQueryUiThemeUrl" />
+        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqGridCssUrl" />
+        <spring:url value="/resources/styles/reports.css" var="reportsCssUrl" />
+        
+        <script src="${jQueryUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${globalizeUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${mousewheelUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${jqGridUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${reportsUrl}" type="text/javascript"><jsp:text/></script>
+        
+        <link rel="stylesheet" type="text/css" media="screen" href="${appCssUrl}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
+        
         <spring:message code="reports.title" var="title" />
         <title>${title}</title>
-        
-        <style>
-        	html, body, #reports {
-        		margin: 0;
-        		padding: 0;
-        		height: 100%;
-        		border: none;
-        	}
-        	
-        	.ui-widget-content .ui-tabs-panel {
-        		padding: 0;
-        		margin: 0;
-        	}
-        	
-        	.reportTable {
-        		width: 100%;
-        	}
-        	
-        	.ui-jqgrid {
-        		border: none;
-        	}
-        </style>
     </head>
     <body>
-    	<!-- Список отчетов -->
     	<c:set var="reports">actions,costs,income,regularIncome,credits,debts,accumulations</c:set>
-    	
-    	<!-- Заголовки отчетов -->
-    	<c:forEach items="${reports}" var="report">
-    		<spring:message code="reports.${report}.title" var="${report}" />
-    	</c:forEach>
-    	
     	<div id="reports">
-    		<!-- Вкладки -->
     		<ul>
-    			<li><a href="#actions">${actions}</a></li>
-    			<li><a href="#costs">${costs}</a></li>
-    			<li><a href="#income">${income}</a></li>
-    			<li><a href="#regularIncome">${regularIncome}</a></li>
-    			<li><a href="#credits">${credits}</a></li>
-    			<li><a href="#debts">${debts}</a></li>
-    			<li><a href="#accumulations">${accumulations}</a></li>
+    			<c:forEach items="${reports}" var="report">
+		    		<spring:message code="reports.${report}.title" var="${report}" />
+		    	</c:forEach>
+		    	<li><a href="#actions">${actions}</a></li>
+		    	<li><a href="#costs">${costs}</a></li>
+		    	<li><a href="#income">${income}</a></li>
+		    	<li><a href="#regularIncome">${regularIncome}</a></li>
+		    	<li><a href="#credits">${credits}</a></li>
+		    	<li><a href="#debts">${debts}</a></li>
+		    	<li><a href="#accumulations">${accumulations}</a></li>
     		</ul>
-    		
-    		<!-- Содержимое вкладок -->
     		<c:forEach items="${reports}" var="report">
     			<div id="${report}">
 	    			<ul class="reportMenu">
-		    			<li><a href="edit/${report}" class="add"><jsp:text /></a></li>
-		    			<li><a href="edit/${report}" class="edit"><jsp:text /></a></li>
+		    			<li><a href="#${report}" class="add"><jsp:text /></a></li>
+		    			<li><a href="#${report}" class="edit"><jsp:text /></a></li>
 		    			<li><a href="#" class="remove"><jsp:text /></a></li>
 	    			</ul>
 	    			<tiles:insertAttribute name="${report}" />
+	    			<div class="dialog" id="${report}Edit">
+		    			<tiles:insertAttribute name="${report}Edit" />
+		    		</div>
 	    		</div>
     		</c:forEach>
-    		
-    		<!-- Скрипт, отображающий вкладки таблицу -->
-	    	<script>
-	    		var count = 0;
-	    	
-	    		$(".reportTable").each(function() {
-	    		    $(this).attr("id", "reportTable" + count);
-	    		    count++;
-	    		});
-	    	
-	    		tableToGrid(".reportTable");
-	    		$('#reports').tabs();
-	    		
-	    		function fit() {
-		    		$(".reportTable").setGridWidth($(window).width());
-	    			$(".reportTable").setGridHeight($(window).height() - 120);
-	    		}
-	    		
-	    		$(".ui-tabs-anchor").bind('click', fit);
-	    		$(window).bind('resize', fit);
-	    		
-	    		fit();
-	    		
-	    	</script>
     	</div>
     </body>
 </html>

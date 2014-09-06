@@ -1,0 +1,19 @@
+html, body, #reports {
+	margin: 0;
+	padding: 0;
+    height: 100%;
+    border: none;
+}
+        	
+.ui-widget-content .ui-tabs-panel {
+    padding: 0;
+    margin: 0;
+}
+        	
+.reportTable {
+    width: 100%;
+}
+        	
+.ui-jqgrid {
+    border: none;
+}

@@ -15,7 +15,7 @@
 	<spring:message code="edit.save.label" var="saveLabel" />
     <spring:message code="edit.cancel.label" var="cancelLabel" />
 
-	<form id="actionsEditor" method="post" enctype="multipart/form-data">
+	<form name="actions" method="post" enctype="multipart/form-data">
 		<p>
 			<label> ${dateLabel} </label>
 			<input class="datePicker" />
@@ -49,10 +49,6 @@
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text"> ${saveLabel} </span>
-		</button>
-		<button type="reset"
-			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
-			<span class="ui-button-text"> ${cancelLabel} </span>
 		</button>
 	</form>
 </div>
