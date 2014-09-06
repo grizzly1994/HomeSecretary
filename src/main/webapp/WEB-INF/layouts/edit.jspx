@@ -26,18 +26,21 @@
         <spring:url value="/resources/scripts/jquery-ui-1.10.3.custom.js" var="jQueryUiUrl" />
         <spring:url value="/resources/styles/jquery-ui-1.10.3.custom.css" var="jQueryUiThemeUrl" />
         
-        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
+        <!-- Globalize -->
+        <spring:url value="/resources/scripts/globalize.js" var="globalizeUrl" />
+        
+        <!-- Mousewheel -->
+        <spring:url value="/resources/scripts/jquery.mousewheel.js" var="mousewheelUrl" />
+        
+        <!-- Отображение виджетов -->
+        <spring:url value="/resources/scripts/widgets.js" var="widgetsUrl" />
+        
         <script src="${jQueryUrl}" type="text/javascript"><jsp:text/></script>
         <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text/></script>
-        
-        <!-- jqGrid -->
-        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqGridCssUrl" />
-        <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
-        <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqGridUrl" />
-        
-        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
-        <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text/></script>
-        <script src="${jqGridUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${globalizeUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${mousewheelUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${widgetsUrl}" type="text/javascript"><jsp:text/></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
 
         <!-- Извлечение локали из контекста страницы -->
         <c:set var="userLocale">
@@ -48,22 +51,7 @@
         <spring:message code="application.name" var="appName" htmlEscape="false"/>
         <title>${appName}</title>
     </head>
-    
     <body>
-        <div id="headerWrapper">
-            <tiles:insertAttribute name="header" ignore="true" />
-        </div>
-        <div id="menu">
-            <tiles:insertAttribute name="menu" ignore="true" />
-        </div>
-        <div id="wrapper">
-            <div id="rightPanel">
-                <tiles:insertAttribute name="rightPanel" ignore="true" />
-            </div>
-            <div id="main">
-                <tiles:insertAttribute name="body" />
-                <tiles:insertAttribute name="footer" ignore="true" />
-            </div>
-        </div>
+    	<tiles:insertAttribute name="body" />
     </body>
 </html> 

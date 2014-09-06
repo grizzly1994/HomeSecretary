@@ -19,6 +19,5 @@
         <put-attribute name="debts" value="/WEB-INF/views/reports/debts.jspx" />
         <put-attribute name="accumulations" value="/WEB-INF/views/reports/accumulations.jspx" />
     </definition>
-    <definition name="recordsEdit" template="/WEB-INF/layouts/recordsEdit.jspx">
-    </definition>
+    <definition name="edit" template="/WEB-INF/layouts/edit.jspx"></definition>
 </tiles-definitions>

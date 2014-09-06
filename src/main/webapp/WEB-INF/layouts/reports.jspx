@@ -1,15 +1,10 @@
 <html 
     xmlns:jsp="http://java.sun.com/JSP/Page"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
-    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
     xmlns:tiles="http://tiles.apache.org/tags-tiles"
-    xmlns:spring="http://www.springframework.org/tags"
-    >
+    xmlns:spring="http://www.springframework.org/tags">
 
-    <jsp:output 
-        doctype-root-element="HTML"
-        doctype-system="about:legacy-compat"
-        />
+    <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 
     <jsp:directive.page contentType="text/html;charset=UTF-8" />
     <jsp:directive.page pageEncoding="UTF-8" />
@@ -31,19 +26,51 @@
         <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text /></script>
         <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
         
-        <!-- Title -->
+        <!-- jqGrid -->
+        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqGridCssUrl" />
+        <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
+        <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqGridUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
+        <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text/></script>
+        <script src="${jqGridUrl}" type="text/javascript"><jsp:text/></script>
+        
+        <!-- Заголовок страницы -->
         <spring:message code="reports.title" var="title" />
         <title>${title}</title>
+        
+        <style>
+        	html, body, #reports {
+        		margin: 0;
+        		padding: 0;
+        		height: 100%;
+        		border: none;
+        	}
+        	
+        	.ui-widget-content .ui-tabs-panel {
+        		padding: 0;
+        		margin: 0;
+        	}
+        	
+        	.reportTable {
+        		width: 100%;
+        	}
+        	
+        	.ui-jqgrid {
+        		border: none;
+        	}
+        </style>
     </head>
     <body>
-    	<spring:message code="reports.actions" var="actions" />
-	    <spring:message code="reports.costs" var="costs" />
-	    <spring:message code="reports.income" var="income" />
-	    <spring:message code="reports.regularIncome" var="regularIncome" />
-	    <spring:message code="reports.credits" var="credits" />
-	    <spring:message code="reports.debts" var="debts" />
-	    <spring:message code="reports.accumulations" var="accumulations" />
+    	<!-- Список отчетов -->
+    	<c:set var="reports">actions,costs,income,regularIncome,credits,debts,accumulations</c:set>
+    	
+    	<!-- Заголовки отчетов -->
+    	<c:forEach items="${reports}" var="report">
+    		<spring:message code="reports.${report}.title" var="${report}" />
+    	</c:forEach>
+    	
     	<div id="reports">
+    		<!-- Вкладки -->
     		<ul>
     			<li><a href="#actions">${actions}</a></li>
     			<li><a href="#costs">${costs}</a></li>
@@ -53,68 +80,43 @@
     			<li><a href="#debts">${debts}</a></li>
     			<li><a href="#accumulations">${accumulations}</a></li>
     		</ul>
-    		<div id="actions">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/actions">Add</a></li>
-	    			<li><a href="recordsEdit/actions">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="actions" />
-    		</div>
-    		<div id="costs">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/actions">Add</a></li>
-	    			<li><a href="recordsEdit/actions">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="costs" />
-    		</div>
-    		<div id="income">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/actions">Add</a></li>
-	    			<li><a href="recordsEdit/actions">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="income" />
-    		</div>
-    		<div id="regularIncome">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/income">Add</a></li>
-	    			<li><a href="recordsEdit/income">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="regularIncome" />
-    		</div>
-    		<div id="credits">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/credits">Add</a></li>
-	    			<li><a href="recordsEdit/credits">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="credits" />
-    		</div>
-    		<div id="debts">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/debts">Add</a></li>
-	    			<li><a href="recordsEdit/debts">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="debts" />
-    		</div>
-    		<div id="accumulations">
-    			<ul class="reportMenu">
-	    			<li><a href="recordsEdit/accumulations">Add</a></li>
-	    			<li><a href="recordsEdit/accumulations">Edit</a></li>
-	    			<li><a href="#">Remove</a></li>
-    			</ul>
-    			<tiles:insertAttribute name="accumulations" />
-    		</div>
+    		
+    		<!-- Содержимое вкладок -->
+    		<c:forEach items="${reports}" var="report">
+    			<div id="${report}">
+	    			<ul class="reportMenu">
+		    			<li><a href="edit/${report}" class="add"><jsp:text /></a></li>
+		    			<li><a href="edit/${report}" class="edit"><jsp:text /></a></li>
+		    			<li><a href="#" class="remove"><jsp:text /></a></li>
+	    			</ul>
+	    			<tiles:insertAttribute name="${report}" />
+	    		</div>
+    		</c:forEach>
+    		
+    		<!-- Скрипт, отображающий вкладки таблицу -->
+	    	<script>
+	    		var count = 0;
+	    	
+	    		$(".reportTable").each(function() {
+	    		    $(this).attr("id", "reportTable" + count);
+	    		    count++;
+	    		});
+	    	
+	    		tableToGrid(".reportTable");
+	    		$('#reports').tabs();
+	    		
+	    		function fit() {
+		    		$(".reportTable").setGridWidth($(window).width());
+	    			$(".reportTable").setGridHeight($(window).height() - 120);
+	    		}
+	    		
+	    		$(".ui-tabs-anchor").bind('click', fit);
+	    		$(window).bind('resize', fit);
+	    		
+	    		fit();
+	    		
+	    	</script>
     	</div>
-    	<script>
-    		$(function() {
-    		    $('#reports').tabs();
-    		});
-    	</script>
     </body>
 </html>
     
