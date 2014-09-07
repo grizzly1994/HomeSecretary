@@ -1,7 +1,9 @@
 $(function() {
     // Для корректной работы плагина jqGrid у каждой таблицы должен быть уникальный id
     var count = 0;
-    $(".reportTable").attr("id", "report" + count++);
+    $(".reportTable").each(function() {
+        $(this).attr("id", "report" + count++);
+    });
     
     // Устанавливаем плагины
     tableToGrid(".reportTable");
