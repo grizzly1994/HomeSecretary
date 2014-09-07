@@ -26,20 +26,6 @@
 
 	<form name="credits" method="post" enctype="multipart/form-data">
 		<p>
-			<label> ${beginDateLabel} </label>
-			<input class="datePicker" />
-			<span>
-				<errors cssClass="error" />
-			</span>
-		</p>
-		<p>
-			<label> ${endDateLabel} </label>
-			<input class="datePicker" />
-			<span>
-				<errors cssClass="error" />
-			</span>
-		</p>
-		<p>
 			<label> ${nameLabel} </label>
 			<input />
 			<span>
@@ -51,6 +37,20 @@
 			<textarea>
 				<jsp:text />
 			</textarea>
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${beginDateLabel} </label>
+			<input class="datePicker" />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${endDateLabel} </label>
+			<input class="datePicker" />
 			<span>
 				<errors cssClass="error" />
 			</span>

@@ -30,28 +30,22 @@ $(function() {
     $(".edit").bind('click', edit);
     
     // Виджеты для текстовых полей
-    $('.datePicker').each(function() {
-        $(this).datepicker({
-            dateFormat : 'dd.mm.yy',
-            showButtonPanel : true,
-            changeMonth : true,
-            changeYear : true
-        });
+    $('.datePicker').datepicker({
+        dateFormat : 'dd.mm.yy',
+        showButtonPanel : true,
+        changeMonth : true,
+        changeYear : true
     });
     
-    $('.decimalSpinner').each(function() {
-        $(this).spinner({
-            min : 0,
-            step : 10,
-            numberFormat : "n",
-            culture : "en-US"
-        });
+    $('.decimalSpinner').spinner({
+        min : 0,
+        step : 10,
+        numberFormat : "n",
+        culture : "en-US"
     });
     
-    $('.integerSpinner').each(function() {
-        $(this).spinner({
-            min : 0,
-            step : 1
-        });
+    $('.integerSpinner').spinner({
+        min : 0,
+        step : 1
     });
 });

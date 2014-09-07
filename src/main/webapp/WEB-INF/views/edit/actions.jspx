@@ -17,13 +17,6 @@
 
 	<form name="actions" method="post" enctype="multipart/form-data">
 		<p>
-			<label> ${dateLabel} </label>
-			<input class="datePicker" />
-			<span>
-				<errors cssClass="error" />
-			</span>
-		</p>
-		<p>
 			<label> ${nameLabel} </label>
 			<input />
 			<span>
@@ -35,6 +28,13 @@
 			<textarea>
 				<jsp:text />
 			</textarea>
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>
+		<p>
+			<label> ${dateLabel} </label>
+			<input class="datePicker" />
 			<span>
 				<errors cssClass="error" />
 			</span>
