@@ -18,12 +18,5 @@
         <put-attribute name="credits" value="/WEB-INF/views/reports/credits.jspx" />
         <put-attribute name="debts" value="/WEB-INF/views/reports/debts.jspx" />
         <put-attribute name="accumulations" value="/WEB-INF/views/reports/accumulations.jspx" />
-        <put-attribute name="actionsEdit" value="/WEB-INF/views/edit/actions.jspx" />
-        <put-attribute name="costsEdit" value="/WEB-INF/views/edit/actions.jspx" />
-        <put-attribute name="incomeEdit" value="/WEB-INF/views/edit/actions.jspx" />
-        <put-attribute name="regularIncomeEdit" value="/WEB-INF/views/edit/regularIncome.jspx" />
-        <put-attribute name="creditsEdit" value="/WEB-INF/views/edit/credits.jspx" />
-        <put-attribute name="debtsEdit" value="/WEB-INF/views/edit/debts.jspx" />
-        <put-attribute name="accumulationsEdit" value="/WEB-INF/views/edit/accumulations.jspx" />
     </definition>
 </tiles-definitions>

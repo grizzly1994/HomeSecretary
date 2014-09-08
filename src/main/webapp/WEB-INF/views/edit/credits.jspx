@@ -1,13 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
 <div xmlns:jsp="http://java.sun.com/JSP/Page" 
      xmlns:c="http://java.sun.com/jsp/jstl/core" 
-     xmlns:joda="http://www.joda.org/joda/time/tags" 
      xmlns:form="http://www.springframework.org/tags/form"
-     xmlns:spring="http://www.springframework.org/tags"
-     version="2.0">
-     
-    <jsp:directive.page contentType="text/html;charset=UTF-8" /> 
-    <jsp:output omit-xml-declaration="yes" />
+     xmlns:spring="http://www.springframework.org/tags">
 
 	<spring:message code="edit.beginDate.label" var="beginDateLabel" />
 	<spring:message code="edit.endDate.label" var="endDateLabel" />
@@ -17,57 +11,42 @@
 	<spring:message code="edit.interestRate.label" var="interestRateLabel" />
 	<spring:message code="edit.period.label" var="periodLabel" />
     <spring:message code="edit.save.label" var="saveLabel" />
-    <spring:message code="edit.cancel.label" var="cancelLabel" />
     
     <spring:message code="edit.day.option" var="day" />
     <spring:message code="edit.week.option" var="week" />
     <spring:message code="edit.month.option" var="month" />
     <spring:message code="edit.year.option" var="year" />
 
-	<form name="credits" method="post" enctype="multipart/form-data">
+	<form action="edit/credits" method="post" enctype="multipart/form-data">
 		<p>
-			<label> ${nameLabel} </label>
+			<label>${nameLabel}</label>
 			<input />
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${commentLabel} </label>
-			<textarea>
-				<jsp:text />
-			</textarea>
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<label>${commentLabel}</label>
+			<textarea><jsp:text /></textarea>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${beginDateLabel} </label>
+			<label>${beginDateLabel}</label>
 			<input class="datePicker" />
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${endDateLabel} </label>
+			<label>${endDateLabel}</label>
 			<input class="datePicker" />
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${sumLabel} </label>
+			<label>${sumLabel}</label>
 			<input class="decimalSpinner" />
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${interestRateLabel} </label>
+			<label>${interestRateLabel}</label>
 			<input class="decimalSpinner" />
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
 			<label> ${periodLabel} </label>
@@ -78,9 +57,7 @@
 				<option>${month}</option>
 				<option>${year}</option>
 			</select>
-			<span>
-				<errors cssClass="error" />
-			</span>
+			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">

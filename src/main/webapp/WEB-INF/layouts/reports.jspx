@@ -60,16 +60,14 @@
     		<c:forEach items="${reports}" var="report">
     			<div id="${report}">
 	    			<ul class="reportMenu">
-		    			<li><a href="#${report}" class="add"><jsp:text /></a></li>
-		    			<li><a href="#${report}" class="edit"><jsp:text /></a></li>
+		    			<li><a href="#" data-report="${report}" class="add"><jsp:text /></a></li>
+		    			<li><a href="#" data-report="${report}" class="edit"><jsp:text /></a></li>
 		    			<li><a href="#" class="remove"><jsp:text /></a></li>
 	    			</ul>
 	    			<tiles:insertAttribute name="${report}" />
-	    			<div class="dialog" id="${report}Edit">
-		    			<tiles:insertAttribute name="${report}Edit" />
-		    		</div>
 	    		</div>
     		</c:forEach>
+    		<div id="dialog"><jsp:text /></div>
     	</div>
     </body>
 </html>
