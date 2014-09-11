@@ -23,14 +23,14 @@ public class PeriodicTransactions {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	Users user;
 	
-	@Column(name = "SUMM")
+	@Column(name = "SUMM", nullable = false)
 	double summ;
 	
-	@Column(name = "ACCRUAL")
+	@Column(name = "ACCRUAL", nullable = false)
 	DateTime accrual; //время когда начислять
 	
 	@Column(name = "PERIOD")
-	DateTime period;
+	DateTime period; //частота начисления
 	
 	@Column(name = "PERCENTAGE")
 	double percentage;

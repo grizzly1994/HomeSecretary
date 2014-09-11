@@ -15,7 +15,7 @@ public class Category {
 	@Column(name = "ID", nullable = false)
 	int id;
 	
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false)
 	String name;
 	
 	public int getId() {

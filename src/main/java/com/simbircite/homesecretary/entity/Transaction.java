@@ -23,13 +23,13 @@ public class Transaction {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	Users user;
 	
-	@Column(name = "DATE")
+	@Column(name = "DATE", nullable = false)
 	DateTime date;
 	
-	@Column(name = "SUMM")
+	@Column(name = "SUMM", nullable = false)
 	double summ;
 	
-	@Column(name = "CATEGORY")
+	@Column(name = "CATEGORY", nullable = false)
 	String category;
 	
 	@Column(name = "COMMENT")

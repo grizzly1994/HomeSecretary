@@ -21,16 +21,16 @@ public class Users {
 	@Column(name = "ID", nullable = false)
 	int id;
 	
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false)
 	String name;
 	
-	@Column(name = "PASSWORD")
+	@Column(name = "PASSWORD", nullable = false)
 	String password;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", nullable = false)
 	String email;
 	
-	@Column(name = "BIRTHDAY")
+	@Column(name = "BIRTHDAY", nullable = false)
 	DateTime birthday;
 	
 	@OneToMany(fetch = FetchType.LAZY)
