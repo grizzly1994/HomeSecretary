@@ -13,7 +13,7 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
   
     <!-- Определяем бин для валидации модели User  -->
-    <bean name="userValidator" class="com.simbircite.demo.validator.UserValidator"/>
+    <bean name="UserValidator" class="com.simbircite.demo.validator.UserValidator"/>
     <!-- Определяем бин сервиса для работы с моделью User  -->
-    <bean name="userService" class="com.simbircite.demo.service.UserService"/> 
+    <bean name="UserService" class="com.simbircite.demo.service.UserService"/> 
 </beans>
