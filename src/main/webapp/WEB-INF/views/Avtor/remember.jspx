@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core" 
+     xmlns:joda="http://www.joda.org/joda/time/tags" 
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+     
+    <jsp:directive.page contentType="text/html;charset=UTF-8" /> 
+    <jsp:output omit-xml-declaration="yes" />
+
+	<spring:message code="Avtor.remember_password.label" var="rememberlabel" />
+	<spring:message code="Avtor.mail_1.label" var="emaillabel" />	
+	<spring:message code="Avtor.next.label" var="nextLabel" />
+	 <spring:url value="/remembertwo" var="usersUrl" />
+
+	<form id="remember" method="post" enctype="multipart/form-data">
+		<p>
+			<h1>${rememberlabel}</h1>
+			
+		</p>
+		<p>
+			<label> ${emaillabel} </label>
+			<input />
+			<span>
+				<errors cssClass="error" />
+			</span>
+		</p>	
+		<p>	
+		<button type="submit"
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="document.location = ${usersUrl}">
+	
+			<span class="ui-button-text"> ${nextLabel} </span>
+		</button>
+	
+		
+		</p>	
+	</form>
+</div>
