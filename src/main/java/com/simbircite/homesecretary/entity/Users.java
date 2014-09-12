@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import org.joda.time.DateTime;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER")
 public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
