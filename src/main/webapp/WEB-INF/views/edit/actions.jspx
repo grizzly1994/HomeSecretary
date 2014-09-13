@@ -9,7 +9,7 @@
 	<spring:message code="edit.sum.label" var="sumLabel" />
 	<spring:message code="edit.save.label" var="saveLabel" />
 
-	<form action="edit/actions" method="post" enctype="multipart/form-data">
+	<form:form modelAttribute="transaction" action="edit/actions" method="post" enctype="multipart/form-data">
 		<p>
 			<label>${nameLabel}</label>
 			<input />
@@ -17,22 +17,22 @@
 		</p>
 		<p>
 			<label>${commentLabel}</label>
-			<textarea><jsp:text /></textarea>
+			<form:textarea path="comment" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
 			<label>${dateLabel}</label>
-			<input class="datePicker" />
+			<form:input path="date" class="datePicker" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
 			<label>${sumLabel}</label>
-			<input class="decimalSpinner" />
+			<form:input path="summ" class="decimalSpinner" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text">${saveLabel}</span>
 		</button>
-	</form>
+	</form:form>
 </div>
