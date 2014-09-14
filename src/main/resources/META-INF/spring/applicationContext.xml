@@ -13,9 +13,30 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
   
     <!-- Определяем бин для валидации модели User  -->
-    <bean name="UserValidator" class="com.simbircite.demo.validator.UserValidator"/>
+    <bean name="userValidator" class="com.simbircite.demo.validator.UserValidator"/>
     <!-- Определяем бин сервиса для работы с моделью User  -->
-    <bean name="UserService" class="com.simbircite.demo.service.UserService"/>
+    <bean name="userService" class="com.simbircite.demo.service.UserService"/>
+    
     <!-- Бин сервиса для работы с платежами -->
-    <bean name="PayService" class="com.simbircite.demo.service.PayService"/>
+    <bean name="payService" class="com.simbircite.demo.service.PayService"/>
+    
+    <!-- Определяем бин для валидации модели Category  -->
+    <bean name="categoryValidator" class="com.simbircite.demo.validator.CategoryValidator"/>
+    <!-- Определяем бин сервиса для работы с моделью Category  -->
+    <bean name="categoryService" class="com.simbircite.demo.service.CategoryService"/>
+    
+    <!-- Определяем бин для валидации модели PeriodicTransaction  -->
+    <bean name="periodicTransactionValidator" class="com.simbircite.demo.validator.PeriodicTransactionValidator"/>
+    <!-- Определяем бин сервиса для работы с моделью PeriodicTransaction  -->
+    <bean name="periodicTransactionService" class="com.simbircite.demo.service.PeriodicTransactionService"/>
+    
+    <!-- Определяем бин для валидации модели Transaction  -->
+    <bean name="transactionValidator" class="com.simbircite.demo.validator.TransactionValidator"/>
+    <!-- Определяем бин сервиса для работы с моделью Transaction  -->
+    <bean name="transactionService" class="com.simbircite.demo.service.TransactionService"/>
+    
+    <!-- Определяем бин для валидации модели Users  -->
+    <bean name="usersValidator" class="com.simbircite.demo.validator.UsersValidator"/>
+    <!-- Определяем бин сервиса для работы с моделью Users  -->
+    <bean name="usersService" class="com.simbircite.demo.service.UsersService"/>
 </beans>

@@ -8,8 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity 
 @Table(name = "TRANSACTIONS")
@@ -23,7 +28,11 @@ public class Transaction {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	Users user;
 	
+	@NotNull(message = "{validation.date.required}")
+    @Past(message = "{validation.date.Past}")
 	@Column(name = "DATE", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @DateTimeFormat(iso = ISO.DATE)
 	DateTime date;
 	
 	@Column(name = "SUMM", nullable = false)
