@@ -10,13 +10,5 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
         <put-attribute name="rightPanel" value="/WEB-INF/views/rightPanel.jspx" />
     </definition>
-    <definition name="reports" template="/WEB-INF/layouts/reports.jspx">
-    	<put-attribute name="actions" value="/WEB-INF/views/reports/actions.jspx" />
-        <put-attribute name="costs" value="/WEB-INF/views/reports/costs.jspx" />
-        <put-attribute name="income" value="/WEB-INF/views/reports/income.jspx" />
-        <put-attribute name="regularIncome" value="/WEB-INF/views/reports/regularIncome.jspx" />
-        <put-attribute name="credits" value="/WEB-INF/views/reports/credits.jspx" />
-        <put-attribute name="debts" value="/WEB-INF/views/reports/debts.jspx" />
-        <put-attribute name="accumulations" value="/WEB-INF/views/reports/accumulations.jspx" />
-    </definition>
+    <definition name="reports" template="/WEB-INF/layouts/reports.jspx"></definition>
 </tiles-definitions>

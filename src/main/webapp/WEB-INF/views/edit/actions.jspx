@@ -1,34 +1,18 @@
-<div xmlns:jsp="http://java.sun.com/JSP/Page"
-	 xmlns:c="http://java.sun.com/jsp/jstl/core"
-	 xmlns:form="http://www.springframework.org/tags/form"
+<div xmlns:form="http://www.springframework.org/tags/form"
 	 xmlns:spring="http://www.springframework.org/tags">
 
 	<spring:message code="edit.date.label" var="dateLabel" />
-	<spring:message code="edit.name.label" var="nameLabel" />
-	<spring:message code="edit.comment.label" var="commentLabel" />
 	<spring:message code="edit.sum.label" var="sumLabel" />
 	<spring:message code="edit.save.label" var="saveLabel" />
-
-	<form:form modelAttribute="transaction" action="edit/actions" method="post" enctype="multipart/form-data">
+	
+	<form:form modelAttribute="model" action="reports/edit/actions" method="post" enctype="multipart/form-data">
 		<p>
-			<label>${nameLabel}</label>
-			<input />
-			<errors cssClass="error"><jsp:text /></errors>
-		</p>
-		<p>
-			<label>${commentLabel}</label>
-			<form:textarea path="comment" />
-			<errors cssClass="error"><jsp:text /></errors>
+			<label>${sumLabel}</label>
+			<form:input path="balance" class="decimalSpinner" />
 		</p>
 		<p>
 			<label>${dateLabel}</label>
 			<form:input path="date" class="datePicker" />
-			<errors cssClass="error"><jsp:text /></errors>
-		</p>
-		<p>
-			<label>${sumLabel}</label>
-			<form:input path="summ" class="decimalSpinner" />
-			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">

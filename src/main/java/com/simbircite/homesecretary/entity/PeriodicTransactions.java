@@ -23,20 +23,20 @@ public class PeriodicTransactions {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	Users user;
 	
-	@Column(name = "SUMM", nullable = false)
-	double summ;
-	
 	@Column(name = "ACCRUAL", nullable = false)
 	DateTime accrual; //время когда начислять
+	
+	@Column(name = "END")
+	DateTime end; //конец выплат
+	
+	@Column(name = "SUMM", nullable = false)
+	double summ;
 	
 	@Column(name = "PERIOD")
 	DateTime period; //частота начисления
 	
 	@Column(name = "PERCENTAGE")
-	double percentage;
-	
-	@Column(name = "PERCENTAGE_PERIOD")
-	DateTime percentagePeriod;	
+	double percentage; //сколько процентов от суммы начисляется
 	
 	
 
@@ -44,55 +44,55 @@ public class PeriodicTransactions {
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int value) {
+		id = value;
 	}
 	
 	public Users getUser() {
 		return user;
 	}
 	
-	public void setUser(Users user) {
-		this.user = user; 
+	public void setUser(Users value) {
+		user = value; 
 	}
 	
 	public double getSumm() {
 		return summ;
 	}
 	
-	public void setSumm(double summ) {
-		this.summ = summ;
+	public void setSumm(double value) {
+		summ = value;
 	}
 	
 	public DateTime getAccrual() {
 		return accrual;
 	}
 	
-	public void setAccrual(DateTime accrual) {
-		this.accrual = accrual;
+	public void setAccrual(DateTime value) {
+		accrual = value;
+	}
+	
+	public DateTime getEnd() {
+		return end;
+	}
+	
+	public void setEnd(DateTime value) {
+		end = value;
 	}
 	
 	public DateTime getPeriod() {
 		return period;
 	}
 	
-	public void setPeriod(DateTime period) {
-		this.period = period;
+	public void setPeriod(DateTime value) {
+		period = value;
 	}
 	
 	public double getPercentage() {
 		return percentage;
 	}
 	
-	public void setPercentage(double percentage) {
-		this.percentage = percentage;
+	public void setPercentage(double value) {
+		percentage = value;
 	}
-	
-	public DateTime getPercentagePeriod() {
-		return percentagePeriod;
-	}
-	
-	public void setPercentagePeriod(DateTime percentagePeriod) {
-		this.percentagePeriod = percentagePeriod;
-	}	
 }

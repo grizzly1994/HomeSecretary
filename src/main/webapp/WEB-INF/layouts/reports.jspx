@@ -64,7 +64,26 @@
 		    			<li><a href="#" data-report="${report}" class="edit"><jsp:text /></a></li>
 		    			<li><a href="#" class="remove"><jsp:text /></a></li>
 	    			</ul>
-	    			<tiles:insertAttribute name="${report}" />
+	    			<table id="${report}Table"><tr><td /></tr></table>
+	    			<script type="text/javascript">
+		    			$("#${report}Table").jqGrid({
+		                    url: 'reports/get/${report}',
+		                    datatype: 'json',
+		                    mtype: 'GET',
+		                    colNames: ['ID', 'Date', 'Balance'],
+		                    colModel: [
+								{name: 'id', index: 'id' },
+		                        {name: 'date', index: 'date' },
+		                        {name: 'balance', index: 'balance' }
+		                    ],
+		                    jsonReader: {
+		                        root: 'userData',
+		                        id: 'id'
+		                    },
+		                    viewrecords: true,
+		                    gridview: true
+		                });
+	    			</script>
 	    		</div>
     		</c:forEach>
     		<div id="dialog"><jsp:text /></div>

@@ -5,7 +5,7 @@
     <definition name="edit/costs" template="/WEB-INF/views/edit/actions.jspx"></definition>
     <definition name="edit/income" template="/WEB-INF/views/edit/actions.jspx"></definition>
     <definition name="edit/regularIncome" template="/WEB-INF/views/edit/regularIncome.jspx"></definition>
-    <definition name="edit/credits" template="/WEB-INF/views/edit/credits.jspx"></definition>
+    <definition name="edit/credits" template="/WEB-INF/views/edit/debts.jspx"></definition>
     <definition name="edit/debts" template="/WEB-INF/views/edit/debts.jspx"></definition>
     <definition name="edit/accumulations" template="/WEB-INF/views/edit/accumulations.jspx"></definition>
 </tiles-definitions>

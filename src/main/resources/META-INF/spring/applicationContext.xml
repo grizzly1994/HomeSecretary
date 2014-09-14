@@ -15,5 +15,7 @@
     <!-- Определяем бин для валидации модели User  -->
     <bean name="UserValidator" class="com.simbircite.demo.validator.UserValidator"/>
     <!-- Определяем бин сервиса для работы с моделью User  -->
-    <bean name="UserService" class="com.simbircite.demo.service.UserService"/> 
+    <bean name="UserService" class="com.simbircite.demo.service.UserService"/>
+    <!-- Бин сервиса для работы с платежами -->
+    <bean name="PayService" class="com.simbircite.demo.service.PayService"/>
 </beans>

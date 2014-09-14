@@ -3,42 +3,49 @@
      xmlns:form="http://www.springframework.org/tags/form"
      xmlns:spring="http://www.springframework.org/tags">
 
-	<spring:message code="edit.date.label" var="dateLabel" />
+	<spring:message code="edit.beginDate.label" var="beginDateLabel" />
+	<spring:message code="edit.endDate.label" var="endDateLabel" />
 	<spring:message code="edit.name.label" var="nameLabel" />
 	<spring:message code="edit.comment.label" var="commentLabel" />
 	<spring:message code="edit.sum.label" var="sumLabel" />
+	<spring:message code="edit.period.label" var="periodLabel" />
 	<spring:message code="edit.interestRate.label" var="interestRateLabel" />
     <spring:message code="edit.save.label" var="saveLabel" />
 
-	<form actions="edit/debts" method="post" enctype="multipart/form-data">
+	<form:form modelAttribute="model" action="edit/debts" method="post" enctype="multipart/form-data">
 		<p>
-			<label> ${nameLabel} </label>
+			<label>${nameLabel}</label>
 			<input />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${commentLabel} </label>
-			<textarea><jsp:text /></textarea>
+			<label>${commentLabel}</label>
+			<form:textarea path="comment" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${dateLabel} </label>
-			<input class="datePicker" />
+			<label>${dateLabel}</label>
+			<form:input path="accrual" class="datePicker" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${sumLabel} </label>
-			<input class="decimalSpinner" />
+			<label>${sumLabel}</label>
+			<form:input path="summ" class="decimalSpinner" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<p>
-			<label> ${interestRateLabel} </label>
-			<input class="decimalSpinner" />
+			<label> ${periodLabel} </label>
+			<form:input path="period" class="integerSpinner" />
+			<errors cssClass="error"><jsp:text /></errors>
+		</p>
+		<p>
+			<label>${interestRateLabel}</label>
+			<form:input path="percentage" class="decimalSpinner" />
 			<errors cssClass="error"><jsp:text /></errors>
 		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text"> ${saveLabel} </span>
 		</button>
-	</form>
+	</form:form>
 </div>
