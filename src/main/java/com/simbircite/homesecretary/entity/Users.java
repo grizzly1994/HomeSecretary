@@ -10,8 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "USER")
@@ -30,14 +35,18 @@ public class Users {
 	@Column(name = "EMAIL", nullable = false)
 	String email;
 	
+	@NotNull(message = "{validation.user.birth.NotNull}")
+    @Past(message = "{validation.user.birth.Past}")
 	@Column(name = "BIRTHDAY", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @DateTimeFormat(iso = ISO.DATE)
 	DateTime birthday;
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	Set<Transaction> transactions;
 	
 	@OneToMany
-	Set<PeriodicTransactions> periodicTransactions;
+	Set<PeriodicTransaction> periodicTransactions;
 	
 	public void setId(int id) {
 		this.id = id;
@@ -87,11 +96,11 @@ public class Users {
 		this.transactions = transactions;
 	}
 	
-	public Set<PeriodicTransactions> getPeriodicTransactions() {
+	public Set<PeriodicTransaction> getPeriodicTransactions() {
 		return periodicTransactions;
 	}
 	
-	public void setPeriodicTransactions(Set<PeriodicTransactions> periodicTransactions) {
+	public void setPeriodicTransactions(Set<PeriodicTransaction> periodicTransactions) {
 		this.periodicTransactions = periodicTransactions;
 	}
 }

@@ -8,12 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "PERIODIC_TRANSACTIONS")
-public class PeriodicTransactions {
+public class PeriodicTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -23,23 +28,33 @@ public class PeriodicTransactions {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	Users user;
 	
+	@NotNull(message = "{validation.date.required}")
+    @Past(message = "{validation.date.Past}")
 	@Column(name = "ACCRUAL", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @DateTimeFormat(iso = ISO.DATE)
 	DateTime accrual; //время когда начислять
-	
+		
+	@NotNull(message = "{validation.date.required}")
+    @Past(message = "{validation.date.Past}")
 	@Column(name = "END")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @DateTimeFormat(iso = ISO.DATE)
 	DateTime end; //конец выплат
 	
 	@Column(name = "SUMM", nullable = false)
 	double summ;
 	
+	@NotNull(message = "{validation.date.required}")
+    @Past(message = "{validation.date.Past}")
 	@Column(name = "PERIOD")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @DateTimeFormat(iso = ISO.DATE)
 	DateTime period; //частота начисления
 	
 	@Column(name = "PERCENTAGE")
 	double percentage; //сколько процентов от суммы начисляется
 	
-	
-
 	public int getId() {
 		return id;
 	}
