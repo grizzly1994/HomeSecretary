@@ -12,10 +12,15 @@
 	<spring:message code="Avtor.confirm.label" var="confirmlabel" />
 	<spring:message code="Avtor.info.label" var="infolabel" />
 	<spring:message code="Avtor.ok_2.label" var="okLabel" />
+	<spring:url value="Avtor/enter" var="enterUrl" />
 
-	<form id="confirm" method="post" enctype="multipart/form-data">
+	<form id="confirm" action="${loginUrl}" method="post" >
 		<p>
-			<h1>${confirmlabel}</h1>
+			<h1>
+			<caption align="center">
+			${confirmlabel}
+			</caption>
+			</h1>
 		</p>
 		<p>
 		<p>
@@ -28,7 +33,7 @@
 		</p>
 		<p>
 		<button type="submit"
-			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="document.location = 'enter'; return false;">
 			<span class="ui-button-text"> ${okLabel} </span>
 		</button>
 		</p>

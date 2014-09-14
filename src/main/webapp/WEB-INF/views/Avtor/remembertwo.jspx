@@ -34,7 +34,7 @@
 		</p>
 		<p>	
 		<button type="submit"
-			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="document.location = 'confirm'; return false;">
 			<span class="ui-button-text"> ${nextLabel} </span>	
 		</button>
 		</p>	
