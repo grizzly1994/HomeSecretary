@@ -8,7 +8,7 @@ public class Pay {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private int id;
 	
 	@Column(name = "date")

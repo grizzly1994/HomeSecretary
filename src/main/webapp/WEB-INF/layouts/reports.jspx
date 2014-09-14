@@ -62,14 +62,14 @@
 	    			<ul class="reportMenu">
 		    			<li><a href="#" data-report="${report}" class="add"><jsp:text /></a></li>
 		    			<li><a href="#" data-report="${report}" class="edit"><jsp:text /></a></li>
-		    			<li><a href="#" class="remove"><jsp:text /></a></li>
+		    			<li><a href="#" data-report="${report}" class="remove"><jsp:text /></a></li>
 	    			</ul>
-	    			<table id="${report}Table"><tr><td /></tr></table>
+	    			<table id="${report}Grid" class="reportGrid"><tr><td /></tr></table>
 	    			<script type="text/javascript">
-		    			$("#${report}Table").jqGrid({
+		    			$("#${report}Grid").jqGrid({
 		                    url: 'reports/get/${report}',
 		                    datatype: 'json',
-		                    mtype: 'GET',
+		                    mtype: 'POST',
 		                    colNames: ['ID', 'Date', 'Balance'],
 		                    colModel: [
 								{name: 'id', index: 'id' },

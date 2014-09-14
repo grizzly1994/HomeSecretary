@@ -8,7 +8,6 @@ import com.google.common.collect.*;
 import com.simbircite.demo.model.*;
 import com.simbircite.demo.service.*;
 
-
 @Controller
 @RequestMapping("/reports")
 public class ReportsController {
@@ -21,11 +20,25 @@ public class ReportsController {
     @Autowired 
     private PayService service;
 	
-    @RequestMapping(value = "edit/{report}", method = RequestMethod.GET)
-    public String add(@PathVariable("report") String report, Model model) {
+    @RequestMapping(value = "edit/{report}/{id}", method = RequestMethod.GET)
+    public String edit(
+    		@PathVariable("report") String report,
+    		@PathVariable("id") int id,
+    		Model model) {
     	Object attribute = new Pay();
+    	if (id > -1) {
+    		attribute = service.get(id);
+    	}
     	model.addAttribute("model", attribute);
     	return "edit/" + report;
+    }
+    
+    @RequestMapping(value = "remove/{report}/{id}", method = RequestMethod.GET)
+    public String remove(
+    		@PathVariable("report") String report,
+    		@PathVariable("id") int id) {
+    	service.delete(id);
+    	return "redirect:/reports";
     }
     
     @RequestMapping(value = "edit/{report}", method = RequestMethod.POST)
@@ -34,7 +47,7 @@ public class ReportsController {
         return "redirect:/reports";
     }
     
-    @RequestMapping(value = "get/{report}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "get/{report}", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public PayGrid list() {
     	PayGrid grid = new PayGrid();

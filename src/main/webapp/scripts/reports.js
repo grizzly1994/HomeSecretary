@@ -1,19 +1,12 @@
-$(function() {	
-    // Для корректной работы плагина jqGrid у каждой таблицы должен быть уникальный id
-    var count = 0;
-    $('.reportTable').each(function() {
-        $(this).attr('id', 'report' + count++);
-    });
-    
+$(function() {
     // Устанавливаем плагины
-    tableToGrid('.reportTable');
     $('#reports').tabs();
     $('#dialog').dialog({autoOpen : false, width : 'auto'});
     
     // Таблица меняет размер вместе с окном браузера
     function fit() {
-        $('.reportTable').setGridWidth($(window).width());
-        $('.reportTable').setGridHeight($(window).height() - 200);
+        $('.reportGrid').setGridWidth($(window).width());
+        $('.reportGrid').setGridHeight($(window).height() - 200);
     }
     
     $('.ui-tabs-anchor').bind('click', fit);
@@ -45,7 +38,13 @@ $(function() {
     
     // Отображение диалога
     function edit() {
-        $('#dialog').load('reports/edit/' + $(this).attr('data-report'), function() {
+    	var action = $(this).attr('class');
+    	var report = $(this).attr('data-report');
+    	var id = $('#' + report + 'Grid').getGridParam('selrow');
+    	if (action == 'add' || id == null)
+    		id = -1;
+    	var path = 'reports/edit/' + report + '/' + id;
+        $('#dialog').load(path, function() {
             widgets();
             $('#dialog').dialog('open');
         });
@@ -53,4 +52,13 @@ $(function() {
     
     $('.add').bind('click', edit);
     $('.edit').bind('click', edit);
+    
+    $('.remove').bind('click', function() {
+    	var report = $(this).attr('data-report');
+    	var id = $('#' + report + 'Grid').getGridParam('selrow');
+    	if (id == null)
+    		return;
+    	var path = 'reports/remove/' + report + '/' + id;
+    	$(location).attr('href', path);
+    });
 });
