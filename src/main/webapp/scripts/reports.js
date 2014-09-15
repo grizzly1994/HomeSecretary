@@ -6,7 +6,7 @@ $(function() {
     // Таблица меняет размер вместе с окном браузера
     function fit() {
         $('.reportGrid').setGridWidth($(window).width());
-        $('.reportGrid').setGridHeight($(window).height() - 200);
+        $('.reportGrid').setGridHeight($(window).height() - 190);
     }
     
     $('.ui-tabs-anchor').bind('click', fit);

@@ -5,16 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
+import org.joda.time.Months;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.simbircite.demo.util.DateUtil;
 
 @Entity
 @Table(name = "PERIODIC_TRANSACTIONS")
@@ -24,33 +24,21 @@ public class PeriodicTransaction {
 	@Column(name = "ID")
 	int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "USER_ID", nullable = false)
-	Users user;
-	
-	@NotNull(message = "{validation.date.required}")
-    @Past(message = "{validation.date.Past}")
-	@Column(name = "ACCRUAL", nullable = false)
+	@Column(name = "ACCRUAL")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(iso = ISO.DATE)
 	DateTime accrual; //время когда начислять
-		
-	@NotNull(message = "{validation.date.required}")
-    @Past(message = "{validation.date.Past}")
-	@Column(name = "END")
+	
+	@Column(name = "DEADLINE")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(iso = ISO.DATE)
-	DateTime end; //конец выплат
+	DateTime deadline; //конец выплат
 	
 	@Column(name = "SUMM", nullable = false)
 	double summ;
 	
-	@NotNull(message = "{validation.date.required}")
-    @Past(message = "{validation.date.Past}")
 	@Column(name = "PERIOD")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @DateTimeFormat(iso = ISO.DATE)
-	DateTime period; //частота начисления
+	int period; //частота начисления
 	
 	@Column(name = "PERCENTAGE")
 	double percentage; //сколько процентов от суммы начисляется
@@ -61,14 +49,6 @@ public class PeriodicTransaction {
 	
 	public void setId(int value) {
 		id = value;
-	}
-	
-	public Users getUser() {
-		return user;
-	}
-	
-	public void setUser(Users value) {
-		user = value; 
 	}
 	
 	public double getSumm() {
@@ -87,19 +67,27 @@ public class PeriodicTransaction {
 		accrual = value;
 	}
 	
-	public DateTime getEnd() {
-		return end;
+	public String getAccrualString() {
+        return DateUtil.format(accrual);
+    }
+	
+	public DateTime getDeadline() {
+		return deadline;
+	}	
+	
+	public void setDeadline(DateTime value) {
+		deadline = value;
 	}
 	
-	public void setEnd(DateTime value) {
-		end = value;
-	}
+	public String getDeadlineString() {
+        return DateUtil.format(deadline);
+    }
 	
-	public DateTime getPeriod() {
+	public int getPeriod() {
 		return period;
 	}
 	
-	public void setPeriod(DateTime value) {
+	public void setPeriod(int value) {
 		period = value;
 	}
 	
@@ -109,5 +97,45 @@ public class PeriodicTransaction {
 	
 	public void setPercentage(double value) {
 		percentage = value;
+	}
+	
+	// Единичный платеж
+	
+	public double getPay() {
+		return summ * percentage / 100;
+	}
+	
+	// Количество необходимых платежей
+	
+	public int getInterval() {
+		return Months.monthsIn(new Interval(accrual, deadline)).getMonths();
+	}
+	
+	public int getPayCount() {
+		return getInterval() / period;
+	}
+	
+	public double getTotal() {
+		return getPay() * getPayCount();
+	}
+	
+	// Количество совершенных платежей
+	
+	public int getCurrentInterval() {
+		return Months.monthsIn(new Interval(accrual, new DateTime())).getMonths();
+	}
+	
+	public int getCurrentPayCount() {
+		return getCurrentInterval() / period;
+	}
+	
+	public double getComplete() {
+		return getPay() * getCurrentPayCount();
+	}
+	
+	// Осталось оплатить
+	
+	public double getBalance() {
+		return getTotal() - getComplete();
 	}
 }

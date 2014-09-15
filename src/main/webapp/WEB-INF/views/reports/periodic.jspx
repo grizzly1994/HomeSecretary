@@ -1,0 +1,45 @@
+<div>
+	<table id="periodicGrid" class="reportGrid">
+		<tr>
+			<td />
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$("#periodicGrid").jqGrid({
+			url : 'reports/get/periodic',
+			datatype : 'json',
+			mtype : 'GET',
+			colNames : [ 'ID', 'Date', 'Deadline', 'Sum ($)', 'Frequency', '%', 'Rest ($)' ],
+			colModel : [ {
+				name : 'id',
+				index : 'id'
+			}, {
+				name : 'accrualString',
+				index : 'accrualString'
+			}, {
+				name : 'deadlineString',
+				index : 'deadlineString'
+			}, {
+				name : 'summ',
+				index : 'summ'
+			}, {
+				name : 'period',
+				index : 'period'
+			}, {
+				name : 'percentage',
+				index : 'percentage'
+			}, {
+				name : 'balance',
+				index : 'balance'
+			}],
+			jsonReader : {
+				root : 'userData',
+				id : 'id'
+			},
+			viewrecords : true,
+			gridview : true
+		});
+	</script>
+	<p class="total">Total: ${total} $</p>
+	<p class="total">Rest: ${rest} $</p>
+</div>

@@ -464,3 +464,8 @@ fieldset th {
 	position:relative;
 	top:1px;
 }
+
+.total {
+	font-size: 16px;
+	margin: 10px;
+}

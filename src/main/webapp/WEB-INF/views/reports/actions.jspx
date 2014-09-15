@@ -1,0 +1,32 @@
+<div>
+	<table id="actionsGrid" class="reportGrid">
+		<tr>
+			<td />
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$("#actionsGrid").jqGrid({
+			url : 'reports/get/actions',
+			datatype : 'json',
+			mtype : 'POST',
+			colNames : [ 'ID', 'Date', 'Sum ($)' ],
+			colModel : [ {
+				name : 'id',
+				index : 'id'
+			}, {
+				name : 'dateString',
+				index : 'date'
+			}, {
+				name : 'balance',
+				index : 'balance'
+			} ],
+			jsonReader : {
+				root : 'userData',
+				id : 'id'
+			},
+			viewrecords : true,
+			gridview : true
+		});
+	</script>
+	<p class="total">Total: ${total} $</p>
+</div>

@@ -43,19 +43,14 @@
         <title>${title}</title>
     </head>
     <body>
-    	<c:set var="reports">actions,costs,income,regularIncome,credits,debts,accumulations</c:set>
+    	<c:set var="reports">actions,periodic</c:set>
     	<div id="reports">
     		<ul>
     			<c:forEach items="${reports}" var="report">
 		    		<spring:message code="reports.${report}.title" var="${report}" />
 		    	</c:forEach>
 		    	<li><a href="#actions">${actions}</a></li>
-		    	<li><a href="#costs">${costs}</a></li>
-		    	<li><a href="#income">${income}</a></li>
-		    	<li><a href="#regularIncome">${regularIncome}</a></li>
-		    	<li><a href="#credits">${credits}</a></li>
-		    	<li><a href="#debts">${debts}</a></li>
-		    	<li><a href="#accumulations">${accumulations}</a></li>
+		    	<li><a href="#periodic">${periodic}</a></li>
     		</ul>
     		<c:forEach items="${reports}" var="report">
     			<div id="${report}">
@@ -64,26 +59,7 @@
 		    			<li><a href="#" data-report="${report}" class="edit"><jsp:text /></a></li>
 		    			<li><a href="#" data-report="${report}" class="remove"><jsp:text /></a></li>
 	    			</ul>
-	    			<table id="${report}Grid" class="reportGrid"><tr><td /></tr></table>
-	    			<script type="text/javascript">
-		    			$("#${report}Grid").jqGrid({
-		                    url: 'reports/get/${report}',
-		                    datatype: 'json',
-		                    mtype: 'POST',
-		                    colNames: ['ID', 'Date', 'Balance'],
-		                    colModel: [
-								{name: 'id', index: 'id' },
-		                        {name: 'date', index: 'date' },
-		                        {name: 'balance', index: 'balance' }
-		                    ],
-		                    jsonReader: {
-		                        root: 'userData',
-		                        id: 'id'
-		                    },
-		                    viewrecords: true,
-		                    gridview: true
-		                });
-	    			</script>
+	    			<tiles:insertAttribute name="${report}" />
 	    		</div>
     		</c:forEach>
     		<div id="dialog"><jsp:text /></div>
