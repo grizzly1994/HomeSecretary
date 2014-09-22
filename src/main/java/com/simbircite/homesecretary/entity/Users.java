@@ -18,6 +18,8 @@ import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.simbircite.demo.model.Debt;
+
 @Entity
 @Table(name = "USER")
 public class Users {
@@ -46,7 +48,7 @@ public class Users {
 	Set<Transaction> transactions;
 	
 	@OneToMany
-	Set<PeriodicTransaction> periodicTransactions;
+	Set<Debt> periodicTransactions;
 	
 	public void setId(int id) {
 		this.id = id;
@@ -96,11 +98,11 @@ public class Users {
 		this.transactions = transactions;
 	}
 	
-	public Set<PeriodicTransaction> getPeriodicTransactions() {
+	public Set<Debt> getPeriodicTransactions() {
 		return periodicTransactions;
 	}
 	
-	public void setPeriodicTransactions(Set<PeriodicTransaction> periodicTransactions) {
+	public void setPeriodicTransactions(Set<Debt> periodicTransactions) {
 		this.periodicTransactions = periodicTransactions;
 	}
 }

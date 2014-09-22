@@ -1,4 +1,4 @@
-package com.simbircite.homesecretary.entity;
+package com.simbircite.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ import com.simbircite.demo.util.DateUtil;
 
 @Entity
 @Table(name = "PERIODIC_TRANSACTIONS")
-public class PeriodicTransaction {
+public class Debt {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")

@@ -36,29 +36,34 @@ $(function() {
         });
     }
     
-    // Отображение диалога
-    function edit() {
-    	var action = $(this).attr('class');
+    // Действия с записями
+    $('.add').bind('click', function() {
+    	var report = $(this).attr('data-report');
+    	var path = 'reports/' + report + 'add';
+    	$('#dialog').load(path, function() {
+    		widgets();
+    		$('#dialog').dialog('open');
+    	});
+    });
+    
+    $('.edit').bind('click', function() {
     	var report = $(this).attr('data-report');
     	var id = $('#' + report + 'Grid').getGridParam('selrow');
-    	if (action == 'add' || id == null)
-    		id = -1;
-    	var path = 'reports/edit/' + report + '/' + id;
-        $('#dialog').load(path, function() {
-            widgets();
-            $('#dialog').dialog('open');
-        });
-    }
-    
-    $('.add').bind('click', edit);
-    $('.edit').bind('click', edit);
+    	if (id == null)
+    		return;
+    	var path = 'reports/' + report + '/edit/' + id;
+    	$('#dialog').load(path, function() {
+    		widgets();
+    		$('#dialog').dialog('open');
+    	});
+    });
     
     $('.remove').bind('click', function() {
     	var report = $(this).attr('data-report');
     	var id = $('#' + report + 'Grid').getGridParam('selrow');
     	if (id == null)
     		return;
-    	var path = 'reports/remove/' + report + '/' + id;
+    	var path = 'reports/' + report + '/remove/' + id;
     	$(location).attr('href', path);
     });
 });

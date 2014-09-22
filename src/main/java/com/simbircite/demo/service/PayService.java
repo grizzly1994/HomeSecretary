@@ -1,30 +1,43 @@
 package com.simbircite.demo.service;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import com.simbircite.demo.repository.*;
-import com.simbircite.demo.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Service("PayService")
-@Repository
-public class PayService {
+import com.simbircite.demo.model.Pay;
+import com.simbircite.demo.repository.PayRepository;
+
+public class PayService implements EntityService {
 	
 	@Autowired
 	PayRepository repo;
 	
-	public void save(Pay data) {
+	public void add(Pay data) {
 		repo.save(data);
 	}
 	
+	public void update(Pay data) {
+		repo.save(data);
+	}
+	
+	@Override
+	public Pay get(int id) {
+		return repo.findOne(id);
+	}
+	
+	@Override
 	public void delete(int id) {
 		repo.delete(id);
 	}
 	
-	public Iterable<Pay> get() {
+	@Override
+	public Object get() {
 		return repo.findAll();
 	}
 	
-	public Pay get(int id) {
-		return repo.findOne(id);
+	public double total() {
+		double total = 0;
+    	for (Pay pay : repo.findAll()) {
+    		total += pay.getBalance();
+    	}
+    	return total;
 	}
 }

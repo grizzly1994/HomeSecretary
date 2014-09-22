@@ -4,13 +4,13 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.simbircite.homesecretary.entity.PeriodicTransaction;
+import com.simbircite.demo.model.Debt;
 
 public class PeriodicTransactionValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> type) {
-		return type.equals(PeriodicTransaction.class);
+		return type.equals(Debt.class);
 	}
 
 	@Override
