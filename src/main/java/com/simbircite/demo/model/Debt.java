@@ -24,6 +24,9 @@ public class Debt {
 	@Column(name = "ID")
 	int id;
 	
+	@Column(name = "COMMENT", nullable = true)
+	private String comment;
+	
 	@Column(name = "ACCRUAL")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(iso = ISO.DATE)
@@ -34,7 +37,7 @@ public class Debt {
     @DateTimeFormat(iso = ISO.DATE)
 	DateTime deadline; //конец выплат
 	
-	@Column(name = "SUMM", nullable = false)
+	@Column(name = "SUMM")
 	double summ;
 	
 	@Column(name = "PERIOD")
@@ -49,6 +52,14 @@ public class Debt {
 	
 	public void setId(int value) {
 		id = value;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+	
+	public void setComment(String value) {
+		comment = value;
 	}
 	
 	public double getSumm() {

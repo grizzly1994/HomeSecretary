@@ -26,7 +26,7 @@
     <bean name="categoryService" class="com.simbircite.demo.service.CategoryService"/>
     
     <!-- Определяем бин сервиса для работы с моделью PeriodicTransaction  -->
-    <bean name="periodicTransactionService" class="com.simbircite.demo.service.PeriodicTransactionService"/>
+    <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
     
     <!-- Определяем бин для валидации модели Transaction  -->
     <bean name="transactionValidator" class="com.simbircite.demo.validator.TransactionValidator"/>

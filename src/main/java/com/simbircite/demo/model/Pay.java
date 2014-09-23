@@ -16,6 +16,9 @@ public class Pay {
     @Column(name = "id")
     private int id;
 	
+	@Column(name = "COMMENT", nullable = true)
+	private String comment;
+	
 	@Column(name = "DEADLINE")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(iso = ISO.DATE)
@@ -30,6 +33,14 @@ public class Pay {
 	
 	public void setId(int value) {
 		id = value;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+	
+	public void setComment(String value) {
+		comment = value;
 	}
 	
 	public DateTime getDate() {

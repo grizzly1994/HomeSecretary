@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.simbircite.demo.model.Pay;
 import com.simbircite.demo.model.Debt;
@@ -32,8 +33,8 @@ public class ReportsController {
 	private DebtService debts;
     
 	private static final String ENTITY = "entity";
-	private static final String ACTIONS = "actions";
-    private static final String PERIODIC = "periodic";
+	private static final String PAYS = "pays";
+    private static final String DEBTS = "debts";
 	
     // View
     
@@ -56,28 +57,17 @@ public class ReportsController {
     	return report + "/update";
     }
     
-    @RequestMapping(value = "{report}/list", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "{report}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
     public Object list(@PathVariable("report") String report) {
     	return getService(report).get();
     }
     
     // Actions
     
-    @RequestMapping(value = "pays/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute(ENTITY) Pay entity) {
-    	pays.update(entity);
-    	return "redirect:/reports";
-    }
-    
     @RequestMapping(value = "pays/update", method = RequestMethod.POST)
     public String update(@ModelAttribute(ENTITY) Pay entity) {
     	pays.update(entity);
-    	return "redirect:/reports";
-    }
-    
-    @RequestMapping(value = "debts/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute(ENTITY) Debt entity) {
-    	debts.update(entity);
     	return "redirect:/reports";
     }
     
@@ -87,7 +77,7 @@ public class ReportsController {
     	return "redirect:/reports";
     }
     
-    @RequestMapping(value = "{report}/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "{report}/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("report") String report, @PathVariable("id") int id, Model model) {
     	getService(report).delete(id);
     	return "redirect:/reports";
@@ -96,20 +86,20 @@ public class ReportsController {
     // Factories
     
     private Object getEntity(String report) {
-    	if (ACTIONS.equals(report)) {
+    	if (PAYS.equals(report)) {
     		return new Pay();
     	}
-    	if (PERIODIC.equals(report)) {
+    	if (DEBTS.equals(report)) {
     		return new Debt();
     	}
     	return null;
     }
     
     private EntityService getService(String report) {
-    	if (ACTIONS.equals(report)) {
+    	if (PAYS.equals(report)) {
     		return pays;
     	}
-    	if (PERIODIC.equals(report)) {
+    	if (DEBTS.equals(report)) {
     		return debts;
     	}
     	return null;

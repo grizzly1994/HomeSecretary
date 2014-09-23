@@ -1,0 +1,57 @@
+<div xmlns:spring="http://www.springframework.org/tags">
+	<table id="debtsGrid" class="reportGrid">
+		<tr>
+			<td />
+		</tr>
+	</table>
+	<spring:message code="reports.id.label" var="idLabel" />
+	<spring:message code="reports.comment.label" var="commentLabel" />
+	<spring:message code="reports.date.label" var="dateLabel" />
+	<spring:message code="reports.deadline.label" var="deadlineLabel" />
+	<spring:message code="reports.sum.label" var="sumLabel" />
+	<spring:message code="reports.frequency.label" var="frequencyLabel" />
+	<spring:message code="reports.percentage.label" var="percentageLabel" />
+	<spring:message code="reports.rest.label" var="restLabel" />
+	<script type="text/javascript">
+		$("#debtsGrid").jqGrid({
+			url : 'reports/debts',
+			datatype : 'json',
+			mtype : 'GET',
+			colNames : [ '${idLabel}', '${commentLabel}', '${dateLabel}', '${deadlineLabel}',
+			             '${sumLabel}', '${frequencyLabel}', '${percentageLabel}', '${restLabel}' ],
+			colModel : [ {
+				name : 'id',
+				index : 'id'
+			}, {
+				name : 'comment',
+				index : 'comment'
+			}, {
+				name : 'accrualString',
+				index : 'accrualString'
+			}, {
+				name : 'deadlineString',
+				index : 'deadlineString'
+			}, {
+				name : 'summ',
+				index : 'summ'
+			}, {
+				name : 'period',
+				index : 'period'
+			}, {
+				name : 'percentage',
+				index : 'percentage'
+			}, {
+				name : 'balance',
+				index : 'balance'
+			}],
+			jsonReader : {
+				root : 'userData',
+				id : 'id'
+			},
+			viewrecords : true,
+			gridview : true
+		});
+	</script>
+	<p class="total">Total: ${total} $</p>
+	<p class="total">Rest: ${rest} $</p>
+</div>

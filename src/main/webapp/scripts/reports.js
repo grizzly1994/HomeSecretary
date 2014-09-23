@@ -23,13 +23,6 @@ $(function() {
             changeYear : true
         });
     
-        $('.decimalSpinner').spinner({
-            min : 0,
-            step : 10,
-            numberFormat : 'n',
-            culture : 'en-US'
-        });
-    
         $('.integerSpinner').spinner({
             min : 0,
             step : 1
@@ -39,31 +32,31 @@ $(function() {
     // Действия с записями
     $('.add').bind('click', function() {
     	var report = $(this).attr('data-report');
-    	var path = 'reports/' + report + 'add';
+    	var path = 'reports/' + report + '/add';
     	$('#dialog').load(path, function() {
     		widgets();
     		$('#dialog').dialog('open');
     	});
     });
     
-    $('.edit').bind('click', function() {
+    $('.update').bind('click', function() {
     	var report = $(this).attr('data-report');
     	var id = $('#' + report + 'Grid').getGridParam('selrow');
     	if (id == null)
     		return;
-    	var path = 'reports/' + report + '/edit/' + id;
+    	var path = 'reports/' + report + '/update/' + id;
     	$('#dialog').load(path, function() {
     		widgets();
     		$('#dialog').dialog('open');
     	});
     });
     
-    $('.remove').bind('click', function() {
+    $('.delete').bind('click', function() {
     	var report = $(this).attr('data-report');
     	var id = $('#' + report + 'Grid').getGridParam('selrow');
     	if (id == null)
     		return;
-    	var path = 'reports/' + report + '/remove/' + id;
+    	var path = 'reports/' + report + '/delete/' + id;
     	$(location).attr('href', path);
     });
 });

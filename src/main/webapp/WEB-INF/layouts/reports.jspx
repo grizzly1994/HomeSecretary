@@ -43,21 +43,21 @@
         <title>${title}</title>
     </head>
     <body>
-    	<c:set var="reports">actions,periodic</c:set>
+    	<c:set var="reports">pays,debts</c:set>
     	<div id="reports">
     		<ul>
     			<c:forEach items="${reports}" var="report">
-		    		<spring:message code="reports.${report}.title" var="${report}" />
+		    		<spring:message code="reports.${report}.title" var="${report}Label" />
 		    	</c:forEach>
-		    	<li><a href="#actions">${actions}</a></li>
-		    	<li><a href="#periodic">${periodic}</a></li>
+		    	<li><a href="#paysTab">${paysLabel}</a></li>
+		    	<li><a href="#debtsTab">${debtsLabel}</a></li>
     		</ul>
     		<c:forEach items="${reports}" var="report">
-    			<div id="${report}">
+    			<div id="${report}Tab">
 	    			<ul class="reportMenu">
 		    			<li><a href="#" data-report="${report}" class="add"><jsp:text /></a></li>
-		    			<li><a href="#" data-report="${report}" class="edit"><jsp:text /></a></li>
-		    			<li><a href="#" data-report="${report}" class="remove"><jsp:text /></a></li>
+		    			<li><a href="#" data-report="${report}" class="update"><jsp:text /></a></li>
+		    			<li><a href="#" data-report="${report}" class="delete"><jsp:text /></a></li>
 	    			</ul>
 	    			<tiles:insertAttribute name="${report}" />
 	    		</div>

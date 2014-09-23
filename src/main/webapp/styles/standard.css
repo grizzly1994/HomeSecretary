@@ -412,11 +412,11 @@ fieldset th {
 	content: url(images/records/add.png);
 }
 
-.edit:before {
+.update:before {
 	content: url(images/records/edit.png);
 }
 
-.remove:before {
+.delete:before {
 	content: url(images/records/remove.png);
 }
 
