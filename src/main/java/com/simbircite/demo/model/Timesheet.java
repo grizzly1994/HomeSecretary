@@ -15,47 +15,47 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TIMESHEET")
 public class Timesheet implements Serializable {
-    
-	private static final long serialVersionUID = 1L;
-    
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TIMESHEET_ID", nullable = false)
     private int timesheetId;
-    
+
     @Column(name = "EMPLOYEE_ID", nullable = false)
     private int employeeId;
-    
+
     @Column(name = "MINUTES_MON", nullable = false)
     private int minutesMon;
-    
+
     @Column(name = "MINUTES_TUE", nullable = false)
     private int minutesTue;
-    
+
     @Column(name = "MINUTES_WED", nullable = false)
     private int minutesWed;
-    
+
     @Column(name = "MINUTES_THU", nullable = false)
     private int minutesThu;
-    
+
     @Column(name = "MINUTES_FRI", nullable = false)
     private int minutesFri;
-    
+
     @Column(name = "MINUTES_SAT", nullable = false)
     private int minutesSat;
-    
+
     @Column(name = "MINUTES_SUN", nullable = false)
     private int minutesSun;
-    
+
     @Column(name = "STATUS_CODE")
     private String statusCode;
-    
+
     @Column(name = "DEPARTMENT_CODE")
     private String departmentCode;
-    
+
     @Column(name = "PERIOD_ENDING_DATE")
     private Date periodEndingDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEPARTMENT_CODE", insertable = false, updatable = false)
     private Department department;

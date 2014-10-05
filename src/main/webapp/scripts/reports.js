@@ -1,20 +1,22 @@
 $(function() {
+	
     // Устанавливаем плагины
-    $('#reports').tabs();
+	
     $('#dialog').dialog({autoOpen : false, width : 'auto'});
     
     // Таблица меняет размер вместе с окном браузера
+    
     function fit() {
-        $('.reportGrid').setGridWidth($(window).width());
-        $('.reportGrid').setGridHeight($(window).height() - 190);
+	    $('#grid').setGridWidth($(window).width());
+	    $('#grid').setGridHeight($(window).height() - 52);
     }
     
-    $('.ui-tabs-anchor').bind('click', fit);
-    $(window).bind('resize', fit);
+    $(window).on('resize', fit);
             
     fit();
     
     //Виджеты форм
+    
     function widgets() {
         $('.datePicker').datepicker({
             dateFormat : 'dd.mm.yy',
@@ -29,34 +31,44 @@ $(function() {
         });
     }
     
+    widgets();
+    
     // Действия с записями
-    $('.add').bind('click', function() {
+    
+    function add(report) {
+    	var path = report + '/add';
+    	$('#dialog').load(path, function() {
+    		widgets();
+    		$('#dialog').dialog('open');
+    	});
+    }
+    
+    $('#addPay').on('click', function() {
+    	add('pay');
+    });
+    
+    $('#addDebt').on('click', function() {
+    	add('debt');
+    });
+    
+    $('.update').on('click', function() {
     	var report = $(this).attr('data-report');
-    	var path = 'reports/' + report + '/add';
+    	var id = $('#' + report + 'Grid').getGridParam('selrow');
+    	if (id == null)
+    		return;
+    	var path = report + '/update/' + id;
     	$('#dialog').load(path, function() {
     		widgets();
     		$('#dialog').dialog('open');
     	});
     });
     
-    $('.update').bind('click', function() {
+    $('.delete').on('click', function() {
     	var report = $(this).attr('data-report');
     	var id = $('#' + report + 'Grid').getGridParam('selrow');
     	if (id == null)
     		return;
-    	var path = 'reports/' + report + '/update/' + id;
-    	$('#dialog').load(path, function() {
-    		widgets();
-    		$('#dialog').dialog('open');
-    	});
-    });
-    
-    $('.delete').bind('click', function() {
-    	var report = $(this).attr('data-report');
-    	var id = $('#' + report + 'Grid').getGridParam('selrow');
-    	if (id == null)
-    		return;
-    	var path = 'reports/' + report + '/delete/' + id;
+    	var path = report + '/delete/' + id;
     	$(location).attr('href', path);
     });
 });

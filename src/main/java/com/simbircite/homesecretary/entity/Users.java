@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +43,8 @@ public class Users {
     @DateTimeFormat(iso = ISO.DATE)
 	DateTime birthday;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	Set<Transaction> transactions;
+	/*@OneToMany(fetch = FetchType.LAZY)
+	Set<Transaction> transactions;*/
 	
 	@OneToMany
 	Set<Debt> periodicTransactions;
@@ -90,13 +89,13 @@ public class Users {
 		this.birthday = birthday;
 	}
 	
-	public Set<Transaction> getTransactions() {
+	/*public Set<Transaction> getTransactions() {
 		return transactions;
 	}
 	
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
-	}
+	}*/
 	
 	public Set<Debt> getPeriodicTransactions() {
 		return periodicTransactions;

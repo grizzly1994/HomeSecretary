@@ -1,0 +1,31 @@
+<div xmlns:spring="http://www.springframework.org/tags">
+	<spring:message code="report.date.label" var="momentLabel" />
+	<spring:message code="report.pay.count.label" var="payCountLabel" />
+	<spring:message code="report.debt.count.label" var="debtCountLabel" />
+	<spring:message code="report.balance.label" var="balanceLabel" />
+	<spring:message code="report.unpaid.label" var="unpaidLabel" />
+	<table id="grid">
+		<tr>
+			<td />
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$("#grid").jqGrid({
+			url : 'budget/list',
+			datatype : 'json',
+			mtype : 'GET',
+			colNames : [ '${momentLabel}', '${payCountLabel}', '${debtCountLabel}',
+			             '${balanceLabel}', '${unpaidLabel}' ],
+			colModel : [
+			    { name : 'momentString', index : 'momentString' },
+			    { name : 'payCount', index : 'payCount' },
+			    { name : 'debtCount', index : 'debtCount' },
+			    { name : 'balance', index : 'balance' },
+			    { name : 'unpaid', index : 'unpaid' }
+			],
+			jsonReader : { id : 'moment' },
+			viewrecords : true,
+			gridview : true
+		});
+	</script>
+</div>

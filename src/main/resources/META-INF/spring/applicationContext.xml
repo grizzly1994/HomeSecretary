@@ -19,19 +19,13 @@
     
     <!-- Бин сервиса для работы с платежами -->
     <bean name="payService" class="com.simbircite.demo.service.PayService"/>
+    <!-- Определяем бин сервиса для работы с моделью Debt  -->
+    <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
     
     <!-- Определяем бин для валидации модели Category  -->
     <bean name="categoryValidator" class="com.simbircite.demo.validator.CategoryValidator"/>
     <!-- Определяем бин сервиса для работы с моделью Category  -->
     <bean name="categoryService" class="com.simbircite.demo.service.CategoryService"/>
-    
-    <!-- Определяем бин сервиса для работы с моделью PeriodicTransaction  -->
-    <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
-    
-    <!-- Определяем бин для валидации модели Transaction  -->
-    <bean name="transactionValidator" class="com.simbircite.demo.validator.TransactionValidator"/>
-    <!-- Определяем бин сервиса для работы с моделью Transaction  -->
-    <bean name="transactionService" class="com.simbircite.demo.service.TransactionService"/>
     
     <!-- Определяем бин для валидации модели Users  -->
     <bean name="usersValidator" class="com.simbircite.demo.validator.UsersValidator"/>

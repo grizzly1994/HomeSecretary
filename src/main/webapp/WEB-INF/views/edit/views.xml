@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition name="pays/add" template="/WEB-INF/views/edit/pays.jspx"></definition>
-	<definition name="pays/update" template="/WEB-INF/views/edit/pays.jspx"></definition>
-    <definition name="debts/add" template="/WEB-INF/views/edit/debts.jspx"></definition>
-    <definition name="debts/update" template="/WEB-INF/views/edit/debts.jspx"></definition>
+	<definition name="pay/add" template="/WEB-INF/views/edit/pay.jspx"></definition>
+	<definition name="pay/update" template="/WEB-INF/views/edit/pay.jspx"></definition>
+    <definition name="debt/add" template="/WEB-INF/views/edit/debt.jspx"></definition>
+    <definition name="debt/update" template="/WEB-INF/views/edit/debt.jspx"></definition>
 </tiles-definitions>

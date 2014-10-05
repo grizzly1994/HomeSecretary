@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
 import com.simbircite.demo.model.Debt;
+import com.simbircite.demo.service.BudgetStateService;
+import com.simbircite.demo.service.DebtStateService;
+import com.simbircite.demo.service.EntityListService;
 import com.simbircite.demo.service.EntityService;
 import com.simbircite.demo.service.PayService;
 import com.simbircite.demo.service.DebtService;
@@ -23,93 +27,120 @@ import com.simbircite.demo.util.DateUtil;
 import com.simbircite.demo.util.spring.CustomDateTimeEditor;
 
 @Controller
-@RequestMapping("/reports")
+@RequestMapping("/report")
 public class ReportsController {
+
+    @Autowired
+    private PayService payService;
+
+    @Autowired
+    private DebtService debtService;
+
+    private Moment moment;
+
+    private static final String PAY = "pay";
+    private static final String DEBT = "debt";
+    private static final String BUDGET = "budget";
+    private static final String ENTITY = "entity";
     
-	@Autowired
-    private PayService pays;
-	
-	@Autowired
-	private DebtService debts;
-    
-	private static final String ENTITY = "entity";
-	private static final String PAYS = "pays";
-    private static final String DEBTS = "debts";
-	
-    // View
+    public ReportsController() {
+        moment = new Moment();
+        moment.setMoment(new DateTime());
+    }
     
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String actions(Model model) {
-    	model.addAttribute("total", pays.total() + debts.rest());
-    	model.addAttribute("rest", debts.rest());
-        return "reports";
+    public String actions() {
+        return "redirect:/report/pay";
     }
     
+    @RequestMapping(value = "{report}", method = RequestMethod.GET)
+    public String actions(@PathVariable("report") String report, Model model) {
+        model.addAttribute("moment", moment);
+        return report;
+    }
+
+    @RequestMapping(value = "{report}/moment", method = RequestMethod.POST)
+    public String changeDate(@PathVariable("report") String report, @ModelAttribute Moment date) {
+        moment = date;
+        return "redirect:/report/" + report;
+    }
+
     @RequestMapping(value = "{report}/add", method = RequestMethod.GET)
     public String showAdd(@PathVariable("report") String report, Model model) {
-    	model.addAttribute(ENTITY, getEntity(report));
-    	return report + "/add";
+        model.addAttribute(ENTITY, getEntity(report));
+        return report + "/add";
     }
-    
+
     @RequestMapping(value = "{report}/update/{id}", method = RequestMethod.GET)
-    public String showUpdate(@PathVariable("report") String report, @PathVariable("id") int id, Model model) {
-    	model.addAttribute(ENTITY, getService(report).get(id));
-    	return report + "/update";
+    public String showUpdate(@PathVariable("report") String report,
+            @PathVariable("id") int id, Model model) {
+        model.addAttribute(ENTITY, getService(report).get(id));
+        return report + "/update";
+    }
+
+    @RequestMapping(value = "pay/update", method = RequestMethod.POST)
+    public String updatePay(@ModelAttribute(ENTITY) Pay entity) {
+        payService.update(entity);
+        return "redirect:/report/pay";
     }
     
-    @RequestMapping(value = "{report}", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public Object list(@PathVariable("report") String report) {
-    	return getService(report).get();
+    @RequestMapping(value = "debt/update", method = RequestMethod.POST)
+    public String updateDebt(@ModelAttribute(ENTITY) Debt entity) {
+        debtService.update(entity);
+        return "redirect:/report/debt";
     }
-    
-    // Actions
-    
-    @RequestMapping(value = "pays/update", method = RequestMethod.POST)
-    public String update(@ModelAttribute(ENTITY) Pay entity) {
-    	pays.update(entity);
-    	return "redirect:/reports";
-    }
-    
-    @RequestMapping(value = "debts/update", method = RequestMethod.POST)
-    public String update(@ModelAttribute(ENTITY) Debt entity) {
-    	debts.update(entity);
-    	return "redirect:/reports";
-    }
-    
+
     @RequestMapping(value = "{report}/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable("report") String report, @PathVariable("id") int id, Model model) {
-    	getService(report).delete(id);
-    	return "redirect:/reports";
+    public String delete(@PathVariable("report") String report,
+            @PathVariable("id") int id, Model model) {
+        getService(report).delete(id);
+        return "redirect:/report/" + report;
     }
-    
-    // Factories
+
+    @RequestMapping(value = "{report}/list", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public Object getAll(@PathVariable("report") String report) {
+        return getListService(report).getAll(moment);
+    }
     
     private Object getEntity(String report) {
-    	if (PAYS.equals(report)) {
-    		return new Pay();
-    	}
-    	if (DEBTS.equals(report)) {
-    		return new Debt();
-    	}
-    	return null;
+        if (PAY.equals(report)) {
+            return new Pay();
+        }
+        if (DEBT.equals(report)) {
+            return new Debt();
+        }
+        return null;
     }
-    
+
     private EntityService getService(String report) {
-    	if (PAYS.equals(report)) {
-    		return pays;
-    	}
-    	if (DEBTS.equals(report)) {
-    		return debts;
-    	}
-    	return null;
+        if (PAY.equals(report)) {
+            return payService;
+        }
+        if (DEBT.equals(report)) {
+            return debtService;
+        }
+        return null;
     }
-    
-    // Data formatter
-    
+
+    private EntityListService getListService(String report) {
+        if (PAY.equals(report)) {
+            return payService;
+        }
+        if (DEBT.equals(report)) {
+            return new DebtStateService(debtService);
+        }
+        if (BUDGET.equals(report)) {
+            return new BudgetStateService(payService, debtService);
+        }
+        return null;
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern(DateUtil.getDateFormat());
-        binder.registerCustomEditor(DateTime.class, new CustomDateTimeEditor(formatter));
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(DateUtil
+                .getDateFormat());
+        binder.registerCustomEditor(DateTime.class, new CustomDateTimeEditor(
+                formatter));
     }
 }

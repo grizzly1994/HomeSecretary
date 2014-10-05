@@ -10,8 +10,5 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
         <put-attribute name="rightPanel" value="/WEB-INF/views/rightPanel.jspx" />
     </definition>
-    <definition name="reports" template="/WEB-INF/layouts/reports.jspx">
-    	<put-attribute name="pays" value="/WEB-INF/views/reports/pays.jspx" />
-    	<put-attribute name="debts" value="/WEB-INF/views/reports/debts.jspx" />
-    </definition>
+    <definition name="report" template="/WEB-INF/layouts/report.jspx"></definition>
 </tiles-definitions>

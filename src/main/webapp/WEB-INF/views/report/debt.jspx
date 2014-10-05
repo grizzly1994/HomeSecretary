@@ -1,0 +1,37 @@
+<div xmlns:spring="http://www.springframework.org/tags">
+	<spring:message code="report.id.label" var="idLabel" />
+	<spring:message code="report.comment.label" var="commentLabel" />
+	<spring:message code="report.date.label" var="dateLabel" />
+	<spring:message code="report.deadline.label" var="deadlineLabel" />
+	<spring:message code="report.balance.label" var="balanceLabel" />
+	<spring:message code="report.frequency.label" var="frequencyLabel" />
+	<spring:message code="report.repay.label" var="repayLabel" />
+	<spring:message code="report.unpaid.label" var="unpaidLabel" />
+	<table id="grid">
+		<tr>
+			<td />
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$("#grid").jqGrid({
+			url : 'debt/list',
+			datatype : 'json',
+			mtype : 'GET',
+			colNames : [ '${idLabel}', '${commentLabel}', '${dateLabel}', '${deadlineLabel}',
+			             '${balanceLabel}', '${frequencyLabel}', '${repayLabel}', '${unpaidLabel}' ],
+			colModel : [
+			    { name : 'id', index : 'id' },
+			    { name : 'comment', index : 'comment' },
+			    { name : 'dateString', index : 'dateString' },
+			    { name : 'deadlineString', index : 'deadlineString' },
+			    { name : 'balance', index : 'balance' },
+			    { name : 'frequency', index : 'frequency' },
+			    { name : 'repay', index : 'repay' },
+			    { name : 'unpaid', index : 'unpaid' }
+			],
+			jsonReader : { root : 'userData', id : 'id' },
+			viewrecords : true,
+			gridview : true
+		});
+	</script>
+</div>

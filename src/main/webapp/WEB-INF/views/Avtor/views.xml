@@ -13,7 +13,7 @@
     <definition extends="default" name="Avtor/remembertwo">
         <put-attribute name="body" value="/WEB-INF/views/Avtor/remembertwo.jspx" />
     </definition>
-     <definition extends="default" name="Avtor/confirm">
+    <definition extends="default" name="Avtor/confirm">
         <put-attribute name="body" value="/WEB-INF/views/Avtor/confirm.jspx" />
     </definition>
 </tiles-definitions>

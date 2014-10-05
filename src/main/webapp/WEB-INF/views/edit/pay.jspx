@@ -1,13 +1,13 @@
 <div xmlns:form="http://www.springframework.org/tags/form"
 	 xmlns:spring="http://www.springframework.org/tags">
 
-	<spring:message code="reports.id.label" var="idLabel" />
-	<spring:message code="reports.comment.label" var="commentLabel" />
-	<spring:message code="reports.date.label" var="dateLabel" />
-	<spring:message code="reports.sum.label" var="sumLabel" />
-	<spring:message code="reports.save.label" var="saveLabel" />
+	<spring:message code="report.id.label" var="idLabel" />
+	<spring:message code="report.comment.label" var="commentLabel" />
+	<spring:message code="report.date.label" var="dateLabel" />
+	<spring:message code="report.balance.label" var="balanceLabel" />
+	<spring:message code="report.save.label" var="saveLabel" />
 	
-	<form:form modelAttribute="entity" action="reports/pays/update" method="post" enctype="multipart/form-data">
+	<form:form modelAttribute="entity" action="pay/update" method="post" enctype="multipart/form-data">
 		<p>
 			<label>${idLabel}</label>
 			<form:input path="id" />
@@ -17,12 +17,12 @@
 			<form:input path="comment" />
 		</p>
 		<p>
-			<label>${sumLabel}</label>
-			<form:input path="balance" class="decimalSpinner" />
-		</p>
-		<p>
 			<label>${dateLabel}</label>
 			<form:input path="date" class="datePicker" />
+		</p>
+		<p>
+			<label>${balanceLabel}</label>
+			<form:input path="balance" class="decimalSpinner" />
 		</p>
 		<button type="submit"
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">

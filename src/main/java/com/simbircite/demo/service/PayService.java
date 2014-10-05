@@ -2,42 +2,35 @@ package com.simbircite.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
-import com.simbircite.demo.repository.PayRepository;
+import com.simbircite.demo.repository.PayRepo;
 
-public class PayService implements EntityService {
-	
-	@Autowired
-	PayRepository repo;
-	
-	public void add(Pay data) {
-		repo.save(data);
-	}
-	
-	public void update(Pay data) {
-		repo.save(data);
-	}
-	
-	@Override
-	public Pay get(int id) {
-		return repo.findOne(id);
-	}
-	
-	@Override
-	public void delete(int id) {
-		repo.delete(id);
-	}
-	
-	@Override
-	public Object get() {
-		return repo.findAll();
-	}
-	
-	public double total() {
-		double total = 0;
-    	for (Pay pay : repo.findAll()) {
-    		total += pay.getBalance();
-    	}
-    	return total;
-	}
+public class PayService implements EntityService, EntityListService {
+
+    @Autowired
+    private PayRepo repo;
+
+    public void add(Pay entity) {
+        repo.save(entity);
+    }
+
+    public void update(Pay entity) {
+        repo.save(entity);
+    }
+
+    @Override
+    public Pay get(int id) {
+        return repo.findOne(id);
+    }
+
+    @Override
+    public void delete(int id) {
+        repo.delete(id);
+    }
+    
+    @Override
+    public Iterable<Pay> getAll(Moment moment) {
+        return repo.findAllByDateLessThanEqual(moment.getMoment());
+    }
 }

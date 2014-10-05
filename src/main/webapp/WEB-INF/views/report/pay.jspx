@@ -1,16 +1,16 @@
 <div xmlns:spring="http://www.springframework.org/tags">
-	<table id="paysGrid" class="reportGrid">
+	<spring:message code="report.id.label" var="idLabel" />
+	<spring:message code="report.comment.label" var="commentLabel" />
+	<spring:message code="report.date.label" var="dateLabel" />
+	<spring:message code="report.balance.label" var="sumLabel" />
+	<table id="grid">
 		<tr>
 			<td />
 		</tr>
 	</table>
-	<spring:message code="reports.id.label" var="idLabel" />
-	<spring:message code="reports.comment.label" var="commentLabel" />
-	<spring:message code="reports.date.label" var="dateLabel" />
-	<spring:message code="reports.sum.label" var="sumLabel" />
 	<script type="text/javascript">
-		$("#paysGrid").jqGrid({
-			url : 'reports/pays',
+		$("#grid").jqGrid({
+			url : 'pay/list',
 			datatype : 'json',
 			mtype : 'GET',
 			colNames : [ '${idLabel}', '${commentLabel}', '${dateLabel}', '${sumLabel}' ],
@@ -22,7 +22,7 @@
 				index : 'comment'
 			}, {
 				name : 'dateString',
-				index : 'date'
+				index : 'dateString'
 			}, {
 				name : 'balance',
 				index : 'balance'
@@ -35,5 +35,4 @@
 			gridview : true
 		});
 	</script>
-	<p class="total">Total: ${total} $</p>
 </div>

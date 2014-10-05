@@ -1,0 +1,76 @@
+<html 
+    xmlns:jsp="http://java.sun.com/JSP/Page"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:tiles="http://tiles.apache.org/tags-tiles"
+    xmlns:spring="http://www.springframework.org/tags"
+    xmlns:form="http://www.springframework.org/tags/form">
+
+    <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:directive.page pageEncoding="UTF-8" />
+    
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+        
+        <spring:url value="/resources/scripts/globalize.js" var="globalizeUrl" />
+        <script src="${globalizeUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/scripts/jquery-1.10.2.js" var="jQueryUrl" />
+        <script src="${jQueryUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/scripts/jquery-ui-1.10.3.custom.js" var="jQueryUiUrl" />
+        <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/styles/jquery-ui-1.10.3.custom.css" var="jQueryUiThemeUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
+        
+        <spring:url value="/resources/scripts/jquery.mousewheel.js" var="mousewheelUrl" />
+        <script src="${mousewheelUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqGridUrl" />
+        <script src="${jqGridUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqGridCssUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
+        
+        <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
+        <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/scripts/reports.js" var="reportsUrl" />
+        <script src="${reportsUrl}" type="text/javascript"><jsp:text /></script>
+        
+        <spring:url value="/resources/styles/reports.css" var="reportsCssUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
+        
+        <spring:message code="report.title" var="title" />
+        <title>${title}</title>
+    </head>
+    <body>
+    	<spring:message code="report.pay.add.label" var="addPayLabel" />
+    	<spring:message code="report.debt.add.label" var="addDebtLabel" />
+    	<spring:message code="report.pay.label" var="payLabel" />
+    	<spring:message code="report.debt.label" var="debtLabel" />
+    	<spring:message code="report.budget.label" var="budgetLabel" />
+    	<spring:message code="report.moment.label" var="okLabel" />
+    	<spring:message code="report.ok.label" var="okLabel" />
+    	<div id="menu">
+			<ul>
+				<li><a href="#" id="addPay">${addPayLabel}</a></li>
+				<li><a href="#" id="addDebt">${addDebtLabel}</a></li>
+				<li><a href="pay">${payLabel}</a></li>
+				<li><a href="debt">${debtLabel}</a></li>
+				<li><a href="budget">${budgetLabel}</a></li>
+			</ul>
+			<div id="calendar">
+				<form:form modelAttribute="moment" method="post" enctype="multipart/form-data">
+					${momentLabel}
+					<form:input path="moment" class="datePicker" />
+					<button type="submit">${okLabel}</button>
+				</form:form>
+			</div>
+		</div>
+		<tiles:insertAttribute name="body" />
+		<div id="dialog"><jsp:text /></div>
+    </body>
+</html>

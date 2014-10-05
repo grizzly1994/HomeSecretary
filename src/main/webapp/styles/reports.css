@@ -1,19 +1,39 @@
-html, body, #reports {
+html, body {
 	margin: 0;
 	padding: 0;
-    height: 100%;
-    border: none;
+	height: 100%;
 }
-        	
-.ui-widget-content .ui-tabs-panel {
-    padding: 0;
-    margin: 0;
+
+#menu {
+	/*display: none;*/
+	background: #383838;
+	height: 24px;
+	padding: 2px 6px;
+	font-family: tahoma;
+	font-width: bold;
 }
-        	
-.reportTable {
-    width: 100%;
+
+#menu a {
+	color: white;
+	text-decoration: none;
 }
-        	
+
+#menu ul {
+	list-style-type: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#menu li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#calendar {
+	float: right;
+}
+
 .ui-jqgrid {
-    border: none;
+	border: none;
 }
