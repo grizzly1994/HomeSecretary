@@ -10,4 +10,7 @@
     <definition extends="report" name="budget">
     	<put-attribute name="body" value="/WEB-INF/views/report/budget.jspx" />
     </definition>
+    <definition extends="report" name="graph">
+    	<put-attribute name="body" value="/WEB-INF/views/report/graph.jspx" />
+    </definition>
 </tiles-definitions>

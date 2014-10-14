@@ -1,11 +1,11 @@
 package com.simbircite.demo.repository;
 
 import org.joda.time.DateTime;
-import org.springframework.data.repository.*;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.simbircite.demo.model.*;
+import com.simbircite.demo.model.Pay;
 
-public interface PayRepo extends CrudRepository<Pay, Integer> {
+public interface PayRepo extends PagingAndSortingRepository<Pay, Integer> {
     
-    Iterable<Pay> findAllByDateLessThanEqual(DateTime date);
+    Iterable<Pay> findByDateLessThanEqualOrderByDateAsc(DateTime date);
 }

@@ -17,8 +17,8 @@ public class DebtStateService implements EntityListService {
     
     public Iterable<DebtState> getAll(Moment moment) {
         Collection<DebtState> debtStates = new LinkedList<DebtState>();
-        for (Debt debt : debtService.get(moment)) {
-            debtStates.add(new DebtState(moment.getMoment(), debt));
+        for (Debt debt : debtService.getAll(moment)) {
+            debtStates.add(new DebtState(debt, moment.getMoment()));
         }
         return debtStates;
     }

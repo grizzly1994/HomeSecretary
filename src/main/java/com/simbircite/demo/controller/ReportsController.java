@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.simbircite.demo.model.BudgetState;
 import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
 import com.simbircite.demo.model.Debt;
+import com.simbircite.demo.service.BudgetService;
 import com.simbircite.demo.service.BudgetStateService;
 import com.simbircite.demo.service.DebtStateService;
 import com.simbircite.demo.service.EntityListService;
@@ -55,7 +57,16 @@ public class ReportsController {
     
     @RequestMapping(value = "{report}", method = RequestMethod.GET)
     public String actions(@PathVariable("report") String report, Model model) {
-        model.addAttribute("moment", moment);
+        BudgetStateService budgetStateService = new BudgetStateService(
+                payService.getAll(moment),
+                debtService.getAll(moment));
+        BudgetState budgetState = budgetStateService.get(moment.getMoment());
+        model.addAttribute("period", moment);
+        model.addAttribute("payCount", budgetState.getPayCount());
+        model.addAttribute("debtCount", budgetState.getDebtCount());
+        model.addAttribute("total", budgetState.getTotal());
+        model.addAttribute("unpaid", budgetState.getUnpaid());
+        model.addAttribute("balance", budgetState.getBalance());
         return report;
     }
 
@@ -131,7 +142,7 @@ public class ReportsController {
             return new DebtStateService(debtService);
         }
         if (BUDGET.equals(report)) {
-            return new BudgetStateService(payService, debtService);
+            return new BudgetService(payService, debtService);
         }
         return null;
     }

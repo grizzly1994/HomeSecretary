@@ -1,17 +1,20 @@
 package com.simbircite.demo.model;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.Months;
 
 public class DebtState {
 
-    private final DateTime date;
     private final Debt debt;
+    private final DateTime date;
 
-    public DebtState(DateTime date, Debt debt) {
-        this.date = date;
+    public DebtState(Debt debt, DateTime date) {
         this.debt = debt;
+        this.date = date;
     }
 
     public int getId() {
@@ -55,16 +58,21 @@ public class DebtState {
     }
 
     private double getTotal(DateTime date) {
-        Interval interval = new Interval(date, getDeadline());
+        date = Collections.min(Arrays.asList(new DateTime[] {date, getDeadline()}));
+        Interval interval = new Interval(getDate(), date);
         int period = Months.monthsIn(interval).getMonths();
         return period / getFrequency() * getRepay();
     }
     
     public double getTotal() {
-        return getTotal(getDate());
+        return getTotal(getDeadline());
     }
     
     public double getUnpaid() {
         return getTotal() - getTotal(date);
+    }
+    
+    public double getRest() {
+        return getBalance() - getTotal(date);
     }
 }

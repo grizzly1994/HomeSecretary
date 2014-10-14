@@ -37,6 +37,9 @@
         <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
         <script src="${jqGridLocaleUrl}" type="text/javascript"><jsp:text /></script>
         
+        <spring:url value="/resources/scripts/Chart.js" var="chartJsUrl" />
+        <script src="${chartJsUrl}" type="text/javascript"><jsp:text /></script>
+        
         <spring:url value="/resources/scripts/reports.js" var="reportsUrl" />
         <script src="${reportsUrl}" type="text/javascript"><jsp:text /></script>
         
@@ -49,21 +52,27 @@
     <body>
     	<spring:message code="report.pay.add.label" var="addPayLabel" />
     	<spring:message code="report.debt.add.label" var="addDebtLabel" />
+    	<spring:message code="report.update.label" var="updateLabel" />
+    	<spring:message code="report.delete.label" var="deleteLabel" />
     	<spring:message code="report.pay.label" var="payLabel" />
     	<spring:message code="report.debt.label" var="debtLabel" />
     	<spring:message code="report.budget.label" var="budgetLabel" />
+    	<spring:message code="report.graph.label" var="graphLabel" />
     	<spring:message code="report.moment.label" var="okLabel" />
     	<spring:message code="report.ok.label" var="okLabel" />
     	<div id="menu">
 			<ul>
-				<li><a href="#" id="addPay">${addPayLabel}</a></li>
-				<li><a href="#" id="addDebt">${addDebtLabel}</a></li>
-				<li><a href="pay">${payLabel}</a></li>
-				<li><a href="debt">${debtLabel}</a></li>
-				<li><a href="budget">${budgetLabel}</a></li>
+				<li><a href="#" onclick="add('pay')">${addPayLabel}</a></li>
+				<li><a href="#" onclick="add('debt')">${addDebtLabel}</a></li>
+				<li><a href="#" onclick="update('${report}')">${updateLabel}</a></li>
+				<li><a href="#" onclick="del('${report}')">${deleteLabel}</a></li>
+				<li><a href="pay">${payLabel} (${payCount}: $${total})</a></li>
+				<li><a href="debt">${debtLabel} (${debtCount}: $${unpaid})</a></li>
+				<li><a href="budget">${budgetLabel} ($${balance})</a></li>
+				<li><a href="graph">${graphLabel}</a></li>
 			</ul>
 			<div id="calendar">
-				<form:form modelAttribute="moment" method="post" enctype="multipart/form-data">
+				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
 					${momentLabel}
 					<form:input path="moment" class="datePicker" />
 					<button type="submit">${okLabel}</button>

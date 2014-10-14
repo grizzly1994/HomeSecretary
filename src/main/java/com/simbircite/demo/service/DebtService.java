@@ -29,7 +29,7 @@ public class DebtService implements EntityService {
         repo.delete(id);
     }
 
-    public Iterable<Debt> get(Moment moment) {
-        return repo.findAllByDateLessThanEqual(moment.getMoment());
+    public Iterable<Debt> getAll(Moment moment) {
+        return repo.findByDateLessThanEqualOrderByDateAsc(moment.getMoment());
     }
 }
