@@ -1,42 +1,23 @@
 package com.simbircite.demo.service;
 
 import com.simbircite.demo.model.User;
-import com.simbircite.demo.repository.UserRepository;
+import com.simbircite.demo.repository.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Service("userService")
-@Repository
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRep;
+    private UserRepo repo;
 
     public void add(User user) {
-        userRep.save(user);
+        repo.save(user);
     }
 
-    public void update(User user) {
-        userRep.save(user);
-    }
-
-    public void delete(User user) {
-        userRep.delete(user);
-    }
-
-    public User getById(Long id) {
-        return userRep.findOne(id);
-    }
-
-    public Iterable<User> getAll() {
-        return userRep.findAll();
-    }
-    
-    public Page<User> getAllByPage(Pageable pageable) {
-        return userRep.findAll(pageable);
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        return repo.findByUsername(username).iterator().next();
     }
 }

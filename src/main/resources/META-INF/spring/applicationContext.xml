@@ -11,24 +11,11 @@
     <!-- Включаем использование аннотаций для конфигурации Spring -->
     <context:annotation-config/>
     <context:property-placeholder location="classpath:jdbc.properties"/>
-  
-    <!-- Определяем бин для валидации модели User  -->
-    <bean name="userValidator" class="com.simbircite.demo.validator.UserValidator"/>
+    
     <!-- Определяем бин сервиса для работы с моделью User  -->
     <bean name="userService" class="com.simbircite.demo.service.UserService"/>
-    
     <!-- Бин сервиса для работы с платежами -->
     <bean name="payService" class="com.simbircite.demo.service.PayService"/>
     <!-- Определяем бин сервиса для работы с моделью Debt  -->
     <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
-    
-    <!-- Определяем бин для валидации модели Category  -->
-    <bean name="categoryValidator" class="com.simbircite.demo.validator.CategoryValidator"/>
-    <!-- Определяем бин сервиса для работы с моделью Category  -->
-    <bean name="categoryService" class="com.simbircite.demo.service.CategoryService"/>
-    
-    <!-- Определяем бин для валидации модели Users  -->
-    <bean name="usersValidator" class="com.simbircite.demo.validator.UsersValidator"/>
-    <!-- Определяем бин сервиса для работы с моделью Users  -->
-    <bean name="usersService" class="com.simbircite.demo.service.UsersService"/>
 </beans>

@@ -50,32 +50,43 @@
         <title>${title}</title>
     </head>
     <body>
-    	<spring:message code="report.pay.add.label" var="addPayLabel" />
-    	<spring:message code="report.debt.add.label" var="addDebtLabel" />
-    	<spring:message code="report.update.label" var="updateLabel" />
-    	<spring:message code="report.delete.label" var="deleteLabel" />
-    	<spring:message code="report.pay.label" var="payLabel" />
-    	<spring:message code="report.debt.label" var="debtLabel" />
-    	<spring:message code="report.budget.label" var="budgetLabel" />
-    	<spring:message code="report.graph.label" var="graphLabel" />
-    	<spring:message code="report.moment.label" var="okLabel" />
-    	<spring:message code="report.ok.label" var="okLabel" />
     	<div id="menu">
 			<ul>
-				<li><a href="#" onclick="add('pay')">${addPayLabel}</a></li>
-				<li><a href="#" onclick="add('debt')">${addDebtLabel}</a></li>
-				<li><a href="#" onclick="update('${report}')">${updateLabel}</a></li>
-				<li><a href="#" onclick="del('${report}')">${deleteLabel}</a></li>
-				<li><a href="pay">${payLabel} (${payCount}: $${total})</a></li>
-				<li><a href="debt">${debtLabel} (${debtCount}: $${unpaid})</a></li>
-				<li><a href="budget">${budgetLabel} ($${balance})</a></li>
-				<li><a href="graph">${graphLabel}</a></li>
+				<li><a href="#" onclick="add('pay')">
+					<spring:message code="report.pay.add.label" />
+				</a></li>
+				<li><a href="#" onclick="add('debt')">
+					<spring:message code="report.debt.add.label" />
+				</a></li>
+				<li><a href="#" onclick="update('${report}')">
+					<spring:message code="report.update.label" />
+				</a></li>
+				<li><a href="#" onclick="del('${report}')">
+					<spring:message code="report.delete.label" />
+				</a></li>
+				<li><a href="pay">
+					<spring:message code="report.pay.label" /> (${payCount}: $${total})
+				</a></li>
+				<li><a href="debt">
+					<spring:message code="report.debt.label" /> (${debtCount}: $${unpaid})
+				</a></li>
+				<li><a href="budget">
+					<spring:message code="report.budget.label" /> ($${balance})
+				</a></li>
+				<li><a href="graph">
+					<spring:message code="report.graph.label" />
+				</a></li>
+				<li><a href="logout">
+					<spring:message code="logout.label" />
+				</a></li>
 			</ul>
 			<div id="calendar">
 				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
-					${momentLabel}
+					<spring:message code="report.moment.label" var="okLabel" />
 					<form:input path="moment" class="datePicker" />
-					<button type="submit">${okLabel}</button>
+					<button type="submit">
+						<spring:message code="ok.label" />
+					</button>
 				</form:form>
 			</div>
 		</div>

@@ -1,0 +1,28 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags">
+	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:directive.page pageEncoding="UTF-8" />
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<title><spring:message code="application.name" /></title>
+	</head>
+	<body>
+		<form method="post" action="j_spring_security_check">
+			<p>
+				<spring:message code="user.email.label" />
+				<input name="j_username" />
+			</p>
+			<p>
+				<spring:message code="user.password.label" />
+				<input name="j_password" type="password" />
+			</p>
+			<a href="register">
+				<spring:message code="user.register.label" />
+			</a>
+			<spring:message code="ok.label" var="okLabel"/>
+			<input type="submit" value="${okLabel}" />
+		</form>
+	</body>
+</html>

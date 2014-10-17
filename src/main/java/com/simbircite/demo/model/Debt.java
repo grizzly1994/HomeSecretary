@@ -23,7 +23,7 @@ public class Debt {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "comment", nullable = true)
+    @Column(name = "comment")
     private String comment;
 
     @Column(name = "balance")
