@@ -51,22 +51,23 @@
     </head>
     <body>
     	<div id="menu">
+	    	<a href="logout" style="float: right">
+				<spring:message code="logout.label" />
+			</a>
+    		<div id="calendar">
+				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
+					<button type="submit">
+						<spring:message code="ok.label" />
+					</button>
+					<form:input path="moment" class="datePicker" />
+				</form:form>
+			</div>
 			<ul>
-				<li><a href="#" onclick="add('pay')">
-					<spring:message code="report.pay.add.label" />
-				</a></li>
-				<li><a href="#" onclick="add('debt')">
-					<spring:message code="report.debt.add.label" />
-				</a></li>
-				<li><a href="#" onclick="update('${report}')">
-					<spring:message code="report.update.label" />
-				</a></li>
-				<li><a href="#" onclick="del('${report}')">
-					<spring:message code="report.delete.label" />
-				</a></li>
+				<li><a href="#" onclick="add('pay')">+</a></li>
 				<li><a href="pay">
 					<spring:message code="report.pay.label" /> (${payCount}: $${total})
 				</a></li>
+				<li><a href="#" onclick="add('debt')">+</a></li>
 				<li><a href="debt">
 					<spring:message code="report.debt.label" /> (${debtCount}: $${unpaid})
 				</a></li>
@@ -76,19 +77,13 @@
 				<li><a href="graph">
 					<spring:message code="report.graph.label" />
 				</a></li>
-				<li><a href="logout">
-					<spring:message code="logout.label" />
+				<li><a href="#" id="update" onclick="update('${report}')">
+					<spring:message code="report.update.label" />
+				</a></li>
+				<li><a href="#" id="delete" onclick="del('${report}')">
+					<spring:message code="report.delete.label" />
 				</a></li>
 			</ul>
-			<div id="calendar">
-				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
-					<spring:message code="report.moment.label" var="okLabel" />
-					<form:input path="moment" class="datePicker" />
-					<button type="submit">
-						<spring:message code="ok.label" />
-					</button>
-				</form:form>
-			</div>
 		</div>
 		<tiles:insertAttribute name="body" />
 		<div id="dialog"><jsp:text /></div>

@@ -11,7 +11,9 @@ function update(report) {
 	if (id == null)
 		return;
 	var path = report + '/update/' + id;
-	$('#dialog').load(path, function() {
+	$('#dialog').load(path, function(response, status) {
+		if (status == 'error')
+			return;
 		widgets();
 		$('#dialog').dialog('open');
 	});
@@ -46,14 +48,11 @@ $(function() {
 	});
 
 	widgets();
-
+	
 	$(window).resize(function() {
 		$('#grid').setGridWidth($(window).width());
-		$('#grid').setGridHeight($(window).height() - 52);
+		$('#grid').setGridHeight($(window).height() - 47);
 	}).trigger('resize');
-	
-	Chart.defaults.global.responsive = true;
-	var chart = new Chart(document.getElementById('graph').getContext('2d'));
 	
 	$.getJSON('budget/list', function(data) {
 		var moments = data.map(function(element) {
@@ -72,6 +71,8 @@ $(function() {
 				data : values
 			} ]
 		};
-		chart.Line(data);
+		new Chart(document.getElementById('graph').getContext('2d')).Line(data, {
+			responsive : true
+		});
 	});
 });

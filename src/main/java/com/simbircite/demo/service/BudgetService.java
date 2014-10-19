@@ -11,6 +11,7 @@ import com.simbircite.demo.model.BudgetState;
 import com.simbircite.demo.model.Debt;
 import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
+import com.simbircite.demo.model.User;
 
 public class BudgetService implements EntityListService {
 
@@ -22,9 +23,9 @@ public class BudgetService implements EntityListService {
         this.debtService = debtService;
     }
     
-    public Iterable<BudgetState> getAll(Moment moment) {
-        Iterable<Pay> pays = payService.getAll(moment);
-        Iterable<Debt> debts = debtService.getAll(moment);
+    public Iterable<BudgetState> getAll(User user, Moment moment) {
+        Iterable<Pay> pays = payService.getAll(user, moment);
+        Iterable<Debt> debts = debtService.getAll(user, moment);
         
         BudgetStateService budgetStateService = new BudgetStateService(pays, debts);
         

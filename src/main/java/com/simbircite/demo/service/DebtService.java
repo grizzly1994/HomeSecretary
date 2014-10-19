@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Debt;
+import com.simbircite.demo.model.User;
 import com.simbircite.demo.repository.DebtRepo;
 
 public class DebtService implements EntityService {
@@ -29,7 +30,7 @@ public class DebtService implements EntityService {
         repo.delete(id);
     }
 
-    public Iterable<Debt> getAll(Moment moment) {
-        return repo.findByDateLessThanEqualOrderByDateAsc(moment.getMoment());
+    public Iterable<Debt> getAll(User user, Moment moment) {
+        return repo.findByUserAndDateLessThanEqualOrderByDateAsc(user, moment.getMoment());
     }
 }

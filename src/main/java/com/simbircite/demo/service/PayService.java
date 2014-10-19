@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
+import com.simbircite.demo.model.User;
 import com.simbircite.demo.repository.PayRepo;
 
 public class PayService implements EntityService, EntityListService {
@@ -30,7 +31,7 @@ public class PayService implements EntityService, EntityListService {
     }
     
     @Override
-    public Iterable<Pay> getAll(Moment moment) {
-        return repo.findByDateLessThanEqualOrderByDateAsc(moment.getMoment());
+    public Iterable<Pay> getAll(User user, Moment moment) {
+        return repo.findByUserAndDateLessThanEqualOrderByDateAsc(user, moment.getMoment());
     }
 }

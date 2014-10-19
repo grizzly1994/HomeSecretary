@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +19,7 @@ import com.simbircite.demo.model.BudgetState;
 import com.simbircite.demo.model.Moment;
 import com.simbircite.demo.model.Pay;
 import com.simbircite.demo.model.Debt;
+import com.simbircite.demo.model.User;
 import com.simbircite.demo.service.BudgetService;
 import com.simbircite.demo.service.BudgetStateService;
 import com.simbircite.demo.service.DebtStateService;
@@ -30,7 +32,7 @@ import com.simbircite.demo.util.spring.CustomDateTimeEditor;
 
 @Controller
 @RequestMapping("/report")
-public class ReportsController {
+public class ReportController {
 
     @Autowired
     private PayService payService;
@@ -38,6 +40,7 @@ public class ReportsController {
     @Autowired
     private DebtService debtService;
 
+    private User user;
     private Moment moment;
 
     private static final String PAY = "pay";
@@ -45,7 +48,7 @@ public class ReportsController {
     private static final String BUDGET = "budget";
     private static final String ENTITY = "entity";
     
-    public ReportsController() {
+    public ReportController() {
         moment = new Moment();
         moment.setMoment(new DateTime());
     }
@@ -57,9 +60,10 @@ public class ReportsController {
     
     @RequestMapping(value = "{report}", method = RequestMethod.GET)
     public String actions(@PathVariable("report") String report, Model model) {
+    	user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BudgetStateService budgetStateService = new BudgetStateService(
-                payService.getAll(moment),
-                debtService.getAll(moment));
+                payService.getAll(user, moment),
+                debtService.getAll(user, moment));
         BudgetState budgetState = budgetStateService.get(moment.getMoment());
         model.addAttribute("period", moment);
         model.addAttribute("payCount", budgetState.getPayCount());
@@ -81,22 +85,29 @@ public class ReportsController {
         model.addAttribute(ENTITY, getEntity(report));
         return report + "/add";
     }
-
+    
     @RequestMapping(value = "{report}/update/{id}", method = RequestMethod.GET)
     public String showUpdate(@PathVariable("report") String report,
             @PathVariable("id") int id, Model model) {
-        model.addAttribute(ENTITY, getService(report).get(id));
+    	updatable = id;
+        model.addAttribute(ENTITY, getService(report).get(updatable));
         return report + "/update";
     }
 
+    int updatable;
+    
     @RequestMapping(value = "pay/update", method = RequestMethod.POST)
     public String updatePay(@ModelAttribute(ENTITY) Pay entity) {
+    	entity.setId(updatable);
+    	entity.setUser(user);
         payService.update(entity);
         return "redirect:/report/pay";
     }
     
     @RequestMapping(value = "debt/update", method = RequestMethod.POST)
     public String updateDebt(@ModelAttribute(ENTITY) Debt entity) {
+    	entity.setId(updatable);
+    	entity.setUser(user);
         debtService.update(entity);
         return "redirect:/report/debt";
     }
@@ -111,7 +122,7 @@ public class ReportsController {
     @RequestMapping(value = "{report}/list", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Object getAll(@PathVariable("report") String report) {
-        return getListService(report).getAll(moment);
+        return getListService(report).getAll(user, moment);
     }
     
     private Object getEntity(String report) {

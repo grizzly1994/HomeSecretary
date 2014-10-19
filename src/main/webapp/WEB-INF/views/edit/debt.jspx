@@ -1,49 +1,46 @@
 <div xmlns:form="http://www.springframework.org/tags/form"
-	 xmlns:spring="http://www.springframework.org/tags"
-	 xmlns:joda="http://www.joda.org/joda/time/tags">
-	
-	<spring:message code="report.id.label" var="idLabel" />
-	<spring:message code="report.comment.label" var="commentLabel" />
-	<spring:message code="report.date.label" var="dateLabel" />
-	<spring:message code="report.deadline.label" var="deadlineLabel" />
-	<spring:message code="report.balance.label" var="balanceLabel" />
-	<spring:message code="report.frequency.label" var="frequencyLabel" />
-	<spring:message code="report.repay.label" var="repayLabel" />
-	<spring:message code="report.unpaid.label" var="unpaidLabel" />
-	<spring:message code="report.save.label" var="saveLabel" />
-	
+	 xmlns:spring="http://www.springframework.org/tags">
 	<form:form modelAttribute="entity" action="debt/update" method="post" enctype="multipart/form-data">
 		<p>
-			<label>${idLabel}</label>
-			<form:input path="id" />
-		</p>
-		<p>
-			<label>${commentLabel}</label>
+			<form:label path="comment">
+				<spring:message code="report.comment.label" />
+			</form:label>
 			<form:input path="comment" />
 		</p>
 		<p>
-			<label>${dateLabel}</label>
+			<form:label path="date">
+				<spring:message code="report.date.label" />
+			</form:label>
 			<form:input path="date" class="datePicker" />
 		</p>
 		<p>
-			<label>${deadlineLabel}</label>
+			<form:label path="deadline">
+				<spring:message code="report.deadline.label" />
+			</form:label>
 			<form:input path="deadline" class="datePicker" />
 		</p>
 		<p>
-			<label>${balanceLabel}</label>
+			<form:label path="balance">
+				<spring:message code="report.balance.label" />
+			</form:label>
 			<form:input path="balance" class="decimalSpinner" />
 		</p>
 		<p>
-			<label>${repayLabel}</label>
+			<form:label path="repay">
+				<spring:message code="report.repay.label" />
+			</form:label>
 			<form:input path="repay" class="decimalSpinner" />
 		</p>
 		<p>
-			<label>${frequencyLabel}</label>
+			<form:label path="frequency">
+				<spring:message code="report.frequency.label" />
+			</form:label>
 			<form:input path="frequency" class="integerSpinner" />
 		</p>
-		<button type="submit"
-			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
-			<span class="ui-button-text">${saveLabel}</span>
+		<button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			<span class="ui-button-text">
+				<spring:message code="ok.label" />
+			</span>
 		</button>
 	</form:form>
 </div>
