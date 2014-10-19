@@ -1,30 +1,49 @@
 <html xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:form="http://www.springframework.org/tags/form">
+	
 	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:directive.page pageEncoding="UTF-8" />
+	
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
-		<title><spring:message code="application.name" /></title>
+		
+		<spring:url value="/resources/styles/standart.css" var="reportsCssUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
+		
+		<title><spring:message code="app.name" /></title>
 	</head>
-	<body>
-		<form:form modelAttribute="entity" method="post" action="register/submit" enctype="multipart/form-data">
-			<p>
-				<spring:message code="user.email.label" />
-				<form:input path="username" />
-			</p>
-			<p>
-				<spring:message code="user.password.label" />
-				<form:input path="password" type="password" />
-			</p>
-			<p>
-				<spring:message code="user.password.repeat.label" />
-				<input id="repeat" type="password" />
-			</p>
-			<spring:message code="ok.label" var="okLabel"/>
-			<input type="submit" value="${okLabel}" />
-		</form:form>
+	<body class="form">
+		<div id="header">
+			<h1><spring:message code="user.register" /></h1>
+		</div>
+		<div id="form">
+			<form:form modelAttribute="entity" method="post" action="register/submit" enctype="multipart/form-data">
+				<p>
+					<label for="username">
+						<spring:message code="user.email" />
+					</label>
+					<form:input path="username" />
+				</p>
+				<p>
+					<label for="password">
+						<spring:message code="user.password" />
+					</label>
+					<form:input path="password" type="password" />
+				</p>
+				<p>
+					<label for="repeat">
+						<spring:message code="user.password.repeat" />
+					</label>
+					<input id="repeat" type="password" />
+				</p>
+				<div class="submit">
+					<spring:message code="ok" var="ok"/>
+					<input type="submit" value="${ok}" />
+				</div>
+			</form:form>
+		</div>
 	</body>
 </html>

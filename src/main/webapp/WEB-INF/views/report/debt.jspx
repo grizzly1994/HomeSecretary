@@ -1,24 +1,28 @@
-<div xmlns:spring="http://www.springframework.org/tags">
-	<spring:message code="report.id.label" var="idLabel" />
-	<spring:message code="report.comment.label" var="commentLabel" />
-	<spring:message code="report.date.label" var="dateLabel" />
-	<spring:message code="report.deadline.label" var="deadlineLabel" />
-	<spring:message code="report.balance.label" var="balanceLabel" />
-	<spring:message code="report.frequency.label" var="frequencyLabel" />
-	<spring:message code="report.repay.label" var="repayLabel" />
-	<spring:message code="report.unpaid.label" var="unpaidLabel" />
+<div xmlns:spring="http://www.springframework.org/tags"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+
+	<spring:message code="report.id" var="id" />
+	<spring:message code="report.comment" var="comment" />
+	<spring:message code="report.date" var="date" />
+	<spring:message code="report.deadline" var="deadline" />
+	<spring:message code="report.balance" var="balance" />
+	<spring:message code="report.frequency" var="frequency" />
+	<spring:message code="report.repay" var="repay" />
+	<spring:message code="report.unpaid" var="unpaid" />
+	
 	<table id="grid">
 		<tr>
-			<td />
+			<td><jsp:text /></td>
 		</tr>
 	</table>
+	
 	<script type="text/javascript">
 		$("#grid").jqGrid({
 			url : 'debt/list',
 			datatype : 'json',
 			mtype : 'GET',
-			colNames : [ '${idLabel}', '${commentLabel}', '${dateLabel}', '${deadlineLabel}',
-			             '${balanceLabel}', '${frequencyLabel}', '${repayLabel}', '${unpaidLabel}' ],
+			colNames : [ '${id}', '${comment}', '${date}', '${deadline}',
+			             '${balance}', '${frequency}', '${repay}', '${unpaid}' ],
 			colModel : [
 			    { name : 'id', index : 'id' },
 			    { name : 'comment', index : 'comment' },

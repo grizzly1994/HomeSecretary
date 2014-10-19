@@ -43,49 +43,48 @@
         <spring:url value="/resources/scripts/reports.js" var="reportsUrl" />
         <script src="${reportsUrl}" type="text/javascript"><jsp:text /></script>
         
-        <spring:url value="/resources/styles/reports.css" var="reportsCssUrl" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
+        <spring:url value="/resources/styles/standart.css" var="standartCssUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${standartCssUrl}" />
         
-        <spring:message code="report.title" var="title" />
-        <title>${title}</title>
+        <title><spring:message code="report.title" /> - <spring:message code="app.name" /></title>
     </head>
     <body>
-    	<div id="menu">
-	    	<a href="logout" style="float: right">
-				<spring:message code="logout.label" />
+    	<div id="header">
+	    	<a id="logout" href="logout">
+				<spring:message code="logout" />
 			</a>
     		<div id="calendar">
 				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
 					<button type="submit">
-						<spring:message code="ok.label" />
+						<spring:message code="ok" />
 					</button>
 					<form:input path="moment" class="datePicker" />
 				</form:form>
 			</div>
 			<ul>
-				<li><a href="#" onclick="add('pay')">+</a></li>
+				<li><a href="#" data-report="pay" class="add" >+</a></li>
 				<li><a href="pay">
-					<spring:message code="report.pay.label" /> (${payCount}: $${total})
+					<spring:message code="report.pay" /> (${payCount}: $${total})
 				</a></li>
-				<li><a href="#" onclick="add('debt')">+</a></li>
+				<li><a href="#" data-report="debt" class="add">+</a></li>
 				<li><a href="debt">
-					<spring:message code="report.debt.label" /> (${debtCount}: $${unpaid})
+					<spring:message code="report.debt" /> (${debtCount}: $${unpaid})
 				</a></li>
 				<li><a href="budget">
-					<spring:message code="report.budget.label" /> ($${balance})
+					<spring:message code="report.budget" /> ($${balance})
 				</a></li>
 				<li><a href="graph">
-					<spring:message code="report.graph.label" />
+					<spring:message code="report.graph" />
 				</a></li>
-				<li><a href="#" id="update" onclick="update('${report}')">
-					<spring:message code="report.update.label" />
+				<li><a href="#" data-report="${report}" id="update">
+					<spring:message code="report.update" />
 				</a></li>
-				<li><a href="#" id="delete" onclick="del('${report}')">
-					<spring:message code="report.delete.label" />
+				<li><a href="#" data-report="${report}" id="delete">
+					<spring:message code="report.delete" />
 				</a></li>
 			</ul>
 		</div>
 		<tiles:insertAttribute name="body" />
-		<div id="dialog"><jsp:text /></div>
+		<div id="dialog" class="form"><jsp:text /></div>
     </body>
 </html>

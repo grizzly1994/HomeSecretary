@@ -1,58 +1,66 @@
-function add(report) {
-	var path = report + '/add';
-	$('#dialog').load(path, function() {
-		widgets();
-		$('#dialog').dialog('open');
-	});
-}
-
-function update(report) {
-	var id = $('#grid').getGridParam('selrow');
-	if (id == null)
-		return;
-	var path = report + '/update/' + id;
-	$('#dialog').load(path, function(response, status) {
-		if (status == 'error')
-			return;
-		widgets();
-		$('#dialog').dialog('open');
-	});
-}
-
-function del(report) {
-	var id = $('#grid').getGridParam('selrow');
-	if (id == null)
-		return;
-	var path = report + '/delete/' + id;
-	$(location).attr('href', path);
-}
-
-function widgets() {
-	$('.datePicker').datepicker({
-		dateFormat : 'dd.mm.yy',
-		showButtonPanel : true,
-		changeMonth : true,
-		changeYear : true
-	});
-
-	$('.integerSpinner').spinner({
-		min : 0,
-		step : 1
-	});
-}
-
 $(function() {
 	$('#dialog').dialog({
 		autoOpen : false,
 		width : 'auto'
 	});
+	
+	function widgets() {
+		$('.datePicker').datepicker({
+			dateFormat : 'dd.mm.yy',
+			showButtonPanel : true,
+			changeMonth : true,
+			changeYear : true
+		});
 
+		$('.integerSpinner').spinner({
+			min : 0,
+			step : 1
+		});
+	}
+	
 	widgets();
+	
+	$('.add').bind('click', function() {
+		var report = $(this).attr('data-report');
+		var path = report + '/add';
+		$('#dialog').load(path, function() {
+			widgets();
+			$('#dialog').dialog('open');
+		});
+	});
+
+	$('#update').bind('click', function() {
+		var report = $(this).attr('data-report');
+		var id = $('#grid').getGridParam('selrow');
+		if (id == null)
+			return;
+		var path = report + '/update/' + id;
+		$('#dialog').load(path, function(response, status) {
+			if (status == 'error')
+				return;
+			widgets();
+			$('#dialog').dialog('open');
+		});
+	});
+
+	$('#delete').bind('click', function() {
+		var report = $(this).attr('data-report');
+		var id = $('#grid').getGridParam('selrow');
+		if (id == null)
+			return;
+		var path = report + '/delete/' + id;
+		$(location).attr('href', path);
+	});
 	
 	$(window).resize(function() {
 		$('#grid').setGridWidth($(window).width());
 		$('#grid').setGridHeight($(window).height() - 47);
 	}).trigger('resize');
+	
+	var canvas = $('#graph');
+	
+	if (!canvas.length)
+		return;
 	
 	$.getJSON('budget/list', function(data) {
 		var moments = data.map(function(element) {
@@ -71,7 +79,7 @@ $(function() {
 				data : values
 			} ]
 		};
-		new Chart(document.getElementById('graph').getContext('2d')).Line(data, {
+		new Chart(canvas.get(0).getContext('2d')).Line(data, {
 			responsive : true
 		});
 	});

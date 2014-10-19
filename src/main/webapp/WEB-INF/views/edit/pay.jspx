@@ -1,27 +1,28 @@
 <div xmlns:form="http://www.springframework.org/tags/form"
-	 xmlns:spring="http://www.springframework.org/tags">	
+	xmlns:spring="http://www.springframework.org/tags">
+
 	<form:form modelAttribute="entity" action="pay/update" method="post" enctype="multipart/form-data">
 		<p>
 			<form:label path="comment">
-				<spring:message code="report.comment.label" />
+				<spring:message code="report.comment" />
 			</form:label>
 			<form:input path="comment" />
 		</p>
 		<p>
 			<form:label path="date">
-				<spring:message code="report.date.label" />
+				<spring:message code="report.date" />
 			</form:label>
 			<form:input path="date" class="datePicker" />
 		</p>
 		<p>
 			<form:label path="balance">
-				<spring:message code="report.balance.label" />
+				<spring:message code="report.balance" />
 			</form:label>
 			<form:input path="balance" class="decimalSpinner" />
 		</p>
 		<button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text">
-				<spring:message code="ok.label" />
+				<spring:message code="ok" />
 			</span>
 		</button>
 	</form:form>

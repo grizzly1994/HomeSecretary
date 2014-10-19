@@ -1,28 +1,43 @@
 <html xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags">
+	
 	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:directive.page pageEncoding="UTF-8" />
+	
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
-		<title><spring:message code="application.name" /></title>
+		
+		<spring:url value="/resources/styles/standart.css" var="reportsCssUrl" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
+		
+		<title><spring:message code="app.name" /></title>
 	</head>
-	<body>
+	<body class="form">
+		<div id="header">
+			<h1><spring:message code="user.login" /></h1>
+		</div>
 		<form method="post" action="j_spring_security_check">
 			<p>
-				<spring:message code="user.email.label" />
+				<label for="j_username">
+					<spring:message code="user.email" />
+				</label>
 				<input name="j_username" />
 			</p>
 			<p>
-				<spring:message code="user.password.label" />
+				<label for="j_password">
+					<spring:message code="user.password" />
+				</label>
 				<input name="j_password" type="password" />
 			</p>
-			<a href="register">
-				<spring:message code="user.register.label" />
-			</a>
-			<spring:message code="ok.label" var="okLabel"/>
-			<input type="submit" value="${okLabel}" />
+			<div class="submit">
+				<a id="register" href="register">
+					<spring:message code="user.register" />
+				</a>
+				<spring:message code="ok" var="ok"/>
+				<input type="submit" value="${ok}" />
+			</div>
 		</form>
 	</body>
 </html>

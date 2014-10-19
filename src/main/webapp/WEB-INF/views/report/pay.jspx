@@ -1,19 +1,23 @@
-<div xmlns:spring="http://www.springframework.org/tags">
-	<spring:message code="report.id.label" var="idLabel" />
-	<spring:message code="report.comment.label" var="commentLabel" />
-	<spring:message code="report.date.label" var="dateLabel" />
-	<spring:message code="report.balance.label" var="sumLabel" />
+<div xmlns:spring="http://www.springframework.org/tags"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+	
+	<spring:message code="report.id" var="id" />
+	<spring:message code="report.comment" var="comment" />
+	<spring:message code="report.date" var="date" />
+	<spring:message code="report.balance" var="sum" />
+	
 	<table id="grid">
 		<tr>
-			<td />
+			<td><jsp:text /></td>
 		</tr>
 	</table>
+	
 	<script type="text/javascript">
 		$("#grid").jqGrid({
 			url : 'pay/list',
 			datatype : 'json',
 			mtype : 'GET',
-			colNames : [ '${idLabel}', '${commentLabel}', '${dateLabel}', '${sumLabel}' ],
+			colNames : [ '${id}', '${comment}', '${date}', '${sum}' ],
 			colModel : [ {
 				name : 'id',
 				index : 'id'
