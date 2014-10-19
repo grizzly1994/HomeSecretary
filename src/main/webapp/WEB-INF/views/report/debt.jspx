@@ -35,7 +35,9 @@
 			],
 			jsonReader : { root : 'userData', id : 'id' },
 			viewrecords : true,
-			gridview : true
+			gridview : true,
+			loadonce: true,
+			sortable: true
 		});
 	</script>
 </div>

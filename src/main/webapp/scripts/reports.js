@@ -54,7 +54,7 @@ $(function() {
 	
 	$(window).resize(function() {
 		$('#grid').setGridWidth($(window).width());
-		$('#grid').setGridHeight($(window).height() - 47);
+		$('#grid').setGridHeight($(window).height() - 74);
 	}).trigger('resize');
 	
 	var canvas = $('#graph');

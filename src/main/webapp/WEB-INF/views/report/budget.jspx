@@ -29,7 +29,9 @@
 			],
 			jsonReader : { id : 'moment' },
 			viewrecords : true,
-			gridview : true
+			gridview : true,
+			loadonce: true,
+			sortable: true
 		});
 	</script>
 </div>

@@ -85,6 +85,6 @@
 			</ul>
 		</div>
 		<tiles:insertAttribute name="body" />
-		<div id="dialog" class="form"><jsp:text /></div>
+		<div id="dialog"><jsp:text /></div>
     </body>
 </html>

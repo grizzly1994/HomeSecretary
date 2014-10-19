@@ -1,17 +1,17 @@
 <div xmlns:spring="http://www.springframework.org/tags"
 	xmlns:jsp="http://java.sun.com/JSP/Page">
-	
+
 	<spring:message code="report.id" var="id" />
 	<spring:message code="report.comment" var="comment" />
 	<spring:message code="report.date" var="date" />
 	<spring:message code="report.balance" var="sum" />
-	
+
 	<table id="grid">
 		<tr>
 			<td><jsp:text /></td>
 		</tr>
 	</table>
-	
+
 	<script type="text/javascript">
 		$("#grid").jqGrid({
 			url : 'pay/list',
@@ -36,7 +36,9 @@
 				id : 'id'
 			},
 			viewrecords : true,
-			gridview : true
+			gridview : true,
+			loadonce: true,
+			sortable: true
 		});
 	</script>
 </div>
