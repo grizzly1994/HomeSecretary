@@ -31,21 +31,16 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
     
-    @Column(name = "confirm")
-    private String confirm;
-    
-    public String getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
-	}
-
-	@Column(name = "salt")
+    @Column(name = "salt")
     private String salt;
     
-    public int getId() {
+    @Column(name = "code", unique = true)
+    private String code;
+    
+    @Column(name = "confirmed")
+    private boolean confirmed;
+
+	public int getId() {
         return id;
     }
 
@@ -79,7 +74,23 @@ public class User implements UserDetails {
     	salt = value;
     }
     
-    @Override
+    public String getCode() {
+		return code;
+	}
+
+	public void setCode(String value) {
+		this.code = value;
+	}
+	
+    public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean value) {
+		this.confirmed = value;
+	}
+
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
     	Collection<SimpleGrantedAuthority> result = new HashSet<SimpleGrantedAuthority>();
     	result.add(new SimpleGrantedAuthority("user"));

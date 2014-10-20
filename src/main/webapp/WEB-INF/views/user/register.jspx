@@ -33,14 +33,9 @@
 					</label>
 					<form:input path="password" type="password" />
 				</p>
-				<p>
-					<label for="repeat">
-						<spring:message code="user.password.repeat" />
-					</label>
-					<input id="repeat" type="password" />
-				</p>
 				<div class="submit">
-					<spring:message code="ok" var="ok"/>
+					<p><spring:message code="user.register.confirm.instruction" /></p>
+					<spring:message code="ok" var="ok" />
 					<input type="submit" value="${ok}" />
 				</div>
 			</form:form>

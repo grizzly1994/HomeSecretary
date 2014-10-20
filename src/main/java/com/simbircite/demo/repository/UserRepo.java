@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepo extends CrudRepository<User, Integer> {
 
     Iterable<User> findByUsername(String username);
+    Iterable<User> findByCode(String code);
 }

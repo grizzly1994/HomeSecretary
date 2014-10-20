@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,8 +25,15 @@ public class RegisterController {
     }
     
     @RequestMapping(value = "submit", method = RequestMethod.POST)
-    public String submit(@ModelAttribute User entity) {
-        userService.add(entity);
+    public String submit(@ModelAttribute User user) {
+        userService.add(user);
         return "redirect:/login";
+    }
+    
+    @RequestMapping(value = "{code}", method = RequestMethod.GET)
+    public String confirm(@PathVariable String code) {
+    	User user = userService.loadUserByCode(code);
+    	userService.updateConfirmed(user);
+    	return "redirect:/login";
     }
 }
