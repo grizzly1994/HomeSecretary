@@ -13,7 +13,7 @@
 		<spring:url value="/resources/styles/standart.css" var="reportsCssUrl" />
         <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
 		
-		<title><spring:message code="app.name" /></title>
+		<title><spring:message code="user.register" /> - <spring:message code="app.name" /></title>
 	</head>
 	<body class="form">
 		<div id="header">

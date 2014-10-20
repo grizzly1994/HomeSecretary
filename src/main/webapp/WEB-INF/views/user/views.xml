@@ -6,4 +6,5 @@
 <tiles-definitions>
     <definition name="user/login" template="/WEB-INF/views/user/login.jspx"></definition>
     <definition name="user/register" template="/WEB-INF/views/user/register.jspx"></definition>
+    <definition name="user/restore" template="/WEB-INF/views/user/restore.jspx"></definition>
 </tiles-definitions>

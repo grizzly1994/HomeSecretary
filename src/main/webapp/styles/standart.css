@@ -73,13 +73,13 @@ form label {
 	float: left;
 }
 
-#register {
-	padding-right: 10px;
-	display: inline-block;
-}
-
 .submit {
 	float: right;
+}
+
+.submit > a {
+	padding-right: 20px;
+	display: inline-block;
 }
 
 /* Report */

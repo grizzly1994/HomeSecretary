@@ -25,11 +25,25 @@ public class User implements UserDetails {
     @Column(name = "id")
     private int id;
     
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")
     private String password;
+    
+    @Column(name = "confirm")
+    private String confirm;
+    
+    public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
+
+	@Column(name = "salt")
+    private String salt;
     
     public int getId() {
         return id;
@@ -55,6 +69,14 @@ public class User implements UserDetails {
     
     public void setPassword(String value) {
         password = value;
+    }
+    
+    public String getSalt() {
+    	return salt;
+    }
+    
+    public void setSalt(String value) {
+    	salt = value;
     }
     
     @Override

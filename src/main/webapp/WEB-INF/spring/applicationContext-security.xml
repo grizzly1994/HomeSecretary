@@ -15,6 +15,9 @@
 
 	<authentication-manager>
 		<authentication-provider user-service-ref="userService">
+			<password-encoder hash="sha">
+				<salt-source user-property="salt" />
+			</password-encoder>
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans> 

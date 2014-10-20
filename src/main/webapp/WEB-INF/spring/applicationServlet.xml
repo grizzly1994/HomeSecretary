@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- В этом файле размещены список и параметры контроллеров.
-    
-     Контроллеры - это тот слой, в котором должна выполняться логика обработки форм, 
-     ответы сервера, разбор параметров, принятых со страницы и т.п.
--->
+<!-- В этом файле размещены список и параметры контроллеров. Контроллеры 
+	- это тот слой, в котором должна выполняться логика обработки форм, ответы 
+	сервера, разбор параметров, принятых со страницы и т.п. -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:security="http://www.springframework.org/schema/security"
-    xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -19,126 +15,126 @@
         http://www.springframework.org/schema/security 
         http://www.springframework.org/schema/security/spring-security.xsd
         ">
- 
-    <!-- Сообщаем, что наше MVC приложение основано на аннотациях  -->
-    <mvc:annotation-driven validator="validator"/>
 
-    <!-- Включение защиты на уровне метода -->
-    <security:global-method-security pre-post-annotations="enabled" />
+	<!-- Сообщаем, что наше MVC приложение основано на аннотациях -->
+	<mvc:annotation-driven validator="validator" />
 
-    <!-- Этот бин позволяет возвращать из контроллера объекты в формате JSON -->
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="order" value="1" />
-        <property name="contentNegotiationManager">
-            <bean class="org.springframework.web.accept.ContentNegotiationManager">
-                <constructor-arg>
-                    <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
-                        <constructor-arg>
-                            <map>
-                                <entry key="json" value="application/json"/>
-                            </map>
-                        </constructor-arg>
-                    </bean>
-                </constructor-arg>
-            </bean>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-            </list>
-        </property>
-    </bean>
-    
-    <!-- Определяем правило для определения пути к файлу с JSP шаблоном
-         по логическому имени вида.
-    -->
-    <bean 
-        id="tilesViewResolver" 
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="order" value="2" />
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
-    </bean>
-    
-    <!-- Конфигурация Apache Tiles -->
-    <bean 
-        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" 
-        id="tilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/layouts/layouts.xml</value>
-                <value>/WEB-INF/views/**/views.xml</value>
-            </list>
-        </property>
-    </bean>
-        
-    <!-- Определяем пакет, в котором размещены классы контроллеров -->
-    <context:component-scan base-package="com.simbircite.demo.controller"/>
+	<!-- Включение защиты на уровне метода -->
+	<security:global-method-security
+		pre-post-annotations="enabled" />
 
-    <!-- Местоположение статических ресурсных файлов -->
-    <mvc:resources 
-        mapping="/resources/**" 
-        location="/,classpath:/META-INF/web-resources/" />
- 
-    <!-- Разрешает отображение сервлета диспетчера на URL корневого контекста
-         веб-приложения, в то же время позволяя запросам статических ресурсов
-         обрабатываться сервлетом, который установлен как используемый по умолчанию -->
-    <mvc:default-servlet-handler/>
-    
-    <!-- Перехватчики запросов к сервлету диспетчера -->
-    <mvc:interceptors>
-        <!-- Перехватывает каждый запрос для изменения темы (оформления) -->
-        <bean
-            class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"
-        />
-        <!-- Поддержка переключения локалей. 
-             Имя локали определяется в параметре URL с именем lang -->
-        <bean
-            class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-            p:paramName="lang"
-        />
-    </mvc:interceptors>
-    
-    <!-- Загружает пакет ресурсов активной темы 
-         (если тема называется standard, то бин будет искать файл standard.properties) -->
-    <bean
-        class="org.springframework.ui.context.support.ResourceBundleThemeSource"
-        id="themeSource" 
-    />
-    
-    <!-- Поддерживает хранение и извлечение активной темы из cookie -->
-    <bean
-        class="org.springframework.web.servlet.theme.CookieThemeResolver"
-        id="themeResolver"
-        p:cookieName="theme"
-        p:defaultThemeName="standard"
-    />
-    
-    <!-- Загружает сообщения из ресурсных файлов -->
-    <bean
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-        id="messageSource"
-        p:basenames="WEB-INF/i18n/messages,WEB-INF/i18n/application"
-        p:fallbackToSystemLocale="false"
-    />
-    
-    <!-- Поддерживает хранение и извлечение параметров локали из cookie -->
-    <bean
-        class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
-        id="localeResolver"
-        p:cookieName="locale"
-    />
+	<!-- Этот бин позволяет возвращать из контроллера объекты в формате JSON -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="contentNegotiationManager">
+			<bean class="org.springframework.web.accept.ContentNegotiationManager">
+				<constructor-arg>
+					<bean
+						class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+						<constructor-arg>
+							<map>
+								<entry key="json" value="application/json" />
+							</map>
+						</constructor-arg>
+					</bean>
+				</constructor-arg>
+			</bean>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+			</list>
+		</property>
+	</bean>
 
-    <!-- Определяем бин для валидации сущностей (JSR-303) -->
-    <bean 
-        id="validator" 
-        class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="validationMessageSource" ref="messageSource" />
-    </bean>
-    
-    <!-- Бин для поддержки загрузки файлов -->
-    <bean
-        class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
-        id="multipartResolver"
-    />
+	<!-- Определяем правило для определения пути к файлу с JSP шаблоном по логическому 
+		имени вида. -->
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="2" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
 
+	<!-- Конфигурация Apache Tiles -->
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
+		id="tilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layouts/layouts.xml</value>
+				<value>/WEB-INF/views/**/views.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Определяем пакет, в котором размещены классы контроллеров -->
+	<context:component-scan base-package="com.simbircite.demo.controller" />
+
+	<!-- Местоположение статических ресурсных файлов -->
+	<mvc:resources mapping="/resources/**"
+		location="/,classpath:/META-INF/web-resources/" />
+
+	<!-- Разрешает отображение сервлета диспетчера на URL корневого контекста 
+		веб-приложения, в то же время позволяя запросам статических ресурсов обрабатываться 
+		сервлетом, который установлен как используемый по умолчанию -->
+	<mvc:default-servlet-handler />
+
+	<!-- Перехватчики запросов к сервлету диспетчера -->
+	<mvc:interceptors>
+		<!-- Перехватывает каждый запрос для изменения темы (оформления) -->
+		<bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor" />
+		<!-- Поддержка переключения локалей. Имя локали определяется в параметре 
+			URL с именем lang -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+			p:paramName="lang" />
+	</mvc:interceptors>
+
+	<!-- Загружает пакет ресурсов активной темы (если тема называется standard, 
+		то бин будет искать файл standard.properties) -->
+	<bean
+		class="org.springframework.ui.context.support.ResourceBundleThemeSource"
+		id="themeSource" />
+
+	<!-- Поддерживает хранение и извлечение активной темы из cookie -->
+	<bean class="org.springframework.web.servlet.theme.CookieThemeResolver"
+		id="themeResolver" p:cookieName="theme" p:defaultThemeName="standard" />
+
+	<!-- Загружает сообщения из ресурсных файлов -->
+	<bean
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		id="messageSource" p:basenames="WEB-INF/i18n/messages,WEB-INF/i18n/application"
+		p:fallbackToSystemLocale="false" />
+
+	<!-- Поддерживает хранение и извлечение параметров локали из cookie -->
+	<bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
+		id="localeResolver" p:cookieName="locale" />
+
+	<!-- Определяем бин для валидации сущностей (JSR-303) -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- Бин для поддержки загрузки файлов -->
+	<bean
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
+		id="multipartResolver" />
+
+	<!-- Почта -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.mail.ru" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="username" value="home.secretary@mail.ru" />
+		<property name="password" value="*DTg*Fn1b0" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtps.auth">true</prop>
+				<prop key="mail.smtps.starttls.enable">true</prop>
+				<prop key="mail.smtps.from">home.secretary@mail.ru</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

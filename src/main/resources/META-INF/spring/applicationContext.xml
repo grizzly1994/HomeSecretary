@@ -12,10 +12,14 @@
     <context:annotation-config/>
     <context:property-placeholder location="classpath:jdbc.properties"/>
     
-    <!-- Определяем бин сервиса для работы с моделью User  -->
+    <!-- Определяем бин сервиса для работы с моделью User -->
     <bean name="userService" class="com.simbircite.demo.service.UserService"/>
     <!-- Бин сервиса для работы с платежами -->
     <bean name="payService" class="com.simbircite.demo.service.PayService"/>
-    <!-- Определяем бин сервиса для работы с моделью Debt  -->
+    <!-- Определяем бин сервиса для работы с моделью Debt -->
     <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
+    <!-- Генератор паролей -->
+    <bean name="genService" class="com.simbircite.demo.service.GenService"/>
+    <!-- Шифратор паролей -->
+    <bean name="encryptService" class="com.simbircite.demo.service.EncryptService"/>
 </beans>
