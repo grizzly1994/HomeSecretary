@@ -6,7 +6,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class DateUtil {
 
-    private static final String DATE_FORMAT = "yyyy.dd.MM";
+    private static final String DATE_FORMAT = "yyyy.MM.dd";
 
     public static DateTime now() {
         return new DateTime();

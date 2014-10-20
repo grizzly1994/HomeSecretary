@@ -26,11 +26,13 @@
 				</form:label>
 				<form:input path="username" />
 			</p>
-			<div class="submit">
-				<p><spring:message code="user.password.restore.instruction" /></p>
+			<p>
+				<spring:message code="user.password.restore.instruction" />
+			</p>
+			<p>
 				<spring:message code="ok" var="ok"/>
 				<input type="submit" value="${ok}" />
-			</div>
+			</p>
 		</form:form>
 	</body>
 </html>

@@ -31,16 +31,18 @@
 				</label>
 				<input name="j_password" type="password" />
 			</p>
-			<div class="submit">
+			<p class="actions">
 				<a href="register">
 					<spring:message code="user.register" />
 				</a>
 				<a href="restore">
 					<spring:message code="user.password.restore" />
 				</a>
+			</p>
+			<p>
 				<spring:message code="ok" var="ok"/>
 				<input type="submit" value="${ok}" />
-			</div>
+			</p>
 		</form>
 	</body>
 </html>

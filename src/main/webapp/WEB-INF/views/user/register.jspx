@@ -20,7 +20,7 @@
 			<h1><spring:message code="user.register" /></h1>
 		</div>
 		<div id="form">
-			<form:form modelAttribute="entity" method="post" action="register/submit" enctype="multipart/form-data">
+			<form:form modelAttribute="entity" method="post" action="register" enctype="multipart/form-data">
 				<p>
 					<label for="username">
 						<spring:message code="user.email" />
@@ -33,11 +33,13 @@
 					</label>
 					<form:input path="password" type="password" />
 				</p>
-				<div class="submit">
-					<p><spring:message code="user.register.confirm.instruction" /></p>
+				<p>
+					<spring:message code="user.register.confirm.instruction" />
+				</p>
+				<p class="submit">
 					<spring:message code="ok" var="ok" />
 					<input type="submit" value="${ok}" />
-				</div>
+				</p>
 			</form:form>
 		</div>
 	</body>

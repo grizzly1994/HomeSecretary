@@ -39,6 +39,9 @@ public class ReportController {
 
     @Autowired
     private DebtService debtService;
+    
+    @Autowired
+    private DebtStateService debtStateService;
 
     private User user;
     private Moment moment;
@@ -75,7 +78,7 @@ public class ReportController {
     }
 
     @RequestMapping(value = "{report}/moment", method = RequestMethod.POST)
-    public String changeDate(@PathVariable("report") String report, @ModelAttribute Moment date) {
+    public String changeDate(@PathVariable("report") String report, @ModelAttribute("period") Moment date) {
         moment = date;
         return "redirect:/report/" + report;
     }
@@ -150,7 +153,7 @@ public class ReportController {
             return payService;
         }
         if (DEBT.equals(report)) {
-            return new DebtStateService(debtService);
+            return debtStateService;
         }
         if (BUDGET.equals(report)) {
             return new BudgetService(payService, debtService);

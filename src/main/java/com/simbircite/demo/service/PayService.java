@@ -32,6 +32,7 @@ public class PayService implements EntityService, EntityListService {
     
     @Override
     public Iterable<Pay> getAll(User user, Moment moment) {
-        return repo.findByUserAndDateLessThanEqualOrderByDateAsc(user, moment.getMoment());
+    	Iterable<Pay> pays = repo.findByUserAndDateLessThanEqualOrderByDateAsc(user, moment.getMoment());
+        return pays;
     }
 }

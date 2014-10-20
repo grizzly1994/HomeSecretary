@@ -6,7 +6,7 @@ $(function() {
 	
 	function widgets() {
 		$('.datePicker').datepicker({
-			dateFormat : 'dd.mm.yy',
+			dateFormat : 'yy.mm.dd',
 			showButtonPanel : true,
 			changeMonth : true,
 			changeYear : true

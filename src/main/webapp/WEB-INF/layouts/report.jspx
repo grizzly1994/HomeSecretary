@@ -62,11 +62,11 @@
 				</form:form>
 			</div>
 			<ul>
-				<li><a href="#" data-report="pay" class="add" >+</a></li>
+				<li><a href="#" data-report="pay" class="add" >*</a></li>
 				<li><a href="pay">
 					<spring:message code="report.pay" /> (${payCount}: $${total})
 				</a></li>
-				<li><a href="#" data-report="debt" class="add">+</a></li>
+				<li><a href="#" data-report="debt" class="add">*</a></li>
 				<li><a href="debt">
 					<spring:message code="report.debt" /> (${debtCount}: $${unpaid})
 				</a></li>

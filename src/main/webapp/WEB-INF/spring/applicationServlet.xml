@@ -121,4 +121,20 @@
 	<bean
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
 		id="multipartResolver" />
+		
+	<!-- Почта -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.mail.ru" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="username" value="home.secretary@mail.ru" />
+		<property name="password" value="*DTg*Fn1b0" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtps.auth">true</prop>
+				<prop key="mail.smtps.starttls.enable">true</prop>
+				<prop key="mail.smtps.from">home.secretary@mail.ru</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

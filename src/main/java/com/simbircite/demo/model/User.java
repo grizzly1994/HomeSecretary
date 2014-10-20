@@ -66,6 +66,10 @@ public class User implements UserDetails {
         password = value;
     }
     
+    public String getEmail() {
+    	return username;
+    }
+    
     public String getSalt() {
     	return salt;
     }

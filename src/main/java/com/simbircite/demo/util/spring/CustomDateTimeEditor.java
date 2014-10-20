@@ -7,27 +7,20 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class CustomDateTimeEditor extends PropertyEditorSupport {
 
-    DateTimeFormatter formatter = null;
+    private final DateTimeFormatter formatter;
 
     public CustomDateTimeEditor(DateTimeFormatter formatter) {
-        super();
         this.formatter = formatter;
     }
 
     @Override
     public String getAsText() {
-        DateTime value = (DateTime) getValue();
-        return (value == null) 
-                ? ""
-                : value.toString(formatter);
+    	DateTime value = (DateTime) getValue();
+        return value == null ? "" : value.toString(formatter);
     }
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-        try {
-            setValue(DateTime.parse(text, formatter));
-        } catch (IllegalArgumentException ignore) {
-            setValue(null);
-        }
-    }
+		setValue(DateTime.parse(text, formatter));
+	}
 }
