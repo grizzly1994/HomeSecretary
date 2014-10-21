@@ -57,7 +57,7 @@
 				<spring:message code="logout" />
 			</a>
     		<div id="calendar">
-    			<spring:url value="/${report}/moment" var="momentUrl" />
+    			<spring:url value="/report/${report}/moment" var="momentUrl" />
 				<form:form action="${momentUrl}" modelAttribute="period" method="post" enctype="multipart/form-data">
 					<button type="submit">
 						<spring:message code="ok" />
@@ -70,7 +70,7 @@
 				<li><a href="${addPayUrl}">+</a></li>
 				
 				<spring:url value="/report/pay" var="payUrl" />
-				<li><a href="${payUrl}">
+				<li><a href="${payUrl}" class="${paySelected}">
 					<spring:message code="report.pay" /> (${payCount}: $${total})
 				</a></li>
 				
@@ -78,17 +78,17 @@
 				<li><a href="${addDebtUrl}">+</a></li>
 				
 				<spring:url value="/report/debt" var="debtUrl" />
-				<li><a href="${debtUrl}">
+				<li><a href="${debtUrl}" class="${debtSelected}">
 					<spring:message code="report.debt" /> (${debtCount}: $${unpaid})
 				</a></li>
 				
 				<spring:url value="/report/budget" var="budgetUrl" />
-				<li><a href="${budgetUrl}">
+				<li><a href="${budgetUrl}" class="${budgetSelected}">
 					<spring:message code="report.budget" /> ($${balance})
 				</a></li>
 				
 				<spring:url value="/report/graph" var="graphUrl" />
-				<li><a href="${graphUrl}">
+				<li><a href="${graphUrl}" class="${graphSelected}">
 					<spring:message code="report.graph" />
 				</a></li>
 				

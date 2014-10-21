@@ -45,8 +45,10 @@ form label {
 }
 
 #header a:hover, #menu a:active {
-	text-decoration: none;
-	color: white;
+	background: #1c94c4;
+}
+
+.selected {
 	background: #7f8c8d;
 }
 

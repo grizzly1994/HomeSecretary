@@ -67,6 +67,7 @@ public class ReportController {
     @RequestMapping(value = "{report}", method = RequestMethod.GET)
     public String actions(@PathVariable("report") String report, Model model) {
     	user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	model.addAttribute(report + "Selected", "selected");
         BudgetStateService budgetStateService = new BudgetStateService(
                 payService.getAll(user, moment),
                 debtService.getAll(user, moment));
@@ -128,10 +129,7 @@ public class ReportController {
     @RequestMapping(value = "{report}/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("report") String report,
             @PathVariable("id") int id, Model model) {
-        EntityService entityService = getService(report);
-        if (entityService != null) {
-        	entityService.delete(id);
-        }
+        getService(report).delete(id);
         return "redirect:/report/" + report;
     }
 
