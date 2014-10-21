@@ -4,6 +4,24 @@ $(function() {
 		$('#grid').setGridHeight($(window).height() - 48);
 	}).trigger('resize');
 	
+	$('#update').bind('click', function() {
+		var report = $(this).attr('data-report');
+		var id = $('#grid').getGridParam('selrow');
+		if (id == null)
+			return;
+		var path = report + '/update/' + id;
+		$(location).attr('href', path);
+	});
+	
+	$('#delete').bind('click', function() {
+		var report = $(this).attr('data-report');
+		var id = $('#grid').getGridParam('selrow');
+		if (id == null)
+			return;
+		var path = report + '/delete/' + id;
+		$(location).attr('href', path);
+	});
+	
 	var canvas = $('#graph');
 	
 	if (!canvas.length)

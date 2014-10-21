@@ -67,7 +67,7 @@
 			</div>
 			<ul>
 				<spring:url value="/report/pay/update" var="addPayUrl" />
-				<li><a href="${addPayUrl}" data-report="pay" class="add" >+</a></li>
+				<li><a href="${addPayUrl}">+</a></li>
 				
 				<spring:url value="/report/pay" var="payUrl" />
 				<li><a href="${payUrl}">
@@ -75,7 +75,7 @@
 				</a></li>
 				
 				<spring:url value="/report/debt/update" var="addDebtUrl" />
-				<li><a href="${addDebtUrl}" data-report="debt" class="add">+</a></li>
+				<li><a href="${addDebtUrl}">+</a></li>
 				
 				<spring:url value="/report/debt" var="debtUrl" />
 				<li><a href="${debtUrl}">
