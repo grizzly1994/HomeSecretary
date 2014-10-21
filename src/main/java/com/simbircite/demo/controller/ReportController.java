@@ -1,5 +1,7 @@
 package com.simbircite.demo.controller;
 
+import javax.validation.Valid;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,9 +86,12 @@ public class ReportController {
         return "redirect:/report/" + report;
     }
 
-    @RequestMapping(value = "{report}/add", method = RequestMethod.GET)
+    int updatable;
+    
+    @RequestMapping(value = "{report}/update", method = RequestMethod.GET)
     public String showAdd(@PathVariable("report") String report, Model model) {
         model.addAttribute(ENTITY, getEntity(report));
+        updatable = 0;
         return report + "/add";
     }
     
@@ -96,11 +102,12 @@ public class ReportController {
         model.addAttribute(ENTITY, getService(report).get(updatable));
         return report + "/update";
     }
-
-    int updatable;
     
     @RequestMapping(value = "pay/update", method = RequestMethod.POST)
-    public String updatePay(@ModelAttribute(ENTITY) Pay entity) {
+    public String updatePay(@Valid @ModelAttribute(ENTITY) Pay entity, BindingResult result) {
+    	if (result.hasErrors()) {
+    		return "pay/update";
+    	}
     	entity.setId(updatable);
     	entity.setUser(user);
         payService.update(entity);
@@ -108,7 +115,10 @@ public class ReportController {
     }
     
     @RequestMapping(value = "debt/update", method = RequestMethod.POST)
-    public String updateDebt(@ModelAttribute(ENTITY) Debt entity) {
+    public String updateDebt(@Valid @ModelAttribute(ENTITY) Debt entity, BindingResult result) {
+    	if (result.hasErrors()) {
+    		return "debt/update";
+    	}
     	entity.setId(updatable);
     	entity.setUser(user);
         debtService.update(entity);
@@ -118,7 +128,10 @@ public class ReportController {
     @RequestMapping(value = "{report}/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("report") String report,
             @PathVariable("id") int id, Model model) {
-        getService(report).delete(id);
+        EntityService entityService = getService(report);
+        if (entityService != null) {
+        	entityService.delete(id);
+        }
         return "redirect:/report/" + report;
     }
 

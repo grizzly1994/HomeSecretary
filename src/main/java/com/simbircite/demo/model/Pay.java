@@ -43,7 +43,7 @@ public class Pay {
 
     @Column(name = "balance", nullable = false)
     @NotNull(message = "{validation.empty}")
-    private double balance;
+    private Double balance;
 
     public int getId() {
         return id;
@@ -81,11 +81,11 @@ public class Pay {
         return DateUtil.format(date);
     }
 
-    public double getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(double value) {
+    public void setBalance(Double value) {
         balance = value;
     }
 }

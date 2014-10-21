@@ -40,6 +40,9 @@
         <spring:url value="/resources/scripts/Chart.js" var="chartJsUrl" />
         <script src="${chartJsUrl}" type="text/javascript"><jsp:text /></script>
         
+        <spring:url value="/resources/scripts/widgets.js" var="widgetsUrl" />
+        <script src="${widgetsUrl}" type="text/javascript"><jsp:text /></script>
+        
         <spring:url value="/resources/scripts/reports.js" var="reportsUrl" />
         <script src="${reportsUrl}" type="text/javascript"><jsp:text /></script>
         
@@ -54,7 +57,8 @@
 				<spring:message code="logout" />
 			</a>
     		<div id="calendar">
-				<form:form action="${report}/moment" modelAttribute="period" method="post" enctype="multipart/form-data">
+    			<spring:url value="/${report}/moment" var="momentUrl" />
+				<form:form action="${momentUrl}" modelAttribute="period" method="post" enctype="multipart/form-data">
 					<button type="submit">
 						<spring:message code="ok" />
 					</button>
@@ -62,23 +66,36 @@
 				</form:form>
 			</div>
 			<ul>
-				<li><a href="#" data-report="pay" class="add" >*</a></li>
-				<li><a href="pay">
+				<spring:url value="/report/pay/update" var="addPayUrl" />
+				<li><a href="${addPayUrl}" data-report="pay" class="add" >+</a></li>
+				
+				<spring:url value="/report/pay" var="payUrl" />
+				<li><a href="${payUrl}">
 					<spring:message code="report.pay" /> (${payCount}: $${total})
 				</a></li>
-				<li><a href="#" data-report="debt" class="add">*</a></li>
-				<li><a href="debt">
+				
+				<spring:url value="/report/debt/update" var="addDebtUrl" />
+				<li><a href="${addDebtUrl}" data-report="debt" class="add">+</a></li>
+				
+				<spring:url value="/report/debt" var="debtUrl" />
+				<li><a href="${debtUrl}">
 					<spring:message code="report.debt" /> (${debtCount}: $${unpaid})
 				</a></li>
-				<li><a href="budget">
+				
+				<spring:url value="/report/budget" var="budgetUrl" />
+				<li><a href="${budgetUrl}">
 					<spring:message code="report.budget" /> ($${balance})
 				</a></li>
-				<li><a href="graph">
+				
+				<spring:url value="/report/graph" var="graphUrl" />
+				<li><a href="${graphUrl}">
 					<spring:message code="report.graph" />
 				</a></li>
+				
 				<li><a href="#" data-report="${report}" id="update">
 					<spring:message code="report.update" />
 				</a></li>
+				
 				<li><a href="#" data-report="${report}" id="delete">
 					<spring:message code="report.delete" />
 				</a></li>

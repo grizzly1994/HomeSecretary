@@ -34,11 +34,12 @@
 			    { name : 'repay', index : 'repay' },
 			    { name : 'unpaid', index : 'unpaid' }
 			],
-			jsonReader : { root : 'userData', id : 'id' },
+			jsonReader : { id : 'id' },
 			viewrecords : true,
 			gridview : true,
 			loadonce: true,
-			sortable: true
+			sortable: true,
+			rowNum: 10000
 		});
 	</script>
 </div>

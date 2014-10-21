@@ -25,7 +25,7 @@ public class Debt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", nullable = false)
@@ -36,7 +36,8 @@ public class Debt {
     private String comment;
 
     @Column(name = "balance", nullable = false)
-    private double balance;
+    @NotNull(message = "{validation.empty}")
+    private Double balance;
 
     @Column(name = "date", nullable = false)
     @NotNull(message = "{validation.empty}")
@@ -52,11 +53,11 @@ public class Debt {
 
     @Column(name = "repay", nullable = false)
     @NotNull(message = "{validation.empty}")
-    private double repay;
+    private Double repay;
 
     @Column(name = "frequency", nullable = false)
     @NotNull(message = "{validation.empty}")
-    private int frequency;
+    private Integer frequency;
 
     public int getId() {
         return id;
@@ -82,11 +83,11 @@ public class Debt {
         comment = value;
     }
 
-    public double getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(double value) {
+    public void setBalance(Double value) {
         balance = value;
     }
 
@@ -114,19 +115,19 @@ public class Debt {
         return DateUtil.format(deadline);
     }
 
-    public double getRepay() {
+    public Double getRepay() {
         return repay;
     }
 
-    public void setRepay(double value) {
+    public void setRepay(Double value) {
         repay = value;
     }
 
-    public int getFrequency() {
+    public Integer getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(int value) {
+    public void setFrequency(Integer value) {
         frequency = value;
     }
 }

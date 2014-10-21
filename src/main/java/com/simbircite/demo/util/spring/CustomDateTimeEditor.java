@@ -21,6 +21,10 @@ public class CustomDateTimeEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-		setValue(DateTime.parse(text, formatter));
+    	try {
+    		setValue(DateTime.parse(text, formatter));
+    	} catch (Throwable error) {
+    		setValue(null);
+    	}
 	}
 }
