@@ -13,9 +13,10 @@
 		</tr>
 	</table>
 	
+	<spring:url value="/report/budget/list" var="listUrl" />
 	<script type="text/javascript">
 		$("#grid").jqGrid({
-			url : 'budget/list',
+			url : '${listUrl}',
 			datatype : 'json',
 			mtype : 'GET',
 			colNames : [ '${moment}', '${payCount}', '${debtCount}',

@@ -52,15 +52,23 @@ form label {
 
 /* Login and register */
 
-.form form, .form input {
+.form {
+	font-size: 14px;
+}
+
+.form label, .form input {
 	font-size: 18px;
+}
+
+.form p {
+	margin-bottom: 0;
 }
 
 .form input:not([type=submit]) {
 	width: 350px;
 }
 
-.form > *{
+.form > * {
 	padding: 10px 20px;
 }
 
@@ -69,13 +77,15 @@ form label {
 	text-decoration: none;
 }
 
-.form form {
-	float: left;
+.actions > * {
+	margin-right: 20px;
+	display: inline-block;
 }
 
-.actions > * {
-	padding-right: 20px;
-	display: inline-block;
+.errors {
+	color: #c0392b;
+	margin-left: 165px;
+	margin-top: 2px;
 }
 
 /* Report */

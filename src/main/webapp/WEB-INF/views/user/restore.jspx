@@ -1,6 +1,7 @@
 <html xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags"
-	xmlns:form="http://www.springframework.org/tags/form">
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
@@ -19,12 +20,21 @@
 		<div id="header">
 			<h1><spring:message code="user.password.restore" /></h1>
 		</div>
-		<form:form modelAttribute="entity" method="post" action="restore" enctype="multipart/form-data">
+		<spring:url value="/restore" var="submitUrl" />
+		<form:form modelAttribute="auth" method="post" action="${submitUrl}" enctype="multipart/form-data">
+			<c:if test="${error}">
+				<p class="errors">
+					<spring:message code="validation.email.existence" />
+				</p>
+			</c:if>
 			<p>
 				<form:label path="username">
 					<spring:message code="user.email" />
 				</form:label>
 				<form:input path="username" />
+			</p>
+			<p class="errors">
+				<form:errors path="username" />
 			</p>
 			<p>
 				<spring:message code="user.password.restore.instruction" />

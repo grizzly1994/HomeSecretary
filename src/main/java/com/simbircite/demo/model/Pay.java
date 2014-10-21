@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -27,18 +28,21 @@ public class Pay {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
     
-    @Column(name = "comment")
+    @Column(name = "comment", nullable = false)
+    @NotNull(message = "{validation.empty}")
     private String comment;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
+    @NotNull(message = "{validation.empty}")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(iso = ISO.DATE)
     private DateTime date;
 
-    @Column(name = "balance")
+    @Column(name = "balance", nullable = false)
+    @NotNull(message = "{validation.empty}")
     private double balance;
 
     public int getId() {

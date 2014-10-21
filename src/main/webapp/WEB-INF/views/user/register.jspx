@@ -1,6 +1,7 @@
 <html xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags"
-	xmlns:form="http://www.springframework.org/tags/form">
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
@@ -19,28 +20,38 @@
 		<div id="header">
 			<h1><spring:message code="user.register" /></h1>
 		</div>
-		<div id="form">
-			<form:form modelAttribute="entity" method="post" action="register" enctype="multipart/form-data">
-				<p>
-					<label for="username">
-						<spring:message code="user.email" />
-					</label>
-					<form:input path="username" />
+		<spring:url value="/register" var="submitUrl" />
+		<form:form modelAttribute="auth" method="post" action="${submitUrl}" enctype="multipart/form-data">
+			<c:if test="${error}">
+				<p class="errors">
+					<spring:message code="validation.register" />
 				</p>
-				<p>
-					<label for="password">
-						<spring:message code="user.password" />
-					</label>
-					<form:input path="password" type="password" />
-				</p>
-				<p>
-					<spring:message code="user.register.confirm.instruction" />
-				</p>
-				<p class="submit">
-					<spring:message code="ok" var="ok" />
-					<input type="submit" value="${ok}" />
-				</p>
-			</form:form>
-		</div>
+			</c:if>
+			<p>
+				<label for="username">
+					<spring:message code="user.email" />
+				</label>
+				<form:input path="username" />
+			</p>
+			<p class="errors">
+				<form:errors path="username" />
+			</p>
+			<p>
+				<label for="password">
+					<spring:message code="user.password" />
+				</label>
+				<form:input path="password" type="password" />
+			</p>
+			<p class="errors">
+				<form:errors path="password" />
+			</p>
+			<p>
+				<spring:message code="user.register.confirm.instruction" />
+			</p>
+			<p>
+				<spring:message code="ok" var="ok" />
+				<input type="submit" value="${ok}" />
+			</p>
+		</form:form>
 	</body>
 </html>

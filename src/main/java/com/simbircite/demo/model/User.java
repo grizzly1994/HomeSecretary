@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,19 +28,24 @@ public class User implements UserDetails {
     @Column(name = "id")
     private int id;
     
-    @Column(name = "username", unique = true)
+    @Column(name = "username", nullable = false, unique = true)
+    @NotNull(message = "{validation.empty}")
+    @NotBlank(message = "{validation.empty}")
+    @Email(message = "{validation.email}")
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
+    @NotNull(message = "{validation.empty}")
+    @NotBlank(message = "{validation.empty}")
     private String password;
     
-    @Column(name = "salt")
+    @Column(name = "salt", nullable = false)
     private String salt;
     
-    @Column(name = "code", unique = true)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
     
-    @Column(name = "confirmed")
+    @Column(name = "confirmed", nullable = false)
     private boolean confirmed;
 
 	public int getId() {

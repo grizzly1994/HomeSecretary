@@ -24,4 +24,5 @@
     <bean name="keyGenerationService" class="com.simbircite.demo.service.KeyGenerationService"/>
     <!-- Шифорвание паролей -->
     <bean name="encryptService" class="com.simbircite.demo.service.EncryptService"/>
+    
 </beans>
