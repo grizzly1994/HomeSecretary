@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition extends="report" name="pay">
-		<put-attribute name="body" value="/WEB-INF/views/report/pay.jspx" />
+	<definition extends="grid" name="pay/grid">
+		<put-attribute cascade="true" name="report" value="/WEB-INF/views/report/pay.jspx"/>
 	</definition>
-    <definition extends="report" name="debt">
-    	<put-attribute name="body" value="/WEB-INF/views/report/debt.jspx" />
+    <definition extends="grid" name="debt/grid">
+    	<put-attribute cascade="true" name="report" value="/WEB-INF/views/report/debt.jspx"/>
     </definition>
-    <definition extends="report" name="budget">
-    	<put-attribute name="body" value="/WEB-INF/views/report/budget.jspx" />
-    </definition>
-    <definition extends="report" name="graph">
-    	<put-attribute name="body" value="/WEB-INF/views/report/graph.jspx" />
+    <definition extends="grid" name="budget/grid">
+    	<put-attribute cascade="true" name="report" value="/WEB-INF/views/report/budget.jspx"/>
     </definition>
 </tiles-definitions>

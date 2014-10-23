@@ -12,17 +12,17 @@
     <context:annotation-config/>
     <context:property-placeholder location="classpath:jdbc.properties"/>
     
-    <!-- Определяем бин сервиса для работы с моделью User -->
-    <bean name="userService" class="com.simbircite.demo.service.UserService"/>
-    <!-- Бин сервиса для работы с платежами -->
-    <bean name="payService" class="com.simbircite.demo.service.PayService"/>
-    <!-- Определяем бин сервиса для работы с моделью Debt -->
-    <bean name="debtService" class="com.simbircite.demo.service.DebtService"/>
-    <!-- Сервис, рассчитывающий статус долга -->
-    <bean name="debtStateService" class="com.simbircite.demo.service.DebtStateService"/>
-    <!-- Генератор ключей -->
-    <bean name="keyGenerationService" class="com.simbircite.demo.service.KeyGenerationService"/>
-    <!-- Шифорвание паролей -->
-    <bean name="encryptService" class="com.simbircite.demo.service.EncryptService"/>
+    <bean name="userService" class="com.simbircite.secretary.service.UserService"/>
     
+    <bean name="reportsService" class="com.simbircite.secretary.service.ReportsService"/>
+    
+    <bean name="payService" class="com.simbircite.secretary.service.PayService"/>
+    <bean name="debtService" class="com.simbircite.secretary.service.DebtService"/>
+    <bean name="budgetService" class="com.simbircite.secretary.service.BudgetService"/>
+    
+    <bean name="debtStateService" class="com.simbircite.secretary.service.DebtStateService"/>
+    <bean name="budgetStateService" class="com.simbircite.secretary.service.BudgetStateService"/>
+    
+    <bean name="keyGenerationService" class="com.simbircite.secretary.service.KeyGenerationService"/>
+    <bean name="encryptService" class="com.simbircite.secretary.service.EncryptService"/>
 </beans>

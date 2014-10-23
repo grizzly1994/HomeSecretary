@@ -1,0 +1,126 @@
+/* General */
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: tahoma;
+}
+
+body, .ui-jqgrid-bdiv {
+	background: #f4f4f4;
+}
+
+form label {
+	display: inline-block;
+	width: 165px;
+}
+
+#header {
+	background: #383838;
+	color: white;
+}
+
+#header h1 {
+	font-size: 36px;
+	margin: 0;
+}
+
+#header ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#header li {
+	display: inline-block;
+}
+
+#header a {
+	text-decoration: none;
+	color: white;
+	padding: 0 6px;
+	display: block;
+	height: 24px;
+}
+
+#header a:hover, #menu a:active {
+	background: #1c94c4;
+}
+
+.selected {
+	background: #1c94c4;
+}
+
+/* Login and register */
+
+.form {
+	font-size: 14px;
+}
+
+.form label, .form input {
+	font-size: 18px;
+}
+
+.form p {
+	margin-bottom: 0;
+}
+
+.form input:not([type=submit]) {
+	width: 350px;
+}
+
+.form > * {
+	padding: 10px 20px;
+}
+
+.form a {
+	color: #1C94C4;
+	text-decoration: none;
+}
+
+.actions > * {
+	margin-right: 20px;
+	display: inline-block;
+}
+
+.errors {
+	color: #c0392b;
+	margin-left: 165px;
+	margin-top: 2px;
+}
+
+/* Report */
+
+#update:before, #delete:before, #logout:before {
+	content: "";
+	display: block;
+	width: 16px;
+	height: 16px;
+	float: left;
+	margin: 2px;
+}
+
+#update:before {
+	background: url(../img/update.png) no-repeat;
+}
+
+#delete:before {
+	background: url(../img/delete.png) no-repeat;
+}
+
+#logout:before {
+	background: url(../img/logout.png) no-repeat;
+}
+
+#calendar {
+	float: right;
+}
+
+.ui-jqgrid {
+	border: none;
+}
+
+#logout {
+	float: right;
+}

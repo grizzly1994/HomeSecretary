@@ -1,68 +1,32 @@
-<html xmlns:jsp="http://java.sun.com/JSP/Page"
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:form="http://www.springframework.org/tags/form">
 	
-	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	<jsp:directive.page pageEncoding="UTF-8" />
-	
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=8" />
-		
-		<spring:url value="/resources/scripts/jquery-1.10.2.js" var="jQueryUrl" />
-        <script src="${jQueryUrl}" type="text/javascript"><jsp:text /></script>
-        
-        <spring:url value="/resources/scripts/jquery-ui-1.10.3.custom.js" var="jQueryUiUrl" />
-        <script src="${jQueryUiUrl}" type="text/javascript"><jsp:text /></script>
-        
-        <spring:url value="/resources/styles/jquery-ui-1.10.3.custom.css" var="jQueryUiThemeUrl" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiThemeUrl}" />
-		
-		<spring:url value="/resources/scripts/widgets.js" var="widgetsUrl" />
-        <script src="${widgetsUrl}" type="text/javascript"><jsp:text /></script>
-		
-		<spring:url value="/resources/styles/standart.css" var="reportsCssUrl" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${reportsCssUrl}" />
-		
-		<title><spring:message code="report.pay" /> - <spring:message code="app.name" /></title>
-	</head>
-	<body class="form">
-		<div id="header">
-			<h1><spring:message code="report.pay" /></h1>
-		</div>
-		<spring:url value="/report/pay/update" var="updateUrl" />
-		<form:form modelAttribute="entity" action="${updateUrl}" method="post" enctype="multipart/form-data">
-			<p>
-				<form:label path="comment">
-					<spring:message code="report.comment" />
-				</form:label>
-				<form:input path="comment" />
-				<p class="errors">
-					<form:errors path="comment" />
-				</p>
-			</p>
-			<p>
-				<form:label path="date">
-					<spring:message code="report.date" />
-				</form:label>
-				<form:input path="date" class="datePicker" />
-				<p class="errors">
-					<form:errors path="date" />
-				</p>
-			</p>
-			<p>
-				<form:label path="balance">
-					<spring:message code="report.balance" />
-				</form:label>
-				<form:input path="balance" class="decimalSpinner" />
-				<p class="errors">
-					<form:errors path="balance" />
-				</p>
-			</p>
-			<button type="submit">
-				<spring:message code="ok" />
-			</button>
-		</form:form>
-	</body>
-</html>
+	<p>
+		<form:label path="comment">
+			<spring:message code="report.comment" />
+		</form:label>
+		<form:input path="comment" />
+		<p class="errors">
+			<form:errors path="comment" />
+		</p>
+	</p>
+	<p>
+		<form:label path="date">
+			<spring:message code="report.date" />
+		</form:label>
+		<form:input path="date" class="datePicker" />
+		<p class="errors">
+			<form:errors path="date" />
+		</p>
+	</p>
+	<p>
+		<form:label path="balance">
+			<spring:message code="report.balance" />
+		</form:label>
+		<form:input path="balance" class="decimalSpinner" />
+		<p class="errors">
+			<form:errors path="balance" />
+		</p>
+	</p>
+</div>

@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+		"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+		"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-    <definition name="user/login" template="/WEB-INF/views/user/login.jspx"></definition>
-    <definition name="user/register" template="/WEB-INF/views/user/register.jspx"></definition>
-    <definition name="user/restore" template="/WEB-INF/views/user/restore.jspx"></definition>
+    <definition extends="form" name="user/login">
+    	<put-attribute cascade="true" name="model" value="/WEB-INF/views/user/login.jspx" />
+    	<put-attribute cascade="true" name="title" value="user.login" />
+    	<put-attribute cascade="true" name="submit" value="/j_spring_security_check" />
+    </definition>
+    <definition extends="form" name="user/register">
+    	<put-attribute cascade="true" name="model" value="/WEB-INF/views/user/register.jspx" />
+    	<put-attribute cascade="true" name="title" value="user.register" />
+    	<put-attribute cascade="true" name="submit" value="/register" />
+    </definition>
+    <definition extends="form" name="user/restore">
+    	<put-attribute cascade="true" name="model" value="/WEB-INF/views/user/restore.jspx" />
+    	<put-attribute cascade="true" name="title" value="user.password.restore" />
+    	<put-attribute cascade="true" name="submit" value="/restore" />
+    </definition>
 </tiles-definitions>

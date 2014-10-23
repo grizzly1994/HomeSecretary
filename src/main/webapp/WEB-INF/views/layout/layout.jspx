@@ -1,0 +1,40 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+    xmlns:tiles="http://tiles.apache.org/tags-tiles">
+
+    <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+    <jsp:directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
+    
+    <head>
+        <spring:url value="/resources/js/jquery-1.10.2.js" var="jQueryUrl" />
+        <spring:url value="/resources/js/jquery-ui-1.10.3.custom.js" var="jQueryUiUrl" />
+        <spring:url value="/resources/js/globalize.js" var="globalizeUrl" />
+        <spring:url value="/resources/js/jquery.mousewheel.js" var="mousewheelUrl" />
+        <spring:url value="/resources/js/jqgrid/jquery.jqGrid.min.js" var="jqGridUrl" />
+        <spring:url value="/resources/js/jqgrid/i18n/grid.locale-en.js" var="jqGridLocaleUrl" />
+        <spring:url value="/resources/js/chart.js" var="chartJsUrl" />
+        <spring:url value="/resources/js/reports.js" var="reportsUrl" />
+        
+        <script src="${jQueryUrl}"><jsp:text /></script>
+        <script src="${jQueryUiUrl}"><jsp:text /></script>
+        <script src="${globalizeUrl}"><jsp:text /></script>
+        <script src="${mousewheelUrl}"><jsp:text /></script>
+        <script src="${jqGridUrl}"><jsp:text /></script>
+        <script src="${jqGridLocaleUrl}"><jsp:text /></script>
+        <script src="${chartJsUrl}"><jsp:text /></script>
+        <script src="${reportsUrl}"><jsp:text /></script>
+        
+        <spring:url value="/resources/css/jquery-ui/jquery-ui-1.10.3.custom.css" var="jQueryUiCssUrl" />
+        <spring:url value="/resources/css/ui.jqgrid.css" var="jqGridCssUrl" />
+        <spring:url value="/resources/css/standart.css" var="standartCssUrl" />
+        
+        <link rel="stylesheet" type="text/css" media="screen" href="${jQueryUiCssUrl}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jqGridCssUrl}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${standartCssUrl}" />
+        
+        <title><spring:message code="app.name" /></title>
+    </head>
+    <body>
+    	<tiles:insertAttribute name="tpl" />
+    </body>
+</html>

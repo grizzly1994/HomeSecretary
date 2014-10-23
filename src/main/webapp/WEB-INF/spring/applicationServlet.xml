@@ -63,14 +63,13 @@
 		id="tilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/layouts/layouts.xml</value>
 				<value>/WEB-INF/views/**/views.xml</value>
 			</list>
 		</property>
 	</bean>
 
 	<!-- Определяем пакет, в котором размещены классы контроллеров -->
-	<context:component-scan base-package="com.simbircite.demo.controller" />
+	<context:component-scan base-package="com.simbircite.secretary.controller" />
 
 	<!-- Местоположение статических ресурсных файлов -->
 	<mvc:resources mapping="/resources/**"

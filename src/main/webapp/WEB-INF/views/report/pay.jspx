@@ -1,43 +1,21 @@
-<div xmlns:spring="http://www.springframework.org/tags"
-	xmlns:jsp="http://java.sun.com/JSP/Page">
+<div xmlns:spring="http://www.springframework.org/tags">
 
 	<spring:message code="report.id" var="id" />
 	<spring:message code="report.comment" var="comment" />
 	<spring:message code="report.date" var="date" />
 	<spring:message code="report.balance" var="sum" />
-
-	<table id="grid">
-		<tr>
-			<td><jsp:text /></td>
-		</tr>
-	</table>
-
-	<spring:url value="/report/pay/list" var="listUrl" />
+	
 	<script type="text/javascript">
-		$("#grid").jqGrid({
-			url : '${listUrl}',
-			datatype : 'json',
-			mtype : 'GET',
-			colNames : [ '${id}', '${comment}', '${date}', '${sum}' ],
-			colModel : [ {
-				name : 'id',
-				index : 'id'
-			}, {
-				name : 'comment',
-				index : 'comment'
-			}, {
-				name : 'dateString',
-				index : 'dateString'
-			}, {
-				name : 'balance',
-				index : 'balance'
-			} ],
-			jsonReader : { id : 'id' },
-			viewrecords : true,
-			gridview : true,
-			loadonce: true,
-			sortable: true,
-			rowNum: 10000
-		});
+		view.grid([
+			'${id}',
+			'${comment}',
+			'${date}',
+			'${sum}'
+		], [
+			{ name : 'id', index : 'id' },
+			{ name : 'comment', index : 'comment' },
+			{ name : 'dateString', index : 'dateString' },
+			{ name : 'balance', index : 'balance' }
+		]);
 	</script>
 </div>

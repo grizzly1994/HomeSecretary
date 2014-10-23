@@ -1,0 +1,62 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+    xmlns:form="http://www.springframework.org/tags/form"
+    xmlns:tiles="http://tiles.apache.org/tags-tiles">
+
+    <div id="header">
+    	<spring:url value="/logout" var="logoutUrl" />
+	    <a id="logout" href="${logoutUrl}">
+			<spring:message code="logout" />
+		</a>
+			
+    	<div id="calendar">
+    		<spring:url value="/report/${report}/moment" var="momentUrl" />
+			<form:form action="${momentUrl}" modelAttribute="period" method="post" enctype="multipart/form-data">
+				<button type="submit">
+					<spring:message code="ok" />
+				</button>
+				<form:input path="moment" class="datePicker" />
+			</form:form>
+		</div>
+			
+		<spring:url value="/report/pay/update" var="addPayUrl" />
+		<spring:url value="/report/pay/grid" var="payUrl" />
+		<spring:url value="/report/debt/update" var="addDebtUrl" />
+		<spring:url value="/report/debt/grid" var="debtUrl" />
+		<spring:url value="/report/budget/grid" var="budgetUrl" />
+		<spring:url value="/report/budget/graph" var="graphUrl" />
+			
+		<ul>
+			<li><a href="${addPayUrl}">
+				+
+			</a></li>
+			<li><a href="${payUrl}" class="${pay_grid_selected}">
+				<spring:message code="report.pay" /> (${state.payCount}: $${state.total})
+			</a></li>
+			<li><a href="${addDebtUrl}">
+				+
+			</a></li>
+			<li><a href="${debtUrl}" class="${debt_grid_selected}">
+				<spring:message code="report.debt" /> (${state.debtCount}: $${state.unpaid})
+			</a></li>
+			<li><a href="${budgetUrl}" class="${budget_grid_selected}">
+				<spring:message code="report.budget" /> ($${state.balance})
+			</a></li>
+			<li><a href="${graphUrl}" class="${budget_graph_selected}">
+				<spring:message code="report.graph" />
+			</a></li>
+			<li><a href="#" data-report="${report}" id="update">
+				<spring:message code="report.update" />
+			</a></li>
+			<li><a href="#" data-report="${report}" id="delete">
+				<spring:message code="report.delete" />
+			</a></li>
+		</ul>
+	</div>
+		
+	<spring:url value="/report/${report}/list" var="listUrl" />
+	<script>
+		var view = new View('#presentation', '${listUrl}');
+	</script>
+		
+	<tiles:insertAttribute name="presentation" />
+</div>

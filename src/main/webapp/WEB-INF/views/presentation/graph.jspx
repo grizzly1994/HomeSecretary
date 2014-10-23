@@ -1,0 +1,8 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page">
+	
+	<canvas id="presentation"><jsp:text /></canvas>
+	
+	<script>
+		view.graph();
+	</script>
+</div>

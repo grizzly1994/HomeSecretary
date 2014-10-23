@@ -1,0 +1,21 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	class="form">
+	
+	<c:set var="title"><tiles:getAsString name="title" /></c:set>
+	<c:set var="submit"><tiles:getAsString name="submit" /></c:set>
+	<spring:url var="submit" value="${submit}" />
+	
+	<div id="header">
+		<h1><spring:message code="${title}" /></h1>
+	</div>
+	<form:form modelAttribute="model" action="${submit}" method="post" enctype="multipart/form-data">
+		<tiles:insertAttribute name="model" />
+		<p>
+			<spring:message code="ok" var="ok"/>
+			<input type="submit" value="${ok}" />
+		</p>
+	</form:form>
+</div>

@@ -10,7 +10,7 @@
                            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- Указываем пакет, в котором содержатся классы DAO -->
-    <jpa:repositories base-package="com.simbircite.demo.repository" />
+    <jpa:repositories base-package="com.simbircite.secretary.repo" />
     
     <!-- Определяем менеджер транзакций -->
     <bean id="transactionManager" 

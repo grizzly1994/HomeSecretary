@@ -1,5 +1,4 @@
-<div xmlns:spring="http://www.springframework.org/tags"
-	xmlns:jsp="http://java.sun.com/JSP/Page">
+<div xmlns:spring="http://www.springframework.org/tags">
 
 	<spring:message code="report.id" var="id" />
 	<spring:message code="report.comment" var="comment" />
@@ -9,37 +8,26 @@
 	<spring:message code="report.frequency" var="frequency" />
 	<spring:message code="report.repay" var="repay" />
 	<spring:message code="report.unpaid" var="unpaid" />
-	
-	<table id="grid">
-		<tr>
-			<td><jsp:text /></td>
-		</tr>
-	</table>
-	
-	<spring:url value="/report/debt/list" var="listUrl" />
+		
 	<script type="text/javascript">
-		$("#grid").jqGrid({
-			url : '${listUrl}',
-			datatype : 'json',
-			mtype : 'GET',
-			colNames : [ '${id}', '${comment}', '${date}', '${deadline}',
-			             '${balance}', '${frequency}', '${repay}', '${unpaid}' ],
-			colModel : [
-			    { name : 'id', index : 'id' },
-			    { name : 'comment', index : 'comment' },
-			    { name : 'dateString', index : 'dateString' },
-			    { name : 'deadlineString', index : 'deadlineString' },
-			    { name : 'balance', index : 'balance' },
-			    { name : 'frequency', index : 'frequency' },
-			    { name : 'repay', index : 'repay' },
-			    { name : 'unpaid', index : 'unpaid' }
-			],
-			jsonReader : { id : 'id' },
-			viewrecords : true,
-			gridview : true,
-			loadonce: true,
-			sortable: true,
-			rowNum: 10000
-		});
+		view.grid([
+			'${id}',
+			'${comment}',
+			'${date}',
+			'${deadline}',
+			'${balance}',
+			'${frequency}',
+			'${repay}',
+			'${unpaid}'
+		], [
+			{ name : 'id', index : 'id' },
+			{ name : 'comment', index : 'comment' },
+			{ name : 'dateString', index : 'dateString' },
+			{ name : 'deadlineString', index : 'deadlineString' },
+			{ name : 'balance', index : 'balance' },
+			{ name : 'frequency', index : 'frequency' },
+			{ name : 'repay', index : 'repay' },
+			{ name : 'unpaid', index : 'unpaid' }
+		]);
 	</script>
 </div>

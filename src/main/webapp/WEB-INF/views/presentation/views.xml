@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+		"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+		
+<tiles-definitions>
+	<definition extends="report" name="grid">
+    	<put-attribute cascade="true" name="presentation" value="/WEB-INF/views/presentation/grid.jspx"/>
+    </definition>
+    <definition extends="report" name="*/graph">
+    	<put-attribute cascade="true" name="presentation" value="/WEB-INF/views/presentation/graph.jspx"/>
+    </definition>
+</tiles-definitions>

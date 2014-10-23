@@ -1,39 +1,24 @@
-<div xmlns:spring="http://www.springframework.org/tags"
-	xmlns:jsp="http://java.sun.com/JSP/Page">
-	
+<div xmlns:spring="http://www.springframework.org/tags">
+		
 	<spring:message code="report.date" var="moment" />
 	<spring:message code="report.pay.count" var="payCount" />
 	<spring:message code="report.debt.count" var="debtCount" />
 	<spring:message code="report.balance" var="balance" />
 	<spring:message code="report.unpaid" var="unpaid" />
-	
-	<table id="grid">
-		<tr>
-			<td><jsp:text /></td>
-		</tr>
-	</table>
-	
-	<spring:url value="/report/budget/list" var="listUrl" />
+		
 	<script type="text/javascript">
-		$("#grid").jqGrid({
-			url : '${listUrl}',
-			datatype : 'json',
-			mtype : 'GET',
-			colNames : [ '${moment}', '${payCount}', '${debtCount}',
-			             '${balance}', '${unpaid}' ],
-			colModel : [
-			    { name : 'momentString', index : 'momentString' },
-			    { name : 'payCount', index : 'payCount' },
-			    { name : 'debtCount', index : 'debtCount' },
-			    { name : 'balance', index : 'balance' },
-			    { name : 'unpaid', index : 'unpaid' }
-			],
-			jsonReader : { id : 'moment' },
-			viewrecords : true,
-			gridview : true,
-			loadonce: true,
-			sortable: true,
-			rowNum: 10000
-		});
+		view.grid([
+			'${moment}',
+			'${payCount}',
+			'${debtCount}',
+			'${balance}',
+			'${unpaid}'
+		], [
+			{ name : 'momentString', index : 'momentString' },
+			{ name : 'payCount', index : 'payCount' },
+			{ name : 'debtCount', index : 'debtCount' },
+			{ name : 'balance', index : 'balance' },
+			{ name : 'unpaid', index : 'unpaid' }
+		]);
 	</script>
 </div>

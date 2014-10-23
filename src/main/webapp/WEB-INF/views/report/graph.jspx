@@ -1,3 +1,0 @@
-<div xmlns:spring="http://www.springframework.org/tags">
-	<canvas id="graph"></canvas>
-</div>

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition name="pay/add" template="/WEB-INF/views/edit/pay.jspx"></definition>
-	<definition name="pay/update" template="/WEB-INF/views/edit/pay.jspx"></definition>
-    <definition name="debt/add" template="/WEB-INF/views/edit/debt.jspx"></definition>
-    <definition name="debt/update" template="/WEB-INF/views/edit/debt.jspx"></definition>
+	<definition extends="form" name="pay/*">
+		<put-attribute cascade="true" name="model" value="/WEB-INF/views/edit/pay.jspx" />
+		<put-attribute cascade="true" name="title" value="report.pay" />
+		<put-attribute cascade="true" name="submit" value="/report/pay/update" />
+	</definition>
+    <definition extends="form" name="debt/*">
+    	<put-attribute cascade="true" name="model" value="/WEB-INF/views/edit/debt.jspx" />
+    	<put-attribute cascade="true" name="title" value="report.debt" />
+    	<put-attribute cascade="true" name="submit" value="/report/debt/update" />
+    </definition>
 </tiles-definitions>
